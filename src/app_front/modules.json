@@ -1,0 +1,26 @@
+[
+   {
+       "name": "aiprojects",
+       "title": "AI Projects",
+       "logo": "default",
+       "description": "Módulo completo de documentacion de analisis de proyectos"
+   },
+   {
+       "name": "aichatbot",
+       "title": "Ansiotropic ai chatbot",
+       "logo": "chatbot.png",
+       "description": "Ansiotropic chatbot"
+   },
+   {
+       "name": "module-3",
+       "title": "module number 3",
+       "logo": "module-3.png",
+       "description": "module-3 description"
+   },
+   {
+       "name": "module-4",
+       "title": "module number 4",
+       "logo": "module-4.png",
+       "description": "module-3 description"
+   }
+]
