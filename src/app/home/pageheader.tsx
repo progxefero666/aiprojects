@@ -18,7 +18,7 @@ export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsH
     const onSearchSubmit = (value:string): void => {
     }
 
-    const executeOperation = (operation_id?: string): void => {
+    const executeOperation = (op_id?: string): void => {
     }
 
     return (
@@ -47,6 +47,10 @@ export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsH
                                onsubmit={onSearchSubmit}/>
                 </div>
                 <div className="w-[26%]">
+                    <XButton callback={executeOperation}
+                            btntext="new" 
+                            btncolor="primary"
+                            iconname="TI_NEW" />
 
                 </div>
             </div>
