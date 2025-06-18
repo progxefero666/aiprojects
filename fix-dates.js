@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Busca archivos de modelos
-const modelsDir = './client/models';
+const modelsDir = './src/client/models';
 const files = fs.readdirSync(modelsDir).filter(f => f.endsWith('.ts'));
 
 files.forEach(file => {

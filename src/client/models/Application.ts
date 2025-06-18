@@ -15,8 +15,8 @@ export type Application = {
     apppath?: string;
     localdev?: boolean;
     usedocker?: boolean;
-    creationdate?: string;
-    updatedate?: string;
+    creationdate?: Date;
+    updatedate?: Date;
     description: string;
     controlusers?: boolean;
     useui?: boolean;
