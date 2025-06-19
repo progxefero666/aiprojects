@@ -1,10 +1,10 @@
 //src\app_front\manager\manappcolls.ts
 
 
-import { ProgLanguage } from "@/client/models/ProgLanguage";
-import { AppType } from "@/client/models/AppType";
-import { DocCategory } from "@/client/models/DocCategory";
-import { DocType } from "@/client/models/DocType";
+import { ProgLanguage } from "@/client_old/models/ProgLanguage";
+import { AppType } from "@/client_old/models/AppType";
+import { DocCategory } from "@/client_old/models/DocCategory";
+import { DocType } from "@/client_old/models/DocType";
 
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { ApptypesService } from "@/client_aidatabase/ApptypesService";

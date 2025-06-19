@@ -1,9 +1,9 @@
 //src\api_client\DocsprojanalisisService.ts
 
-import type { DocProjAnalisis } from '@/client/models/DocProjAnalisis';
-import type { CancelablePromise } from '@/client/core/CancelablePromise';
-import { OpenAPI } from '@/client/core/OpenAPI';
-import { request as __request } from '@/client/core/request';
+import type { DocProjAnalisis } from '@/client_old/models/DocProjAnalisis';
+import type { CancelablePromise } from '@/client_old/core/CancelablePromise';
+import { OpenAPI } from '@/client_old/core/OpenAPI';
+import { request as __request } from '@/client_old/core/request';
 
 /**
  * FastAPI Client Service

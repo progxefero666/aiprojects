@@ -11,9 +11,9 @@ import { InputCheckold } from '@/libcomp/xuicomp/base/inputcheckold';
 import { AppConstants } from '../appconstants';
 import { ProgLangCodeService } from '@/client_aidatabase/ProglanguagesService';
 import { ApptypesService } from '@/client_aidatabase/ApptypesService';
-import { AppType } from '@/client/models/AppType';
+import { AppType } from '@/client_old/models/AppType';
 import { AppDef } from '../manager/applicationdef';
-import { Application } from '@/client/models/Application';
+import { Application } from '@/client_old/models/Application';
 
 /*
 showApplicationForm(app,mode).then(({ confirmed }) => {

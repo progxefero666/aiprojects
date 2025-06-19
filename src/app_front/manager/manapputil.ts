@@ -1,6 +1,6 @@
 //src\app_front\manager\manappsutil.ts
 
-import { Application } from "@/client/models/Application";
+import { Application } from "@/client_old/models/Application";
 import { AppConstants } from "../appconstants";
 
 //import {Application} from "@/db_model/application"

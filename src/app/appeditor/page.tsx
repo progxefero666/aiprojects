@@ -10,7 +10,7 @@ import { AppStorage } from "@/app_front/appstorge";
 import AiManagerProjectsHeader from "../home/pageheader";
 import { ManCmmCollections } from "@/app_front/manager/manappcolls";
 import { AppIntroCard } from "@/app_front/comp/appcard";
-import { Application } from "@/client/models/Application"
+import { Application } from "@/client_old/models/Application"
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 import { AppElementCard } from "@/app/home/appelementcard";
 import AppEditorHeader from "./pageheader";

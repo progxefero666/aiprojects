@@ -6,7 +6,7 @@ import { MdPreview } from 'md-editor-rt';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { DataConstants } from "@/lib/common/app/dataconstants";
-import { Application } from "@/client/models/Application"
+import { Application } from "@/client_old/models/Application"
 import { ThemeColors } from "@/style/apptheme";
 
 import 'md-editor-rt/lib/style.css';

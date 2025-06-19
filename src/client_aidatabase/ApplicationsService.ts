@@ -1,9 +1,9 @@
 //src\api_client\ApplicationsService.ts
 
-import type { CancelablePromise } from '@/client/core/CancelablePromise';
-import { OpenAPI } from '@/client/core/OpenAPI';
-import { request as __request } from '@/client/core/request';
-import type { Application } from '@/client/models/Application';
+import type { CancelablePromise } from '@/client_old/core/CancelablePromise';
+import { OpenAPI } from '@/client_old/core/OpenAPI';
+import { request as __request } from '@/client_old/core/request';
+import type { Application } from '@/client_old/models/Application';
 
 /**
  * FastAPI Client Service

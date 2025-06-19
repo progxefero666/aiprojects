@@ -1,9 +1,11 @@
+//src\client\models\DocProjAnalisis.ts
+
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 export type DocProjAnalisis = {
-    id?: (number | null);
+    id?: number;
     project: string;
     description: string;
     dtype?: (string | null);

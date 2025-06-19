@@ -1,6 +1,6 @@
 //src\app_front\hooks\useappready.ts
 
-import { Application } from "@/client/models/Application";
+import { Application } from "@/client_old/models/Application";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 import { useState, useEffect } from "react";
 

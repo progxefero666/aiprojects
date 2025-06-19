@@ -16,10 +16,10 @@ export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { ProgLanguage } from './models/ProgLanguage';
 export type { ValidationError } from './models/ValidationError';
 
-export { ApplicationsService } from './services/ApplicationsService';
-export { ApptypesService } from './services/ApptypesService';
-export { DefaultService } from './services/DefaultService';
-export { DoccategoriesService } from './services/DoccategoriesService';
-export { DocsprojanalisisService } from './services/DocsprojanalisisService';
-export { DoctypesService } from './services/DoctypesService';
-export { ProglanguagesService } from './services/ProglanguagesService';
+export { ApplicationsService } from '@/client_aidatabase/ApplicationsService';
+export { ApptypesService } from '@/client_aidatabase/ApptypesService';
+export { DefaultService } from '@/client_aidatabase/DefaultService';
+export { DocCategoriesService as DoccategoriesService } from '@/client_aidatabase/DoccategoriesService';
+export { DocsAppAnalisisService as DocsprojanalisisService } from '@/client_aidatabase/DocsprojanalisisService';
+export { DocTypesService as DoctypesService } from '@/client_aidatabase/DoctypesService';
+export { ProgLangCodeService as ProglanguagesService } from '@/client_aidatabase/ProglanguagesService';

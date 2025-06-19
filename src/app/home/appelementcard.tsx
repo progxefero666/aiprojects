@@ -6,13 +6,13 @@ import { MdPreview } from 'md-editor-rt';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { DataConstants } from "@/lib/common/app/dataconstants";
-import { Application } from "@/client/models/Application"
+import { Application } from "@/client_old/models/Application"
 import { ThemeColors } from "@/style/apptheme";
 
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
 import { XButton } from "@/libcomp/xuicomp/base/button";
-import { ApptypesService } from "@/client";
+import { ApptypesService } from "@/client_old";
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { InputText } from "@/libcomp/xuicomp/base/inputtext";
 import { AppDef } from "../../app_front/manager/applicationdef";
