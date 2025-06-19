@@ -19,7 +19,8 @@ export const InputCheck = forwardRef<HTMLInputElement, InputCheckIfc>(
 
             }
         }
-
+    // 🟢<h2>💊 Pills (Píldoras)</h2>
+    //✅
         const renderContent = () => (
             <div className="flex items-center">
                 {label && <label>{label}</label>}

@@ -42,6 +42,7 @@ export default function PageIndex() {
     const [listApps, setListApps] = useState<Application[]>([]);
 
     useEffect(() => {
+
         const init = async () => {
             try {
                 const data_listapps = await ApplicationsService.getAll();

@@ -13,7 +13,9 @@ import { AppIntroCard } from "@/app_front/comp/appcard";
 import { Application } from "@/client/models/Application"
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 import { AppElementCard } from "@/app/home/appelementcard";
-import ApplicationEditorHeader from "./pageheader";
+import AppEditorHeader from "./pageheader";
+import { AppEditCard } from "../home/appeditcard";
+import { useAppReady } from "@/app_front/hooks/useappready";
 
 /**
  * Page Index JSX Client
@@ -22,7 +24,7 @@ import ApplicationEditorHeader from "./pageheader";
  *  ManApplicationUtil.getFormEntity
  */
 
-export const PAGE_EDITOR_PATH:string = "./appeditor";
+export const PAGE_EDITOR_PATH: string = "./appeditor";
 
 export default function ApplicationEditor() {
     //const router = useRouter();
@@ -33,46 +35,42 @@ export default function ApplicationEditor() {
 
     //application
     const [appId, setAppId] = useState<number>(-1);
-    const [app, setApp] = useState<Application|null>(null);
+    const [app, setApp] = useState<Application | null>(null);
+
+    const onTest = () => { }
 
     useEffect(() => {
-
+        const app_id: number = AppStorage.readApplicationId()
+        setAppId(app_id);
         const init = async () => {
-            try {
-                const appColls: ManCmmCollections = new ManCmmCollections();
-                setProgLangs(appColls.codelangsNames);
-                setAppTypes(appColls.apptypesNames);     
-
-                const app_id:number = AppStorage.readApplicationId();
-                if(app_id!=AppStorage.ID_NOT_FOUND){
-                    setAppId(app_id);
-                    const app_load: Application = await ApplicationsService.getById(app_id);
-                    setApp(app_load);
-                }
-            }
-            catch (error) {
-                console.error('Error:', error);
-            }
+            const appColls: ManCmmCollections = new ManCmmCollections();
+            const app_load: Application = await ApplicationsService.getById(app_id);
+            setProgLangs(appColls.codelangsNames);
+            setAppTypes(appColls.apptypesNames);
+            setApp(app_load);
         };
         init();
     }, []);
 
-    const onTest = () => {
+    if (!app) {
+        return <div>Loading...</div>;
     }
 
-    const renderMainContent = useMemo(() => {
+    const renderMainContent = () => {
         return (
-            <div>
-                MainContent
-            </div>
+            <ul className="menu w-full rounded-box menu-md space-y-3">
+                <li key={0}>
+                    <AppEditCard app={app} />
+                </li>
+            </ul>
         );
-    }, []);
+    };
 
     return (
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <ApplicationEditorHeader ontest={onTest} />
+            <AppEditorHeader ontest={onTest} />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
@@ -85,10 +83,8 @@ export default function ApplicationEditor() {
                 </div>
 
                 {/* column center */}
-                <div className="w-full h-auto">
-                    <div className="main_monitor w-full min-h-screen rounded-lg">
-                        {renderMainContent}
-                    </div>
+                <div className="main_monitor w-full min-h-screen rounded-lg">
+                    {renderMainContent()}
                 </div>
 
                 {/* column right */}

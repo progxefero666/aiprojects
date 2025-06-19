@@ -9,10 +9,10 @@ import { XButton } from "@/libcomp/xuicomp/base/button";
 /**
  * Ai Manager Projects Header
  */
-export interface ApplicationEditorHeaderIfc {
+export interface AppEditorHeaderIfc {
      ontest: () => void;
 }
-export default function ApplicationEditorHeader({ ontest }: ApplicationEditorHeaderIfc) {
+export default function AppEditorHeader({ ontest }: AppEditorHeaderIfc) {
 
     const maxLen: number = 50;
     const onSearchSubmit = (value:string): void => {

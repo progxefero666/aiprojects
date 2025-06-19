@@ -11,6 +11,12 @@
       "static/chunks/main-app.js",
       "static/css/app/page.css",
       "static/chunks/app/page.js"
+    ],
+    "/appeditor/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/appeditor/page.css",
+      "static/chunks/app/appeditor/page.js"
     ]
   }
 }
