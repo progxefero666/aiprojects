@@ -21,6 +21,8 @@ import { InputSelect } from "@/libcomp/xuicomp/base/inputselect";
 import { FieldWrapper } from "@/libcomp/xuicomp/base/fieldwrapper";
 import { OutputText } from "@/libcomp/xuicomp/base/ouputtext";
 import { OutputCheck } from "@/libcomp/xuicomp/base/outputcheck";
+import { BarButtonsConfig } from "@/types/types";
+import { BarButtons } from "@/libcomp/xuicomp/base/barbutton";
 
 
 const dummy_content: string = `## Introducción
@@ -40,6 +42,13 @@ const dummy_content: string = `## Introducción
     ## Código
     Aquí hay código inline: \`console.log("Hola")\``;
 
+const barConfig: BarButtonsConfig = {
+    operations: ["delete", "open"],
+    texts: ["delete", "open"],
+    disabled: [false, false],
+    color: ["btn-info", "btn-success"],
+    icons: ["none", "none"]
+}
 export interface AppElementCardIfc {
     app: Application;
     onselection: (id: number) => void;
@@ -100,56 +109,45 @@ export function AppElementCard({ app, onselection, iconname, iconsize, iconcolor
         init();
     }, []);
 
-
-    const onOpen = () => {
-        onselection(app.id);
-    };
-
-    const onSelectChange = (name: string, result: string) => {
-        if (name == "type") {
-
-        }
-        else if (name == "proglanguage") {
-
-        }
-    }
-
+    const onClick = (operation: string) => {
+        onselection(app.id);  
+    }; 
 
     const renderMainContent = useMemo(() => {
         return (
             <div className="w-full h-auto rounded-md">
-               
+
                 <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
                     <OutputText label="Author" value={app.author} />
                     <OutputText label="Description" value={app.description} />
                     <OutputText label="Url" value={app.appurl!} />
-                    <OutputText label="Path" value={app.apppath!} />                             
+                    <OutputText label="Path" value={app.apppath!} />
                 </div>
 
                 <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-4">
 
                     <FieldWrapper label="App. Type">
-                        <OutputText value={app.apptype} />     
+                        <OutputText value={app.apptype} />
                     </FieldWrapper>
 
                     <FieldWrapper label="prog Lang">
-                        <OutputText value={app.proglanguage!} /> 
+                        <OutputText value={app.proglanguage!} />
                     </FieldWrapper>
 
                     <FieldWrapper label="Op. System">
-                        <OutputText value={app.osystem!} /> 
+                        <OutputText value={app.osystem!} />
                     </FieldWrapper>
 
-                    <OutputCheck label="local Dev" chequed={app.localdev!}/>
-                    <OutputCheck label="use Docker" chequed={app.localdev!}/>
-                    <OutputCheck label="ctr. Users" chequed={app.controlusers!}/>
-                    <OutputCheck label="use UI" chequed={app.useui!}/>
-                    <OutputCheck label="use Agents" chequed={app.useagents!}/>
-                    <OutputCheck label="cons. Db" chequed={app.consumedb!}/>
-                    <OutputCheck label="cons. Api" chequed={app.consumeapi!}/>
-                    <OutputCheck label="cons. AI" chequed={app.consumeai!}/>
-                    <OutputCheck label="expose Api" chequed={app.exposedb!}/>
-                    <OutputCheck label="cons. AI" chequed={app.exposeapi!}/>
+                    <OutputCheck label="local Dev" chequed={app.localdev!} />
+                    <OutputCheck label="use Docker" chequed={app.localdev!} />
+                    <OutputCheck label="ctr. Users" chequed={app.controlusers!} />
+                    <OutputCheck label="use UI" chequed={app.useui!} />
+                    <OutputCheck label="use Agents" chequed={app.useagents!} />
+                    <OutputCheck label="cons. Db" chequed={app.consumedb!} />
+                    <OutputCheck label="cons. Api" chequed={app.consumeapi!} />
+                    <OutputCheck label="cons. AI" chequed={app.consumeai!} />
+                    <OutputCheck label="expose Api" chequed={app.exposedb!} />
+                    <OutputCheck label="cons. AI" chequed={app.exposeapi!} />
                 </div>
             </div>
 
@@ -184,15 +182,9 @@ export function AppElementCard({ app, onselection, iconname, iconsize, iconcolor
                     </div>
 
                     {/* crud buttons */}
-                    <div className="absolute right-2 flex flex-row gap-2 ">
-                        <button className="btn btn-sm btn-info"
-                            onClick={onOpen}>
-                            delete
-                        </button>
-                        <button className="btn btn-sm btn-success"
-                            onClick={onOpen}>
-                            open
-                        </button>
+                    <div className="absolute right-2 ">
+                        <BarButtons barconfig={barConfig} 
+                                    onclick={onClick} />
                     </div>
 
                 </div>

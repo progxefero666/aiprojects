@@ -3,38 +3,64 @@
 import { AppThemifyIcons } from "@/style/appthicons";
 import { AppUIButtons } from "@/style/appui";
 import { DataConstants } from "@/lib/common/app/dataconstants";
+import { BarButtonsConfig } from "@/types/types";
+import { useEffect } from "react";
 
 export interface BarButtonsIfc {
     onclick: (operation: string) => void;
-    operations:string[];
-    btnstext?: string;    
-    btnsdisabled: boolean[];
-    btnscolor: string[];
+    barconfig: BarButtonsConfig;
     btnsize?: string;
-    iconsize?: string;       
-    iconsname?: string;
+    iconsize?: string;
     iconscolor?: string;
 }
-export function BarButtons({onclick,operations,btnstext,btnsdisabled,btnscolor,iconsname}: BarButtonsIfc) {
+export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }: BarButtonsIfc) {
 
-    /*
-       <ul className="list w-full flex flex-col space-y-2">
-            {pageElements.map((mmImage, index) => {
-                    <renderElement({
-                        mmImage,
-                        className: 'w-full h-15 pl-3 pr-1 flex bg-sky-400 border-y border-base-300',
-                        rowIndex,
-                        selectElement,
-                        executeOpElement,
-                    />
-            })}
-        </ul>    
-    */
+    const buttonSize = btnsize ?? "sm";
+    const iconSize = iconsize ?? "sm";
+    const iconColor = iconscolor ?? "white";
+
+    useEffect(() => {
+
+    }, []);
+
+    const renderButton = (key:string,operation: string, disabled: boolean,
+                          text: string, color: string, icon?: string) => {
+        const onButtonClick = () => {
+            onclick(operation);
+        };
+
+        if (!icon) {
+            return (
+                <button key={key}
+                    className="btn btn-sm btn-info"
+                    disabled={disabled}
+                    onClick={onButtonClick}>
+                    {text ? text : null}
+                </button>
+            )
+        }
+        else {
+            return (
+                <button  key={key}
+                    className="btn btn-sm btn-info"
+                    disabled={disabled}
+                    onClick={onButtonClick}>
+                    {text ? text : null}
+                </button>
+            )
+        }
+    }
 
     return (
-        <>
-
-        </>
+        <div className="w-auto h-auto flex flex-row gap-3">
+            {barconfig.operations.map((op: string, index: number) => (
+                renderButton(index.toString(),op,
+                    barconfig.disabled[index],
+                    barconfig.texts[index],
+                    barconfig.color[index],
+                    barconfig.icons[index])
+            ))}
+        </div>
     )
 
 }//end component

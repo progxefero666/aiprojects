@@ -19,6 +19,8 @@ import { AppDef } from "../../app_front/manager/applicationdef";
 import { InputCheck } from "@/libcomp/xuicomp/base/inputcheck";
 import { InputSelect } from "@/libcomp/xuicomp/base/inputselect";
 import { FieldWrapper } from "@/libcomp/xuicomp/base/fieldwrapper";
+import { BarButtonsConfig } from "@/types/types";
+import { BarButtons } from "@/libcomp/xuicomp/base/barbutton";
 
 
 const dummy_content: string = `## Introducción
@@ -38,13 +40,14 @@ const dummy_content: string = `## Introducción
     ## Código
     Aquí hay código inline: \`console.log("Hola")\``;
 
-/*
-    operations:string[];
-    btnstext?: string;    
-    btnsdisabled: boolean[];
-    btnscolor: string[];
-*/
 
+const barConfig:BarButtonsConfig = {
+    operations: ["open","delete"],
+    texts:      ["open","delete"],
+    disabled:   [false,false],
+    color:      ["btn-info","btn-success"],
+    icons:      ["none","none"]
+}
 export interface AppEditCardIfc {
     app: Application;
     iconname?: string;
@@ -289,16 +292,22 @@ export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardI
                         </div>
                     </div>
 
-                    {/* crud buttons */}
-                    <div className="absolute right-2 flex flex-row gap-2 ">
-                        <button className="btn btn-sm btn-info"
+                    {/* crud buttons 
+                    
+                                     <button className="btn btn-sm btn-info"
                             onClick={onOpen}>
                             delete
                         </button>
                         <button className="btn btn-sm btn-success"
                             onClick={onOpen}>
                             open
-                        </button>
+                        </button>       
+                    
+                    */}
+
+                    <div className="absolute right-2">
+                        <BarButtons barconfig={barConfig} 
+                                    onclick={onClick} />
                     </div>
 
                 </div>
