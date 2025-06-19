@@ -15,7 +15,7 @@ import { XButton } from "@/libcomp/xuicomp/base/button";
 import { ApptypesService } from "@/client_old";
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { InputText } from "@/libcomp/xuicomp/base/inputtext";
-import { AppDef } from "../../app_front/manager/applicationdef";
+import { AppDef } from "../../app_front/manapplications/applicationdef";
 import { InputCheck } from "@/libcomp/xuicomp/base/inputcheck";
 import { InputSelect } from "@/libcomp/xuicomp/base/inputselect";
 import { FieldWrapper } from "@/libcomp/xuicomp/base/fieldwrapper";

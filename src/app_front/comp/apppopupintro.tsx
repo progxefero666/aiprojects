@@ -12,7 +12,7 @@ import { AppConstants } from '../appconstants';
 import { ProgLangCodeService } from '@/client_aidatabase/ProglanguagesService';
 import { ApptypesService } from '@/client_aidatabase/ApptypesService';
 import { AppType } from '@/client_old/models/AppType';
-import { AppDef } from '../manager/applicationdef';
+import { AppDef } from '../manapplications/applicationdef';
 import { Application } from '@/client_old/models/Application';
 import { InputCheck } from '@/libcomp/xuicomp/base/inputcheck';
 

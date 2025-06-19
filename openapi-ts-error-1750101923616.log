@@ -1,9 +1,0 @@
-[2025-06-16T19:25:23.616Z] Error: unknown plugin dependency "axios" - do you need to register a custom plugin with this name?
-Stack:
-Error: unknown plugin dependency "axios" - do you need to register a custom plugin with this name?
-    at a (C:\claude\apps\aiprojects\node_modules\@hey-api\openapi-ts\dist\index.cjs:42:73864)
-    at Sg (C:\claude\apps\aiprojects\node_modules\@hey-api\openapi-ts\dist\index.cjs:42:74689)
-    at Ig (C:\claude\apps\aiprojects\node_modules\@hey-api\openapi-ts\dist\index.cjs:42:75368)
-    at Pm (C:\claude\apps\aiprojects\node_modules\@hey-api\openapi-ts\dist\index.cjs:42:76712)
-    at async d$ (C:\claude\apps\aiprojects\node_modules\@hey-api\openapi-ts\dist\index.cjs:1338:4485)
-    at async start (C:\claude\apps\aiprojects\node_modules\@hey-api\openapi-ts\bin\index.cjs:131:21)
