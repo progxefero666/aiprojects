@@ -8,10 +8,11 @@ import { Application } from "@/client_old/models/Application"
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 import { AppElementCard } from "@/app/home/appelementcard";
 import { PAGE_EDITOR_PATH } from "@/app/appeditor/page";
-import AiManagerProjectsHeader from "@/app/home/pageheader";
+import DesktopHeader from "@/app/home/pageheader";
 
 import { ManagerAplications } from "../app_front/manapplications/manapps";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
+import DesktopMenu from "./home/pagemenu";
 
 
 /*
@@ -39,7 +40,7 @@ if(manApps.appSel){
  * start command:
  *  npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
  */
-export default function PageIndex() {
+export default function Desktop() {
     
     const router = useRouter();
     const [listApps, setListApps] = useState<Application[]>([]);
@@ -57,6 +58,10 @@ export default function PageIndex() {
         };
         init();
     }, []);
+
+    const onSelectModule = () => {
+    
+    }
 
     const onSelectApplication = (app_id: number) => {
         AppStorage.saveApplicationId(app_id);
@@ -90,16 +95,14 @@ export default function PageIndex() {
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <AiManagerProjectsHeader onaddapplication={onAddApplication} />
+            <DesktopHeader onaddapplication={onAddApplication} />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
 
                 {/* column left */}
                 <div className="w-full min-h-screen flex flex-col px-2 mb-2">
-                    <div className="w-full h-auto">
-                        Btn New
-                    </div>
+                    <DesktopMenu />
                 </div>
 
                 {/* column center */}

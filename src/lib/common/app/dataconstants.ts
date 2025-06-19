@@ -1,4 +1,7 @@
 
+/**
+ * DataConstants.UNDEFINED
+ */
 export class DataConstants {
 
     public static UNDEFINED = "undefined";

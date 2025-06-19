@@ -1,7 +1,7 @@
 //src\lib\xuicomp\common\panelmenu.tsx
 
 
-import { CardMenuOption } from "@/libcomp/cardmenuoption";
+import { CardMenuOption } from "@/libcomp/menuoption";
 import { Search } from "./search";
 
 

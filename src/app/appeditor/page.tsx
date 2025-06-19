@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { useRouter } from "next/navigation";
 import { AppStorage } from "@/app_front/appstorge";
-import AiManagerProjectsHeader from "../home/pageheader";
+import DesktopHeader from "../home/pageheader";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import { AppIntroCard } from "@/app_front/comp/appcard";
 import { Application } from "@/client_old/models/Application"

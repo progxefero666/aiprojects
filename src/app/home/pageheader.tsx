@@ -9,10 +9,10 @@ import { XButton } from "@/libcomp/button";
 /**
  * Ai Manager Projects Header
  */
-export interface AiManagerProjectsHeaderIfc {
+export interface DesktopHeaderIfc {
      onaddapplication: () => void;
 }
-export default function AiManagerProjectsHeader({ onaddapplication }: AiManagerProjectsHeaderIfc) {
+export default function DesktopHeader({ onaddapplication }: DesktopHeaderIfc) {
 
     const maxLen: number = 50;
     const onSearchSubmit = (value:string): void => {

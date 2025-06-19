@@ -29,8 +29,7 @@ export function CardMenuOption({ name, text, onselection, iconname, iconsize, ic
         <div className="card_menuitem w-full cursor-pointer"
              onClick={handleOnClick}>
             <div className="flex flex-row text-left justify-start items-center">
-                {iconname ? <div className={iconclass} /> : null}
-                                
+                {iconname ? <div className={iconclass} /> : null}                                
                 <div className="ml-2">
                     {text}
                 </div>                

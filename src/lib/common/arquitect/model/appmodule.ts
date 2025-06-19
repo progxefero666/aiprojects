@@ -1,5 +1,7 @@
 //src\lib\arquitect\model\appmodule.ts
 
+import { DataConstants } from "../../app/dataconstants";
+
 
 /**
  * class AppModule
@@ -11,11 +13,11 @@ export class AppModule {
     public logo: string;
     public description: string;
 
-    constructor(name: string, title: string, logo: string, description: string) {
+    constructor(name: string, title: string,description?:string,logo?:string) {
         this.name = name;
         this.title = title;
-        this.logo = logo;
-        this.description = description;
+        this.logo = logo ?? DataConstants.UNDEFINED;
+        this.description = description  ?? DataConstants.UNDEFINED;
     }
 
     public toJsonString(): string {
