@@ -77,8 +77,6 @@
 
 .menu {
     font-size: 0.875rem;
-    padding: 6px;
-
     :where(li > .menu-dropdown:not(.menu-dropdown-show)) {
         display: none;
     }

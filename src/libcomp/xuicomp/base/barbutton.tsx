@@ -29,10 +29,16 @@ export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }
             onclick(operation);
         };
 
+        //btn-info
+        const getClassName = (color:string):string => {
+            let style:string = "btn btn-sm ".concat(color);
+            return style;
+        };
+
         if (!icon) {
             return (
                 <button key={key}
-                    className="btn btn-sm btn-info"
+                    className={getClassName(color)}
                     disabled={disabled}
                     onClick={onButtonClick}>
                     {text ? text : null}
@@ -42,7 +48,7 @@ export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }
         else {
             return (
                 <button  key={key}
-                    className="btn btn-sm btn-info"
+                    className={getClassName(color)}
                     disabled={disabled}
                     onClick={onButtonClick}>
                     {text ? text : null}

@@ -41,12 +41,12 @@ const dummy_content: string = `## Introducción
     Aquí hay código inline: \`console.log("Hola")\``;
 
 
-const barConfig:BarButtonsConfig = {
-    operations: ["open","delete"],
-    texts:      ["open","delete"],
-    disabled:   [false,false],
-    color:      ["btn-info","btn-success"],
-    icons:      ["none","none"]
+const barConfig: BarButtonsConfig = {
+    operations: ["viewdocs", "edit"],
+    texts: ["view docs", "edit"],
+    disabled: [false, false],
+    color: ["btn-info", "btn-success"],
+    icons: ["none", "none"]
 }
 export interface AppEditCardIfc {
     app: Application;
@@ -93,7 +93,7 @@ export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardI
     const exposedbRef = useRef<HTMLInputElement>(null);
     const exposeapiRef = useRef<HTMLInputElement>(null);
 
-    const refInline: string = " - (".concat(app.reference!).concat(")");
+    const refInline: string = " (".concat(app.reference!).concat(")");
 
     const init = async () => {
         const proglangsNames = await ProgLangCodeService.getAllNames();
@@ -108,11 +108,7 @@ export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardI
     }, []);
 
     const onClick = (operation: string) => {
-  
-    }; 
 
-    const onOpen = () => {
-  
     };
 
     const onSelectChange = (name: string, result: string) => {
@@ -128,7 +124,7 @@ export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardI
     const renderMainContent = useMemo(() => {
         return (
             <div className="w-full h-auto rounded-md">
-               
+
                 <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
 
                     <InputText ref={authorRef}
@@ -267,11 +263,25 @@ export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardI
     }, []);
 
     return (
-        <div className="w-full flex flex-col bg-base-100 py-[10px] pb-[10x] border border-zinc-500">
+        <div className="w-full h-auto rounded-box p-[8px] space-y-2">
 
             {/* header */}
-            <div className="w-full relative  rounded-lg">
-                <div className="w-full h-auto p-[6px] flex items-center rounded-lg border border-sky-500">
+            <div className="w-full flex flex-row rounded-lg bg-base-100 py-[5px] mb-[10x] border border-sky-500  ">
+                <div className="w-full pl-3 pr-3 flex flex-row items-center" >
+                    <p>{app.name}</p>
+                    <p className="pl-[8px] text-sm">{refInline}</p>
+                </div>
+
+                <div className="w-full  h-auto mr-[6px] my-[6px] flex justify-end">
+                    <BarButtons barconfig={barConfig}
+                        onclick={onClick} />
+                </div>
+            </div>
+
+            {/* main section */}
+            <div className="w-full  bg-base-100 rounded-lg border border-sky-500">
+
+                <div className="flex flex-row items-center pl-[6px] text-white text-xs">
 
                     {/* collapse comp */}
                     <div className="flex flex-row text-white text-xs">
@@ -288,33 +298,21 @@ export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardI
                             }
                         </div>
                         <div className="w-full flex items-center flex-row ml-[12px] text-white text-lg">
-                            <p>{app.name}</p> <p className="ml-[6px] text-sm">{refInline}</p>
+                            <p className="text-sm">Main</p>
                         </div>
                     </div>
 
-                    {/* crud buttons 
-                    
-                                     <button className="btn btn-sm btn-info"
-                            onClick={onOpen}>
-                            delete
-                        </button>
-                        <button className="btn btn-sm btn-success"
-                            onClick={onOpen}>
-                            open
-                        </button>       
-                    
-                    */}
-
-                    <div className="absolute right-2">
-                        <BarButtons barconfig={barConfig} 
-                                    onclick={onClick} />
+                    <div className="w-full  h-auto mr-[6px] my-[6px] flex justify-end">
+                        <BarButtons barconfig={barConfig}
+                            onclick={onClick} />
                     </div>
 
                 </div>
-            </div>
 
-            {/* body */}
-            {!collapse ? renderMainContent : null}
+
+                {/* body */}
+                {!collapse ? renderMainContent : null}
+            </div>
         </div>
     )
 

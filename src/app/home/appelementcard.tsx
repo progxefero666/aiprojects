@@ -155,40 +155,39 @@ export function AppElementCard({ app, onselection, iconname, iconsize, iconcolor
     }, []);
 
     return (
-        <div className="w-full flex flex-col bg-base-100 py-[10px] pb-[10x] border border-zinc-500">
+        <div className="w-full flex flex-col bg-base-100 p-[10px] border border-zinc-500">
 
             {/* header */}
-            <div className="w-full relative  rounded-lg">
-                <div className="w-full h-auto p-[6px] flex items-center rounded-lg border border-sky-500">
+            <div className="w-full h-auto grid grid-cols-2 auto-cols-max  rounded-lg border border-sky-500">
 
-                    {/* collapse comp */}
-                    <div className="flex flex-row text-white text-xs">
-                        <div>
-                            {collapse ?
-                                <XButton callback={onCollapse}
-                                    iconcolor="white"
-                                    iconname={AppThemifyIcons.TI_ARROW_DOWN}
-                                    iconsize="xs" />
-                                : <XButton callback={onCollapse}
-                                    iconcolor="red"
-                                    iconsize="xs"
-                                    iconname={AppThemifyIcons.TI_ANGLE_UP} />
-                            }
-                        </div>
-                        <div className="w-full flex items-center flex-row ml-[12px] text-white text-lg">
-                            <p>{app.name}</p> <p className="ml-[6px] text-sm">{refInline}</p>
-                        </div>
-
+                {/* collapse comp items-end */}
+                <div className="flex flex-row items-center pl-[6px] text-white text-xs">
+                    <div>
+                        {collapse ?
+                            <XButton callback={onCollapse}
+                                iconcolor="white"
+                                iconname={AppThemifyIcons.TI_ARROW_DOWN}
+                                iconsize="xs" />
+                            : <XButton callback={onCollapse}
+                                iconcolor="red"
+                                iconsize="xs"
+                                iconname={AppThemifyIcons.TI_ANGLE_UP} />
+                        }
                     </div>
-
-                    {/* crud buttons */}
-                    <div className="absolute right-2 ">
-                        <BarButtons barconfig={barConfig} 
-                                    onclick={onClick} />
+                    <div className="w-full flex items-center flex-row ml-[12px] text-white text-lg">
+                        <p>{app.name}</p> <p className="ml-[6px] text-sm">{refInline}</p>
                     </div>
 
                 </div>
+
+                {/* crud buttons */}
+                <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
+                    <BarButtons barconfig={barConfig} 
+                                onclick={onClick} />
+                </div>
+
             </div>
+    
 
             {/* body */}
             {!collapse ? renderMainContent : null}

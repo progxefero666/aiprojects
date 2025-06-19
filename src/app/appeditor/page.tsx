@@ -58,11 +58,10 @@ export default function ApplicationEditor() {
 
     const renderMainContent = () => {
         return (
-            <ul className="menu w-full rounded-box menu-md space-y-3">
-                <li key={0}>
-                    <AppEditCard app={app} />
-                </li>
-            </ul>
+            <div className="w-full h-auto py-2 px-2">
+                <AppEditCard app={app} />
+            </div>
+
         );
     };
 
