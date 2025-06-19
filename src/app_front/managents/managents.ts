@@ -1,22 +1,21 @@
 //src\app_front\manservers\manservers.ts
 
+import { Agent } from "@/client/models/Agent";
 import { Server } from "@/client/models/Server";
 import { CollCommands } from "@/lib/common/collection/collcommands";
 import { CtrlCollectionByKey } from "@/lib/common/collection/ctrlcollbyid";
 
 
-//export class ViControlGrImages extends CtrlCollectionByIndex<XImage> {
-
 /**
- * class Manager Servers
+ * class Manager AI Agents
  */
-export class ManagerServers extends CtrlCollectionByKey<Server> {
+export class ManagerAgents extends CtrlCollectionByKey<Agent> {
 
     constructor(){
         super();
     }
 
-    public execOperation = (opId: string,element?:Server|null,elementId?:number|null): boolean => {
+    public execOperation = (opId: string,element?:Agent|null,elementId?:number|null): boolean => {
         let result = false;
 
         if (opId == CollCommands.OPID_INSERT) {
