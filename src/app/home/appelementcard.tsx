@@ -11,18 +11,18 @@ import { ThemeColors } from "@/style/apptheme";
 
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
-import { XButton } from "@/libcomp/comp/button";
+import { XButton } from "@/libcomp/button";
 import { ApptypesService } from "@/client_old";
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
-import { InputText } from "@/libcomp/comp/inputtext";
+import { InputText } from "@/libcomp/inputtext";
 import { AppDef } from "../../app_front/manapplications/applicationdef";
-import { InputCheck } from "@/libcomp/comp/inputcheck";
-import { InputSelect } from "@/libcomp/comp/inputselect";
-import { FieldWrapper } from "@/libcomp/comp/fieldwrapper";
-import { OutputText } from "@/libcomp/comp/ouputtext";
-import { OutputCheck } from "@/libcomp/comp/outputcheck";
+import { InputCheck } from "@/libcomp/inputcheck";
+import { InputSelect } from "@/libcomp/inputselect";
+import { FieldWrapper } from "@/libcomp/fieldwrapper";
+import { OutputText } from "@/libcomp/ouputtext";
+import { OutputCheck } from "@/libcomp/outputcheck";
 import { BarButtonsConfig } from "@/types/types";
-import { BarButtons } from "@/libcomp/comp/barbutton";
+import { BarButtons } from "@/libcomp/barbutton";
 
 
 const dummy_content: string = `## Introducción

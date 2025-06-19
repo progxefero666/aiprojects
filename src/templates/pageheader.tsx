@@ -1,12 +1,12 @@
 //src\app\module\aiprojects\manprojects\pageheader.tsx
 
 
-import { Search } from "@/libcomp/comp/search";
-import { XSelect } from "@/libcomp/util/bselect";
+import { Search } from "@/libcomp/search";
+import { XSelect } from "@/lib/devcomp/bselect";
 
-import { InputSelect } from "@/libcomp/comp/inputselect";
+import { InputSelect } from "@/libcomp/inputselect";
 import { AppThemifyIcons } from "@/style/appthicons";
-import { XButton } from "@/libcomp/comp/button";
+import { XButton } from "@/libcomp/button";
 
 
 /**

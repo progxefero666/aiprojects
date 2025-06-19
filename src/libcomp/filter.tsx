@@ -4,7 +4,7 @@ import { AppThemifyIcons } from "@/style/appthicons";
 
 import { useState } from "react";
 import { ThemeColors } from "@/style/apptheme";
-import { XButton } from "@/libcomp/comp/button";
+import { XButton } from "@/libcomp/button";
 
 
 /**

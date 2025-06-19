@@ -1,7 +1,7 @@
 //src\lib\xuicomp\form\inputcolor.tsx
 
 import { forwardRef, useState } from "react";
-import { showColorPickerModal } from "@/libcomp/util/puselectcolor";
+import { showColorPickerModal } from "@/libcomp/puselectcolor";
 
 
 export interface InputColorProps {

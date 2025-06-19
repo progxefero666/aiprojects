@@ -5,16 +5,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from "react-dom/client";
 import { AppThemifyIcons } from "@/style/appthicons";
 import { ThemeColors } from "@/style/apptheme";
-import { InputText } from '@/libcomp/comp/inputtext';
-import { InputSelect } from '@/libcomp/comp/inputselect';
-import { InputCheckold } from '@/libcomp/comp/inputcheckold';
+import { InputText } from '@/libcomp/inputtext';
+import { InputSelect } from '@/libcomp/inputselect';
+import { InputCheckold } from '@/libcomp/inputcheckold';
 import { AppConstants } from '../appconstants';
 import { ProgLangCodeService } from '@/client_aidatabase/ProglanguagesService';
 import { ApptypesService } from '@/client_aidatabase/ApptypesService';
 import { AppType } from '@/client_old/models/AppType';
 import { AppDef } from '../manapplications/applicationdef';
 import { Application } from '@/client_old/models/Application';
-import { InputCheck } from '@/libcomp/comp/inputcheck';
+import { InputCheck } from '@/libcomp/inputcheck';
 
 /*
 showApplicationForm(app,mode).then(({ confirmed }) => {

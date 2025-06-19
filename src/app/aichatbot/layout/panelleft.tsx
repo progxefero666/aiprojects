@@ -1,6 +1,6 @@
 //src\lib\arquitect\comp\panelleft.tsx
 
-import { PanelMenu } from "@/libcomp/comp/panelmenu";
+import { PanelMenu } from "@/libcomp/panelmenu";
 import { XButton } from "@/lib/xuicomp/buttons/";
 import { AppThemifyIcons } from "@/style/appthicons";
 

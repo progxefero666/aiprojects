@@ -1,9 +1,9 @@
 //src\app\module\aiprojects\manprojects\pageheader.tsx
 
 
-import { Search } from "@/libcomp/comp/search";
+import { Search } from "@/libcomp/search";
 import { AppThemifyIcons } from "@/style/appthicons";
-import { XButton } from "@/libcomp/comp/button";
+import { XButton } from "@/libcomp/button";
 
 
 /**
