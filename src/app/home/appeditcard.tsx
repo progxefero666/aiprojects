@@ -38,6 +38,13 @@ const dummy_content: string = `## Introducción
     ## Código
     Aquí hay código inline: \`console.log("Hola")\``;
 
+/*
+    operations:string[];
+    btnstext?: string;    
+    btnsdisabled: boolean[];
+    btnscolor: string[];
+*/
+
 export interface AppEditCardIfc {
     app: Application;
     iconname?: string;
@@ -97,6 +104,9 @@ export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardI
         init();
     }, []);
 
+    const onClick = (operation: string) => {
+  
+    }; 
 
     const onOpen = () => {
   

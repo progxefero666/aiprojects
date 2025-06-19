@@ -40,11 +40,11 @@ export function XButton({ callback,operation,
     return (
         <>
             {btntext? 
-                <div className="icon-button" 
-                        onClick={handleOnClick}>
-                    {btntext? btntext:null}        
-                    {iconname ? <div className={iconclass} />:null }            
-                </div>              
+            <div className="icon-button" 
+                    onClick={handleOnClick}>
+                {btntext? btntext:null}        
+                {iconname ? <div className={iconclass} />:null }            
+            </div>              
             : 
                 <div className="icon-button" 
                         onClick={handleOnClick}>
