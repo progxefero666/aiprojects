@@ -14,7 +14,10 @@ import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 import { AppElementCard } from "@/app/home/appelementcard";
 import { PAGE_EDITOR_PATH } from "./appeditor/page";
 
-
+/*
+npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
+node fix-dates.js
+*/
 /*
 ManApplicationUtil.getFormEntity()
 const [progLangs, setProgLangs] = useState<string[]>([]);
