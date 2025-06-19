@@ -11,38 +11,35 @@ import { ManCmmCollections } from "@/app_front/manager/manappcolls";
 import { AppIntroCard } from "@/app_front/comp/appcard";
 import { Application } from "@/client/models/Application"
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-import { AppElementCard } from "@/app_front/comp/appelementcard";
+import { AppElementCard } from "@/app/home/appelementcard";
+import { PAGE_EDITOR_PATH } from "./appeditor/page";
+
+
+/*
+ManApplicationUtil.getFormEntity()
+const [progLangs, setProgLangs] = useState<string[]>([]);
+const [appTypes, setAppTypes] = useState<string[]>([]);
+const [listAppsNames, setListAppsNames] = useState<string[]>([]);
+const appColls: ManCmmCollections = new ManCmmCollections();
+const manApps: ManagerAplications = new ManagerAplications();     
+setProgLangs(appColls.codelangsNames);
+setAppTypes(appColls.apptypesNames);
+setListApps(manApps.listapps);
+setListAppsNames(manApps.listappsNames);
+if(manApps.appSel){
+    setAppSelected(manApps.appSel);
+}    
+*/
 
 /**
- * Page Index JSX Client
+ * Main Page JSX: Applications Manager
  * start command:
  *  npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
- * @returns 
  */
-
-
 export default function PageIndex() {
+    
     const router = useRouter();
-    //ManApplicationUtil.getFormEntity()
-
-    const [progLangs, setProgLangs] = useState<string[]>([]);
-    const [appTypes, setAppTypes] = useState<string[]>([]);
     const [listApps, setListApps] = useState<Application[]>([]);
-    const [listAppsNames, setListAppsNames] = useState<string[]>([]);
-
-    const [appSelected, setAppSelected] = useState<Application>();
-
-    /*
-       const appColls: ManCmmCollections = new ManCmmCollections();
-       const manApps: ManagerAplications = new ManagerAplications();     
-       setProgLangs(appColls.codelangsNames);
-       setAppTypes(appColls.apptypesNames);
-       setListApps(manApps.listapps);
-       setListAppsNames(manApps.listappsNames);
-       if(manApps.appSel){
-           setAppSelected(manApps.appSel);
-       }
-       */
 
     useEffect(() => {
         const init = async () => {
@@ -51,31 +48,24 @@ export default function PageIndex() {
                 setListApps(data_listapps);
             }
             catch (error) {
-                console.error('Error:', error);
+                console.error('List app loaded error:', error);
             }
         };
         init();
     }, []);
 
     const onSelectApplication = (app_id: number) => {
-        alert("load apllication");
-        //AppStorage.saveProjectName(projectName);       
+        AppStorage.saveApplicationId(app_id);
+        router.push(PAGE_EDITOR_PATH);     
     }
 
     const onAddApplication = () => {
-        alert("add apllication");
-        router.push("./application");
-        //AppStorage.saveProjectName(projectName);       
+    
     }
 
 
-    //const clientReady = useClientReady();
-    //if (!clientReady) { return <div>Loading...</div>; }
-    //if (!clientReady) { return <div>Loading...</div>; }
-
-
     const renderMainContent = useMemo(() => {
-        console.log(listApps.length)
+       
         return (
             <ul className="menu w-full rounded-box menu-md space-y-3">
                 {listApps.map((item, index) => (
