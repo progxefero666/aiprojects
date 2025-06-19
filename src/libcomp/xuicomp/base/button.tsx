@@ -38,11 +38,24 @@ export function XButton({ callback,operation,
     };
     
     return (
-        <div className="icon-button" 
-                onClick={handleOnClick}>
-            {btntext? btntext:null}        
-            {iconname ? <div className={iconclass} />:null }            
-        </div>        
+        <>
+            {btntext? 
+                <div className="icon-button" 
+                        onClick={handleOnClick}>
+                    {btntext? btntext:null}        
+                    {iconname ? <div className={iconclass} />:null }            
+                </div>              
+            : 
+                <div className="icon-button" 
+                        onClick={handleOnClick}>
+                    {btntext? btntext:null}        
+                    {iconname ? <div className={iconclass} />:null }            
+                </div>              
+            }
+           
+        
+        </>
+   
     )
 
 } //end component

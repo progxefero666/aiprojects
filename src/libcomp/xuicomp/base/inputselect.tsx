@@ -23,8 +23,9 @@ export const InputSelect = forwardRef<HTMLSelectElement, InputSelectProps>(
         const renderContent = () => (
             <>
                 {label && <label className="w-full">{label}</label>}
-                <select name={name} ref={ref} className="select w-full"
+                <select name={name} ref={ref} className="select w-full bg-gray-700"
                     defaultValue={defaultvalue}
+                    disabled={disabled}
                     onChange={(e) => handleOnChange(e.target.value)} >
 
                     {collection.map((item, index) => (
@@ -43,3 +44,34 @@ export const InputSelect = forwardRef<HTMLSelectElement, InputSelectProps>(
     }
 
 );
+
+/*
+
+                    <div className={cell_style}>
+                        <div className="w-full h-auto">
+                            Type
+                        </div>
+                        <div className="w-full h-auto">
+                            <InputSelect ref={typeRef}
+                                disabled={true}
+                                onchange={onSelectChange}
+                                name="type"
+                                defaultvalue={app.apptype}
+                                collection={appTypesNames} />
+                        </div>
+                    </div>
+
+                    <div className={cell_style}>
+                        <div className="w-full h-auto">
+                            code-lang
+                        </div>
+                        <div className="w-full h-auto">
+                            <InputSelect ref={proglanguageRef}
+                                disabled={disabled}
+                                onchange={onSelectChange}
+                                name="proglanguage"
+                                defaultvalue={app.proglanguage!}
+                                collection={progLangs} />
+                        </div>
+                    </div>
+*/

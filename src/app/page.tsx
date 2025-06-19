@@ -11,6 +11,7 @@ import { ManCmmCollections } from "@/app_front/manager/manappcolls";
 import { AppIntroCard } from "@/app_front/comp/appcard";
 import { Application } from "@/client/models/Application"
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
+import { AppElementCard } from "@/app_front/comp/appelementcard";
 
 /**
  * Page Index JSX Client
@@ -21,7 +22,7 @@ import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 
 
 export default function PageIndex() {
-    //const router = useRouter();
+    const router = useRouter();
     //ManApplicationUtil.getFormEntity()
 
     const [progLangs, setProgLangs] = useState<string[]>([]);
@@ -61,6 +62,13 @@ export default function PageIndex() {
         //AppStorage.saveProjectName(projectName);       
     }
 
+    const onAddApplication = () => {
+        alert("add apllication");
+        router.push("./application");
+        //AppStorage.saveProjectName(projectName);       
+    }
+
+
     //const clientReady = useClientReady();
     //if (!clientReady) { return <div>Loading...</div>; }
     //if (!clientReady) { return <div>Loading...</div>; }
@@ -69,10 +77,10 @@ export default function PageIndex() {
     const renderMainContent = useMemo(() => {
         console.log(listApps.length)
         return (
-            <ul className="menu w-full rounded-box menu-md space-y-2">
+            <ul className="menu w-full rounded-box menu-md space-y-3">
                 {listApps.map((item, index) => (
                     <li className="list-row" key={index}>
-                        <AppIntroCard
+                        <AppElementCard
                             app={item}
                             onselection={onSelectApplication}
                             iconname="file"
@@ -88,7 +96,7 @@ export default function PageIndex() {
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <AiManagerProjectsHeader defvalue="none" />
+            <AiManagerProjectsHeader onaddapplication={onAddApplication} />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">

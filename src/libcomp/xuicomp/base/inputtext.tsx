@@ -22,10 +22,10 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
 
         const renderContent = () => (
             <>
-                {label && <label className="w-full">{label}</label>}
-                <input
+                {label && <p className="w-full p-0 mx-0 mt-0 mb-1">{label}</p>}
+                <input                
                     name={name}
-                    className="input w-full"
+                    className="input w-full bg-gray-700 rounded-md"
                     ref={ref}
                     type="text"
                     placeholder={placeholder}

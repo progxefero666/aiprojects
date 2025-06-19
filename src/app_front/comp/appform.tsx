@@ -7,7 +7,7 @@ import { AppThemifyIcons } from "@/style/appthicons";
 import { ThemeColors } from "@/style/apptheme";
 import { InputText } from '@/libcomp/xuicomp/base/inputtext';
 import { InputSelect } from '@/libcomp/xuicomp/base/inputselect';
-import { InputCheck } from '@/libcomp/xuicomp/base/inputcheck';
+import { InputCheckold } from '@/libcomp/xuicomp/base/inputcheckold';
 import { AppConstants } from '../appconstants';
 import { ProgLangCodeService } from '@/client_aidatabase/ProglanguagesService';
 import { ApptypesService } from '@/client_aidatabase/ApptypesService';
@@ -102,6 +102,8 @@ export const ApplicationForm = ({ app, mode, onClose, onCancel, isOpen }: Applic
         }
     }
 
+    //<input type="checkbox" defaultChecked className="checkbox" />
+
     return (
         <dialog open={isOpen} className="modal">
 
@@ -109,8 +111,6 @@ export const ApplicationForm = ({ app, mode, onClose, onCancel, isOpen }: Applic
 
                 <div className="w-full h-auto flex flex-col">
                     <p>{mode}</p>
-
-
 
                     {mode == AppConstants.MODE_INSERT ?
                         <>
@@ -238,61 +238,61 @@ export const ApplicationForm = ({ app, mode, onClose, onCancel, isOpen }: Applic
                                 name="path" />
                         </>}
 
-                    <InputCheck ref={localdevRef}
+                    <InputCheckold ref={localdevRef}
                         disabled={disabled}
                         label="Local Dev"
                         defaultvalue={app.localdev!}
                         name="localdev" />
 
-                    <InputCheck ref={usedockerRef}
+                    <InputCheckold ref={usedockerRef}
                         disabled={disabled}
                         label="Use Docker"
                         defaultvalue={app.usedocker!}
                         name="usedocker" />
 
-                    <InputCheck ref={controlusersRef!}
+                    <InputCheckold ref={controlusersRef!}
                         disabled={disabled}
                         label="Control Users"
                         defaultvalue={app.controlusers!}
                         name="controlusers" />
 
-                    <InputCheck ref={useuiRef}
+                    <InputCheckold ref={useuiRef}
                         disabled={disabled}
                         label="Use UI"
                         defaultvalue={app.useui!}
                         name="useui" />
 
-                    <InputCheck ref={useagentsRef}
+                    <InputCheckold ref={useagentsRef}
                         disabled={disabled}
                         label="Use Agents"
                         defaultvalue={app.useagents!}
                         name="useagents" />
 
-                    <InputCheck ref={consumedbRef}
+                    <InputCheckold ref={consumedbRef}
                         disabled={disabled}
                         label="Consume db"
                         defaultvalue={app.consumedb!}
                         name="consumedb" />
 
-                    <InputCheck ref={consumeapiRef}
+                    <InputCheckold ref={consumeapiRef}
                         disabled={disabled}
                         label="Consume Api"
                         defaultvalue={app.consumeapi!}
                         name="consumeapi" />
 
-                    <InputCheck ref={consumeaiRef}
+                    <InputCheckold ref={consumeaiRef}
                         disabled={disabled}
                         label="Consume AI"
                         defaultvalue={app.consumeai!}
                         name="consumeai" />
 
-                    <InputCheck ref={exposedbRef}
+                    <InputCheckold ref={exposedbRef}
                         disabled={disabled}
                         label="Expose Db"
                         defaultvalue={app.exposedb!}
                         name="exposedb" />
 
-                    <InputCheck ref={exposeapiRef}
+                    <InputCheckold ref={exposeapiRef}
                         disabled={disabled}
                         label="Expose AI"
                         defaultvalue={app.exposeapi!}

@@ -13,6 +13,21 @@
     justify-content: center;
     transition: all 0.2s ease;
 }
+.icon-button-text {
+    height: 30px;
+    background-color: transparent;
+    border: 1px solid #555555;
+    /* gris medio */
+    border-radius: 4px;
+    /* redondeo sutil */
+    padding: 0px 8px 0px 8px;
+    margin: 0px 0px 0px 0px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
 
 .icon-button:hover {
     background-color: rgba(200, 210, 220, 0.2);

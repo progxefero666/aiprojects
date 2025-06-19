@@ -10,9 +10,9 @@ import { XButton } from "@/libcomp/xuicomp/base/button";
  * Ai Manager Projects Header
  */
 export interface AiManagerProjectsHeaderIfc {
-    defvalue: string;
+     onaddapplication: () => void;
 }
-export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsHeaderIfc) {
+export default function AiManagerProjectsHeader({ onaddapplication }: AiManagerProjectsHeaderIfc) {
 
     const maxLen: number = 50;
     const onSearchSubmit = (value:string): void => {
@@ -20,6 +20,10 @@ export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsH
 
     const executeOperation = (op_id?: string): void => {
     }
+
+    const onButtonAddClick = () => {
+        
+    };
 
     return (
 
@@ -40,19 +44,20 @@ export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsH
             </div>
 
             {/*column center */}
-            <div className="w-full flex flex-row">
+            <div className="w-full flex flex-row pl-[6px]">
 
-                <div className="w-[26%]">
+                <div className="w-auto mr-[12px]">
+                    <button className="btn btn-md btn-success text-md"
+                            onClick={onButtonAddClick}>
+                                add
+                    </button>                    
+                </div>
+
+                <div className="w-[26%] flex flex-items-center" >
                     <Search placeholder="find" maxlen={maxLen}
                                onsubmit={onSearchSubmit}/>
                 </div>
-                <div className="w-[26%]">
-                    <XButton callback={executeOperation}
-                            btntext="new" 
-                            btncolor="primary"
-                            iconname="TI_NEW" />
 
-                </div>
             </div>
 
             {/* column right */}

@@ -23,13 +23,12 @@ export const InputCheck = forwardRef<HTMLInputElement, InputCheckIfc>(
         const renderContent = () => (
             <div className="flex items-center">
                 {label && <label>{label}</label>}
-                <input
-                    name={name}
-                    type="checkbox"
-                    className="toggle"
-                    ref={ref}
-                    defaultChecked={defaultvalue}
-                    onChange={(e) => handleOnChange?.(e.target.checked)} />
+                <input className="checkbox bg-gray-700 checked:bg-amber-500 text-black text-black border border-gray-300"
+                        disabled={disabled}
+                        type="checkbox"
+                        ref={ref}
+                        defaultChecked={defaultvalue}                                
+                        onChange={(e) => handleOnChange?.(e.target.checked)} />
             </div>
         );
 

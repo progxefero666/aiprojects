@@ -1,15 +1,15 @@
 //src\lib\xuicards\cardproyect.tsx
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { MdPreview } from 'md-editor-rt';
 //import 'md-editor-rt/lib/preview.css';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { DataConstants } from "@/lib/common/app/dataconstants";
-import {Application} from "@/client/models/Application"
+import { Application } from "@/client/models/Application"
 import { ThemeColors } from "@/style/apptheme";
 
-import 'md-editor-rt/lib/style.css'; 
+import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
 import { XButton } from "@/libcomp/xuicomp/base/button";
 
@@ -33,12 +33,12 @@ const dummy_content: string = `## Introducción
 
 export interface AppIntroCardIfc {
     app: Application;
-    onselection: (id:number) => void;
+    onselection: (id: number) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppIntroCard({app,onselection,iconname,iconsize,iconcolor}: AppIntroCardIfc) {
+export function AppIntroCard({ app, onselection, iconname, iconsize, iconcolor }: AppIntroCardIfc) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
 
@@ -56,34 +56,53 @@ export function AppIntroCard({app,onselection,iconname,iconsize,iconcolor}: AppI
         setcollapse(!collapse);
     };
 
+    const renderMainContent = useMemo(() => {
+         return (
+            <div className="flex items-center text-white text-base ml-2">
+                {app.description}
+            </div>
+         )
+    }, []);
+
     return (
         <div className="w-full flex flex-col bg-base-100">
 
             {/* header */}
             <div className="w-full relative">
                 <div className="w-full h-auto flex items-center">
+
+                    {/* collapse comp */}
                     <div className="flex flex-row text-white text-2xl">
                         <div>
                             {collapse ?
-                                <XButton callback={onCollapse} 
-                                         iconname={AppThemifyIcons.TI_ARROW_DOWN}
-                                         iconsize="xs"/>
-                            :   <XButton callback={onCollapse}
-                                         iconsize="xs"
-                                         iconname={AppThemifyIcons.TI_ANGLE_UP} />
+                                <XButton callback={onCollapse}
+                                    iconcolor="white"
+                                    iconname={AppThemifyIcons.TI_ARROW_DOWN}
+                                    iconsize="xs" />
+                                : <XButton callback={onCollapse}
+                                    iconcolor="red"
+                                    iconsize="xs"
+                                    iconname={AppThemifyIcons.TI_ANGLE_UP} />
                             }
                         </div>
-                        <div className="flex items-center text-white text-base ml-2">
-                            {app.description}
-                        </div>
-                    </div>
-                    <div className="absolute right-2"> {/* Botón pegado a la derecha */}
-                        <button className="btn btn-sm btn-success"
-                         onClick={onOpen}>
-                            open
-                        </button>
+
+                        {/* app data */}
+                        {renderMainContent}
 
                     </div>
+
+                    {/* crud buttons */}
+                    <div className="absolute right-2 flex flex-row gap-2">
+                        <button className="btn btn-sm btn-info"
+                            onClick={onOpen}>
+                            delete
+                        </button>
+                        <button className="btn btn-sm btn-success"
+                            onClick={onOpen}>
+                            open
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
@@ -95,7 +114,7 @@ export function AppIntroCard({app,onselection,iconname,iconsize,iconcolor}: AppI
                         <MdPreview
                             value={dummy_content}
                             theme="dark" />
-           
+
                     </div>
 
                 </div> : null}
