@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useClientReady } from "@/lib/react/hook/useclientready";
 
-import { CardProject } from "@/libcomp/xuicards/cardproyect";
+import { CardProject } from "../../public/docs/cardproyect";
 import TemplatePageHeader from "./pageheader";
 
 

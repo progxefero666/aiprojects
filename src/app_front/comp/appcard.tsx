@@ -11,7 +11,7 @@ import { ThemeColors } from "@/style/apptheme";
 
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
-import { XButton } from "@/libcomp/xuicomp/base/button";
+import { XButton } from "@/libcomp/comp/button";
 
 
 const dummy_content: string = `## Introducción

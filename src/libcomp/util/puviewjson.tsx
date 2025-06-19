@@ -6,7 +6,7 @@ import { CmOperation } from '@/libcomp/appcommon';
 
 import { AppUI } from '@/style/appui';
 
-import { AppIcons, RenderIcon } from '../../../style/appheroicons';
+import { AppIcons, RenderIcon } from '../../style/appheroicons';
 
 import ReactJsonPretty from 'react-json-pretty';
 import '@/css/monikai.css';
