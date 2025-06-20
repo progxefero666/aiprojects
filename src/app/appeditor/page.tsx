@@ -16,11 +16,7 @@ import { Application } from "@/client/models/Application";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 
-
-
-
 import PageHeader from "./header";
-import { AppItemCard } from "../home/cards/appitemcard";
 import { AppCard } from "./cards/appcard";
 /**
  * Page Index JSX Client

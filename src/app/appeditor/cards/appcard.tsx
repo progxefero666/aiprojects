@@ -23,6 +23,7 @@ import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
 import { InputCheck } from "@/libcomp/inputcheck";
 import { AppDef } from "@/app_front/manapplications/applicationdef";
 import { InputText } from "@/libcomp/inputtext";
+import { InputSelect } from "@/libcomp/inputselect";
 
 
 export interface AppCardProp {
@@ -33,9 +34,11 @@ export interface AppCardProp {
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppCard({ app, onedit,ondelete, iconname, iconsize, iconcolor }: AppCardProp) {
+export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }: AppCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
+    const [ready, setReady] = useState<boolean>(false);
+
     let iconclass: string = DataConstants.UNDEFINED;
     if (iconname) {
         const icon_size: string = iconsize ?? AppThemifyIcons.DEF_SIZE;
@@ -45,12 +48,12 @@ export function AppCard({ app, onedit,ondelete, iconname, iconsize, iconcolor }:
         setcollapse(!collapse);
     };
 
-    const [disabled, setDisabled] = useState<boolean>(true);
+    const [disabled, setDisabled] = useState<boolean>(false);
 
     //relational collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
     //const [appTypes, setAppTypes] = useState<AppType[]>([]);
-    const [appTypesNames, setAppTypesNames] = useState<string[]>([]);
+    const [appTypesNames, setAppTypesNames] = useState<string[]>(["uno", "dos"]);
 
     const typeRef = useRef<HTMLInputElement>(null);
     const proglanguageRef = useRef<HTMLInputElement>(null);
@@ -74,25 +77,28 @@ export function AppCard({ app, onedit,ondelete, iconname, iconsize, iconcolor }:
 
     const refInline: string = " - (".concat(app.reference!).concat(")");
 
-    const init = async () => {
-        const proglangsNames = await ProgLangCodeService.getAllNames();
-        const apptypes = await ApptypesService.getAll();
-        setProgLangs(proglangsNames);
-        setAppTypesNames(ApptypesService.getCollNames(apptypes));
-    };
-
     useEffect(() => {
-        //setDisabled(false);
+        const init = async () => {
+            if (!ready) {
+                const apptypes = await ApptypesService.getAll();
+                const apptypes_names: string[] = ApptypesService.getCollNames(apptypes);
+                setAppTypesNames(apptypes_names);
+                console.log(apptypes_names);
+
+                const proglangsNames = await ProgLangCodeService.getAllNames();
+                setProgLangs(proglangsNames);
+                setReady(true);
+            }
+        };
         init();
     }, []);
 
-    const onClick = (opId:string) => {    
-        if(opId === "delete")    {ondelete();}
-        else if(opId === "edit") { onedit();}
-    }; 
+    const onClick = (opId: string) => {
+        if (opId === "delete") { ondelete(); }
+        else if (opId === "edit") { onedit(); }
+    };
 
-
-    const renderMainContent = useMemo(() => {
+    const renderMainContent = () => {
         return (
             <div className="w-full h-auto rounded-md">
 
@@ -130,19 +136,17 @@ export function AppCard({ app, onedit,ondelete, iconname, iconsize, iconcolor }:
                 <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-4">
 
                     <FieldWrapper label="Type">
-                        <InputText ref={typeRef}
-                            disabled={true}
-                            maxlen={200}
-                            name="type"
-                            defaultvalue={app.apptype} />
+                        <InputSelect name="type"
+                            collection={appTypesNames}
+                            defaultvalue={appTypesNames[0]}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="prog Lang">
-                        <InputText ref={proglanguageRef}
-                            disabled={disabled}
-                            maxlen={200}
-                            name="proglanguage"
-                            defaultvalue={app.proglanguage!} />
+                        <InputSelect name="proglanguage"
+                            collection={progLangs}
+                            defaultvalue={app.proglanguage!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="Op. System">
@@ -153,87 +157,82 @@ export function AppCard({ app, onedit,ondelete, iconname, iconsize, iconcolor }:
                             name="opsystem" />
                     </FieldWrapper>
 
-                    <FieldWrapper label="local Dev">
-                        <InputCheck ref={localdevRef}
-                            disabled={disabled}
-                            defaultvalue={app.localdev!}
-                            name="localdev" />
+                    <FieldWrapper label="local Dev" >
+                        <InputCheck name="localdev"  ref={localdevRef}
+                                    classname="ml-[6px]"                            
+                                    defaultvalue={app.localdev!} 
+                                    disabled={disabled}/>
                     </FieldWrapper>
 
                     <FieldWrapper label="Use Docker">
-                        <InputCheck ref={usedockerRef}
-                            disabled={disabled}
-                            defaultvalue={app.usedocker!}
-                            name="usedocker" />
+                        <InputCheck name="usedocker" ref={usedockerRef}
+                                    classname="ml-[6px]"                            
+                                    defaultvalue={app.usedocker!} 
+                                    disabled={disabled}/>
                     </FieldWrapper>
 
                     <FieldWrapper label="ctr. Users">
-                        <InputCheck ref={controlusersRef!}
-                            disabled={disabled}
-                            defaultvalue={app.controlusers!}
-                            name="controlusers" />
+                        <InputCheck name="controlusers" ref={controlusersRef!}
+                                    classname="ml-[6px]"
+                                    defaultvalue={app.controlusers!}
+                                    disabled={disabled} />
                     </FieldWrapper>
 
-                    <FieldWrapper label="use UI">
-                        <div className="w-full h-auto">
-                            <InputCheck ref={useuiRef}
-                                disabled={disabled}
-                                defaultvalue={app.useui!}
-                                name="useui" />
-                        </div>
+                    <FieldWrapper label="use UI">                     
+                        <InputCheck name="useui" ref={useuiRef}
+                                    classname="ml-[6px]"                                
+                                    defaultvalue={app.useui!}
+                                    disabled={disabled} />                        
                     </FieldWrapper>
 
                     <FieldWrapper label="use Agents">
-                        <InputCheck ref={useagentsRef}
-                            disabled={disabled}
-                            defaultvalue={app.useagents!}
-                            name="useagents" />
+                        <InputCheck name="useagents" ref={useagentsRef}
+                                    classname="ml-[6px]"                            
+                                    defaultvalue={app.useagents!}                            
+                                    disabled={disabled} />
                     </FieldWrapper>
 
-
                     <FieldWrapper label="cons. Db">
-                        <InputCheck ref={consumedbRef}
-                            disabled={disabled}
-                            defaultvalue={app.consumedb!}
-                            name="consumedb" />
+                        <InputCheck name="consumedb" ref={consumedbRef}
+                                    classname="ml-[6px]"
+                                    defaultvalue={app.consumedb!}
+                                    disabled={disabled} />
                     </FieldWrapper>
 
 
                     <FieldWrapper label="cons. Api">
-                        <InputCheck ref={consumeapiRef}
-                            disabled={disabled}
-                            defaultvalue={app.consumeapi!}
-                            name="consumeapi" />
+                        <InputCheck name="consumeapi" ref={consumeapiRef}
+                                    classname="ml-[6px]"                                    
+                                    defaultvalue={app.consumeapi!}
+                                    disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. AI">
-                        <InputCheck ref={consumeaiRef}
-                            disabled={disabled}
-                            defaultvalue={app.consumeai!}
-                            name="consumeai" />
+                        <InputCheck name="consumeai" ref={consumeaiRef}
+                                    classname="ml-[6px]"
+                                    defaultvalue={app.consumeai!}
+                                    disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="expose Db">
-                        <InputCheck ref={exposedbRef}
-                            disabled={disabled}
-                            defaultvalue={app.exposedb!}
-                            name="exposedb" />
+                        <InputCheck name="exposedb" ref={exposedbRef}
+                                    classname="ml-[6px]"
+                                    defaultvalue={app.exposedb!}
+                                    disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="expose Api">
-                        <InputCheck ref={exposeapiRef}
-                            disabled={disabled}
-                            defaultvalue={app.exposeapi!}
-                            name="exposeapi" />
+                        <InputCheck name="exposeapi" ref={exposeapiRef}
+                                    classname="ml-[6px]" defaultvalue={app.exposeapi!}
+                                    disabled={disabled} />
                     </FieldWrapper>
 
                 </div>
             </div>
 
         )
-    }, []);
 
- 
+    };
 
     return (
         <div className="w-full flex flex-col bg-base-100 p-[10px] border border-zinc-500">
@@ -267,10 +266,10 @@ export function AppCard({ app, onedit,ondelete, iconname, iconsize, iconcolor }:
                 </div>
 
             </div>
-    
+
 
             {/* body */}
-            {!collapse ? renderMainContent : null}
+            {!collapse ? renderMainContent() : null}
         </div>
     )
 
