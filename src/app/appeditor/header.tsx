@@ -1,5 +1,4 @@
-//src\app\appeditor\pageheader.tsx
-
+//src\app\appeditor\header.tsx
 
 import { Search } from "@/libcomp/search";
 import { AppThemifyIcons } from "@/style/appthicons";

@@ -1,26 +1,26 @@
-//src\lib\xuicards\cardproyect.tsx
+//src\app\appeditor\appeditorcard.tsx
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { MdPreview } from 'md-editor-rt';
-//import 'md-editor-rt/lib/preview.css';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { DataConstants } from "@/lib/common/app/dataconstants";
-
-
-import 'md-editor-rt/lib/style.css';
-import 'md-editor-rt/lib/preview.css';
-import { XButton } from "@/libcomp/button";
-
-import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
-
 import { FieldWrapper } from "@/libcomp/fieldwrapper";
 import { OutputText } from "@/libcomp/ouputtext";
 import { OutputCheck } from "@/libcomp/outputcheck";
 import { BarButtonsConfig } from "@/types/types";
 import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
+import { XButton } from "@/libcomp/button";
+
+import { MdPreview } from 'md-editor-rt';
+import 'md-editor-rt/lib/preview.css';
+import 'md-editor-rt/lib/style.css';
+import 'md-editor-rt/lib/preview.css';
+
+
+import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { ApptypesService } from "@/client_aidatabase/ApptypesService";
+
 
 
 const dummy_content: string = `## Introducción

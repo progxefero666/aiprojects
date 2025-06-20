@@ -1,8 +1,5 @@
 //src\app\home\pagemenu.tsx
 
-//src\app\module\aiprojects\manprojects\pageheader.tsx
-
-
 import { Search } from "@/libcomp/search";
 import { Desktop } from "@/app_front/desktop/desktop";
 import { useEffect, useMemo, useState } from "react";

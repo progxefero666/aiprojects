@@ -1,4 +1,4 @@
-//src\app\module\aiprojects\manprojects\pageheader.tsx
+//src\app\home\pageheader.tsx
 
 
 import { Search } from "@/libcomp/search";
@@ -9,10 +9,10 @@ import { XButton } from "@/libcomp/button";
 /**
  * Ai Manager Projects Header
  */
-export interface DesktopHeaderIfc {
+export interface DesktopHeaderProps {
      onaddapplication: () => void;
 }
-export default function DesktopHeader({ onaddapplication }: DesktopHeaderIfc) {
+export default function PageHeader({ onaddapplication }: DesktopHeaderProps) {
 
     const maxLen: number = 50;
     const onSearchSubmit = (value:string): void => {

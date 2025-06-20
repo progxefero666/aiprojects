@@ -1,4 +1,4 @@
-//src\lib\xuicards\cardproyect.tsx
+//src\app\home\appformcard.tsx
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MdPreview } from 'md-editor-rt';
@@ -14,7 +14,7 @@ import { XButton } from "@/libcomp/button";
 
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { InputText } from "@/libcomp/inputtext";
-import { AppDef } from "../../app_front/manapplications/applicationdef";
+import { AppDef } from "../../../app_front/manapplications/applicationdef";
 import { InputCheck } from "@/libcomp/inputcheck";
 import { InputSelect } from "@/libcomp/inputselect";
 import { FieldWrapper } from "@/libcomp/fieldwrapper";

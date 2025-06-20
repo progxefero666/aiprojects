@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import { AppStorage } from "@/app_front/appstorge";
 
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-import { AppEditorCard } from "@/app/home/appeditorcard";
+import { AppEditorCard } from "@/app/appeditor/cards/appeditorcard";
 import { PAGE_EDITOR_PATH } from "@/app/appeditor/page";
-import DesktopHeader from "@/app/home/pageheader";
+import PageHeader from "@/app/home/header";
 
 import { ManagerAplications } from "../app_front/manapplications/manapps";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
@@ -96,7 +96,7 @@ export default function Desktop() {
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <DesktopHeader onaddapplication={onAddApplication} />
+            <PageHeader onaddapplication={onAddApplication} />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
