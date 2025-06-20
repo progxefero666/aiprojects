@@ -31,13 +31,13 @@ const barConfig: BarButtonsConfig = {
     color: ["btn-info", "btn-success"],
     icons: [AppThemifyIcons.TI_DELETE,AppThemifyIcons.TI_EDITFILE]
 }
-export interface ApplicationCardProp {
+export interface AppItemCardProp {
     app: Application;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function ApplicationCard({ app, iconname, iconsize, iconcolor }: ApplicationCardProp) {
+export function AppItemCard({ app, iconname, iconsize, iconcolor }: AppItemCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
     let iconclass: string = DataConstants.UNDEFINED;

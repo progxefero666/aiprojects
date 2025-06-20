@@ -12,49 +12,25 @@ import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
 import { XButton } from "@/libcomp/button";
 
+import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
+import { ApptypesService } from "@/client_aidatabase/ApptypesService";
+
 import { MdPreview } from 'md-editor-rt';
 import 'md-editor-rt/lib/preview.css';
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
+import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
 
 
-import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
-import { ApptypesService } from "@/client_aidatabase/ApptypesService";
-
-
-
-const dummy_content: string = `## Introducción
-
-    Este es un **texto en negrita** y este es *texto en cursiva*.
-
-    ### Lista de tareas
-    - [x] Tarea completada
-    - [ ] Tarea pendiente
-    - [ ] Otra tarea
-
-    ### Lista numerada
-    1. Primer elemento
-    2. Segundo elemento
-    3. Tercer elemento
-
-    ## Código
-    Aquí hay código inline: \`console.log("Hola")\``;
-
-const barConfig: BarButtonsConfig = {
-    operations: ["delete", "open"],
-    texts: ["delete", "open"],
-    disabled: [false, false],
-    color: ["btn-info", "btn-success"],
-    icons: ["none", "none"]
-}
-export interface AppEditorProp {
+export interface AppCardProp {
     app: Application;
-    onselection: (id: number) => void;
+    onedit: () => void;
+    ondelete: () => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppEditorCard({ app, onselection, iconname, iconsize, iconcolor }: AppEditorProp) {
+export function AppCard({ app, onedit,ondelete, iconname, iconsize, iconcolor }: AppCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
     let iconclass: string = DataConstants.UNDEFINED;
@@ -107,15 +83,14 @@ export function AppEditorCard({ app, onselection, iconname, iconsize, iconcolor 
         init();
     }, []);
 
-    const onClick = (operation: string) => {
-        if (app.id !== undefined && app.id !== null) {
-            onselection(app.id);
-        }  
+    const onClick = (opId:string) => {    
+        if(opId === "delete")    {ondelete();}
+        else if(opId === "edit") { onedit();}
     }; 
 
     const renderMainContent = useMemo(() => {
         return (
-            <div className="w-full h-auto rounded-md">
+            <div className="w-full h-auto px-2 rounded-md bg-red">
 
                 <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
                     <OutputText label="Author" value={app.author} />
@@ -182,8 +157,7 @@ export function AppEditorCard({ app, onselection, iconname, iconsize, iconcolor 
 
                 {/* crud buttons */}
                 <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
-                    <BarButtons barconfig={barConfig} 
-                                onclick={onClick} />
+                    <BarButtons barconfig={BARCFG_DELETE_OPEN} onclick={onClick} />
                 </div>
 
             </div>

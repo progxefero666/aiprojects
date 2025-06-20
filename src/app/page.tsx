@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { AppStorage } from "@/app_front/appstorge";
 
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-import { AppEditorCard } from "@/app/appeditor/cards/appeditorcard";
+
 import { PAGE_EDITOR_PATH } from "@/app/appeditor/page";
 import PageHeader from "@/app/home/header";
 
@@ -14,6 +14,7 @@ import { ManagerAplications } from "../app_front/manapplications/manapps";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import DesktopMenu from "./home/pagemenu";
 import { Application } from "@/client/models/Application";
+import { AppCard } from "./appeditor/cards/appcard";
 
 
 /*
@@ -80,7 +81,7 @@ export default function Desktop() {
             <ul className="menu w-full rounded-box menu-md space-y-3">
                 {listApps.map((item, index) => (
                     <li className="list-row" key={index}>
-                        <AppEditorCard
+                        <AppCard
                             app={item}
                             onselection={onSelectApplication}
                             iconname="file"

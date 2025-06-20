@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { Option } from "@/lib/common/model/base/option";
 import { AppStorage } from "@/app_front/appstorge";
 import TwDaisyMenu from "@/twdaisy/twdaisymenu";
-import { ApplicationCard } from "../home/cards/appformcard";
+
 import { AppEditorConfig } from "@/app_front/manapplications/appeditor";
 import ApplicationEditorTools from "@/app/appeditor/paneltools";
 
@@ -20,6 +20,8 @@ import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 
 
 import PageHeader from "./header";
+import { AppItemCard } from "../home/cards/appitemcard";
+import { AppCard } from "./cards/appcard";
 /**
  * Page Index JSX Client
  * start command:
@@ -55,6 +57,14 @@ export default function ApplicationEditor() {
         init();
     }, []);
 
+    const onModeEdition = (): void => {
+        console.log("onModeEdition");
+    }
+
+    const onDelete = (): void => {
+        console.log("onDelete");
+    }
+
     const loadsection = (name:string): void => {
         let act_section:Option|null = null;
 
@@ -72,9 +82,11 @@ export default function ApplicationEditor() {
         }        
     }
 
+
     const onToolsMessage = (message: string): void => {
         console.log(message);
     }
+
 
     if (!app) {
         return <div>Loading...</div>;
@@ -82,13 +94,13 @@ export default function ApplicationEditor() {
 
     const renderMainContent = () => {
         if(section === AppEditorConfig.SECTION_MAIN) {
-            return (<ApplicationCard app={app} />);
+            return (<AppCard app={app} onedit={onModeEdition}  ondelete={onDelete} />);
         }
         if(section === AppEditorConfig.SECTION_DOCS) {
-            return (<ApplicationCard app={app} />);
+            return (<div>docs</div>);
         }
         if(section === AppEditorConfig.SECTION_TASKS) {
-            return (<ApplicationCard app={app} />);
+           return (<div>tasks</div>);
         }         
     };
 
