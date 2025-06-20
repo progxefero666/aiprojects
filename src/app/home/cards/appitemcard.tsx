@@ -6,39 +6,35 @@ import { MdPreview } from 'md-editor-rt';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { DataConstants } from "@/lib/common/app/dataconstants";
-
-
-import 'md-editor-rt/lib/style.css';
-import 'md-editor-rt/lib/preview.css';
-import { XButton } from "@/libcomp/button";
-
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
-import { InputText } from "@/libcomp/inputtext";
-import { AppDef } from "../../../app_front/manapplications/applicationdef";
-import { InputCheck } from "@/libcomp/inputcheck";
-import { InputSelect } from "@/libcomp/inputselect";
 import { FieldWrapper } from "@/libcomp/fieldwrapper";
 import { BarButtonsConfig } from "@/types/types";
 import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
 import { ApptypesService } from "@/client_aidatabase/ApptypesService";
+import { OutputCheck } from "@/libcomp/outputcheck";
+import { OutputText } from "@/libcomp/ouputtext";
+import { XButton } from "@/libcomp/button";
+
+import 'md-editor-rt/lib/style.css';
+import 'md-editor-rt/lib/preview.css';
 
 
 const barConfig: BarButtonsConfig = {
     operations: ["open"],
     texts: ["open"],
-    disabled: [true],
+    disabled: [false],
     color: ["btn-info"],
     icons: [AppThemifyIcons.TI_EYE]
 }
 export interface AppItemCardProp {
     app: Application;
-    onselection: (appid:number) => void;
+    onselection: (appid: number) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppItemCard({app,onselection,iconname,iconsize,iconcolor}:AppItemCardProp) {
+export function AppItemCard({ app, onselection, iconname, iconsize, iconcolor }: AppItemCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
     let iconclass: string = DataConstants.UNDEFINED;
@@ -50,32 +46,12 @@ export function AppItemCard({app,onselection,iconname,iconsize,iconcolor}:AppIte
         setcollapse(!collapse);
     };
 
-    const [disabled, setDisabled] = useState<boolean>(true);
+    const [disabled, setDisabled] = useState<boolean>(false);
 
     //relational collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
     //const [appTypes, setAppTypes] = useState<AppType[]>([]);
     const [appTypesNames, setAppTypesNames] = useState<string[]>([]);
-
-    const typeRef = useRef<HTMLInputElement>(null);
-    const proglanguageRef = useRef<HTMLInputElement>(null);
-    const nameRef = useRef<HTMLInputElement>(null);
-    const osystemRef = useRef<HTMLInputElement>(null);
-    const authorRef = useRef<HTMLInputElement>(null);
-    const referenceRef = useRef<HTMLInputElement>(null);
-    const descriptionRef = useRef<HTMLInputElement>(null);
-    const urlRef = useRef<HTMLInputElement>(null);
-    const pathRef = useRef<HTMLInputElement>(null);
-    const localdevRef = useRef<HTMLInputElement>(null);
-    const usedockerRef = useRef<HTMLInputElement>(null);
-    const controlusersRef = useRef<HTMLInputElement>(null);
-    const useuiRef = useRef<HTMLInputElement>(null);
-    const useagentsRef = useRef<HTMLInputElement>(null);
-    const consumedbRef = useRef<HTMLInputElement>(null);
-    const consumeapiRef = useRef<HTMLInputElement>(null);
-    const consumeaiRef = useRef<HTMLInputElement>(null);
-    const exposedbRef = useRef<HTMLInputElement>(null);
-    const exposeapiRef = useRef<HTMLInputElement>(null);
 
     const refInline: string = " (".concat(app.reference!).concat(")");
 
@@ -94,142 +70,41 @@ export function AppItemCard({app,onselection,iconname,iconsize,iconcolor}:AppIte
     const onClick = (opId: string) => {
         onselection(app.id!);
     };
-
-    const renderMainContent = useMemo(() => {
+   const renderMainContent = useMemo(() => {
         return (
-            <div className="w-full h-auto rounded-md">
+            <div className="w-full h-auto px-2 rounded-md bg-red">
 
                 <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
-
-                    <InputText ref={authorRef}
-                        disabled={disabled}
-                        label="Auhor"
-                        defaultvalue={app.author}
-                        maxlen={AppDef.AUTHOR_MAXLEN}
-                        name="author" />
-
-                    <InputText ref={descriptionRef}
-                        disabled={disabled}
-                        label="Description"
-                        defaultvalue={app.description}
-                        maxlen={AppDef.DESCRIPTION_MAXLEN}
-                        name="description" />
-
-                    <InputText ref={urlRef}
-                        label="url"
-                        disabled={disabled}
-                        defaultvalue={app.appurl}
-                        maxlen={AppDef.URL_MAXLEN}
-                        name="url" />
-
-                    <InputText ref={pathRef}
-                        label="path"
-                        disabled={disabled}
-                        defaultvalue={app.apppath}
-                        maxlen={AppDef.PATH_MAXLEN}
-                        name="path" />
+                    <OutputText label="Author" value={app.author} />
+                    <OutputText label="Description" value={app.description} />
+                    <OutputText label="Url" value={app.appurl!} />
+                    <OutputText label="Path" value={app.apppath!} />
                 </div>
 
                 <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-4">
 
-                    <FieldWrapper label="Type">
-                        <InputText ref={typeRef}
-                            disabled={true}
-                            maxlen={200}
-                            name="type"
-                            defaultvalue={app.apptype} />
+                    <FieldWrapper label="App. Type">
+                        <OutputText value={app.apptype} />
                     </FieldWrapper>
 
                     <FieldWrapper label="prog Lang">
-                        <InputText ref={proglanguageRef}
-                            disabled={disabled}
-                            maxlen={200}
-                            name="proglanguage"
-                            defaultvalue={app.proglanguage!} />
+                        <OutputText value={app.proglanguage!} />
                     </FieldWrapper>
 
                     <FieldWrapper label="Op. System">
-                        <InputText ref={osystemRef}
-                            disabled={disabled}
-                            defaultvalue={app.osystem}
-                            maxlen={AppDef.OSSYSTEM_MAXLEN}
-                            name="opsystem" />
+                        <OutputText value={app.osystem!} />
                     </FieldWrapper>
 
-                    <FieldWrapper label="local Dev">
-                        <InputCheck ref={localdevRef}
-                            disabled={disabled}
-                            defaultvalue={app.localdev!}
-                            name="localdev" />
-                    </FieldWrapper>
-
-                    <FieldWrapper label="Use Docker">
-                        <InputCheck ref={usedockerRef}
-                            disabled={disabled}
-                            defaultvalue={app.usedocker!}
-                            name="usedocker" />
-                    </FieldWrapper>
-
-                    <FieldWrapper label="ctr. Users">
-                        <InputCheck ref={controlusersRef!}
-                            disabled={disabled}
-                            defaultvalue={app.controlusers!}
-                            name="controlusers" />
-                    </FieldWrapper>
-
-                    <FieldWrapper label="use UI">
-                        <div className="w-full h-auto">
-                            <InputCheck ref={useuiRef}
-                                disabled={disabled}
-                                defaultvalue={app.useui!}
-                                name="useui" />
-                        </div>
-                    </FieldWrapper>
-
-                    <FieldWrapper label="use Agents">
-                        <InputCheck ref={useagentsRef}
-                            disabled={disabled}
-                            defaultvalue={app.useagents!}
-                            name="useagents" />
-                    </FieldWrapper>
-
-
-                    <FieldWrapper label="cons. Db">
-                        <InputCheck ref={consumedbRef}
-                            disabled={disabled}
-                            defaultvalue={app.consumedb!}
-                            name="consumedb" />
-                    </FieldWrapper>
-
-
-                    <FieldWrapper label="cons. Api">
-                        <InputCheck ref={consumeapiRef}
-                            disabled={disabled}
-                            defaultvalue={app.consumeapi!}
-                            name="consumeapi" />
-                    </FieldWrapper>
-
-                    <FieldWrapper label="cons. AI">
-                        <InputCheck ref={consumeaiRef}
-                            disabled={disabled}
-                            defaultvalue={app.consumeai!}
-                            name="consumeai" />
-                    </FieldWrapper>
-
-                    <FieldWrapper label="expose Db">
-                        <InputCheck ref={exposedbRef}
-                            disabled={disabled}
-                            defaultvalue={app.exposedb!}
-                            name="exposedb" />
-                    </FieldWrapper>
-
-                    <FieldWrapper label="expose Api">
-                        <InputCheck ref={exposeapiRef}
-                            disabled={disabled}
-                            defaultvalue={app.exposeapi!}
-                            name="exposeapi" />
-                    </FieldWrapper>
-
+                    <OutputCheck label="local Dev" chequed={app.localdev!} />
+                    <OutputCheck label="use Docker" chequed={app.localdev!} />
+                    <OutputCheck label="ctr. Users" chequed={app.controlusers!} />
+                    <OutputCheck label="use UI" chequed={app.useui!} />
+                    <OutputCheck label="use Agents" chequed={app.useagents!} />
+                    <OutputCheck label="cons. Db" chequed={app.consumedb!} />
+                    <OutputCheck label="cons. Api" chequed={app.consumeapi!} />
+                    <OutputCheck label="cons. AI" chequed={app.consumeai!} />
+                    <OutputCheck label="expose Api" chequed={app.exposedb!} />
+                    <OutputCheck label="cons. AI" chequed={app.exposeapi!} />
                 </div>
             </div>
 
@@ -237,58 +112,44 @@ export function AppItemCard({app,onselection,iconname,iconsize,iconcolor}:AppIte
     }, []);
 
     return (
-        <div className="w-full h-auto rounded-box p-[8px] space-y-2">
+        <div className="w-full flex flex-col bg-base-100 p-[10px] border border-zinc-500">
 
             {/* header */}
-            <div className="w-full flex flex-row rounded-lg bg-base-100 py-[5px] mb-[10x] border border-sky-500  ">
-                <div className="w-full pl-3 pr-3 flex flex-row items-center" >
-                    <p>{app.name}</p>
-                    <p className="pl-[8px] text-sm">{refInline}</p>
-                </div>
+            <div className="w-full h-auto grid grid-cols-2 auto-cols-max  rounded-lg border border-sky-500">
 
-                <div className="w-full  h-auto mr-[6px] my-[6px] flex justify-end">
-                    <BarButtons barconfig={barConfig}
-                        onclick={onClick} />
-                </div>
-            </div>
-
-            {/* main section */}
-            <div className="w-full  bg-base-100 rounded-lg border border-sky-500">
-
+                {/* collapse comp items-end */}
                 <div className="flex flex-row items-center pl-[6px] text-white text-xs">
-
-                    {/* collapse comp */}
-                    <div className="flex flex-row text-white text-xs">
-                        <div>
-                            {collapse ?
-                                <XButton callback={onCollapse}
-                                    iconcolor="white"
-                                    iconname={AppThemifyIcons.TI_ARROW_DOWN}
-                                    iconsize="xs" />
-                                : <XButton callback={onCollapse}
-                                    iconcolor="red"
-                                    iconsize="xs"
-                                    iconname={AppThemifyIcons.TI_ANGLE_UP} />
-                            }
-                        </div>
-                        <div className="w-full flex items-center flex-row ml-[12px] text-white text-lg">
-                            <p className="text-sm">Main</p>
-                        </div>
+                    <div>
+                        {collapse ?
+                            <XButton callback={onCollapse}
+                                iconcolor="white"
+                                iconname={AppThemifyIcons.TI_ARROW_DOWN}
+                                iconsize="xs" />
+                            : <XButton callback={onCollapse}
+                                iconcolor="red"
+                                iconsize="xs"
+                                iconname={AppThemifyIcons.TI_ANGLE_UP} />
+                        }
                     </div>
-
-                    <div className="w-full  h-auto mr-[6px] my-[6px] flex justify-end">
-                        <BarButtons barconfig={barConfig}
-                            onclick={onClick} />
+                    <div className="w-full flex items-center flex-row ml-[12px] text-white text-lg">
+                        <p>{app.name}</p> <p className="ml-[6px] text-sm">{refInline}</p>
                     </div>
 
                 </div>
 
+                {/* crud buttons */}
+                <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
+                    <BarButtons barconfig={barConfig} onclick={onClick} />
+                </div>
 
-                {/* body */}
-                {!collapse ? renderMainContent : null}
             </div>
+    
+
+            {/* body */}
+            {!collapse ? renderMainContent : null}
         </div>
     )
+
 
 } //end component
 

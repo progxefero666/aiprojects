@@ -65,7 +65,6 @@ export default function Desktop() {
     }
 
     const onSelectApplication = (app_id: number) => {
-        alert(app_id);
         AppStorage.saveApplicationId(app_id);
         router.push(PAGE_EDITOR_PATH);     
     }

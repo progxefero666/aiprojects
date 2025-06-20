@@ -20,6 +20,9 @@ import 'md-editor-rt/lib/preview.css';
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
 import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
+import { InputCheck } from "@/libcomp/inputcheck";
+import { AppDef } from "@/app_front/manapplications/applicationdef";
+import { InputText } from "@/libcomp/inputtext";
 
 
 export interface AppCardProp {
@@ -88,46 +91,149 @@ export function AppCard({ app, onedit,ondelete, iconname, iconsize, iconcolor }:
         else if(opId === "edit") { onedit();}
     }; 
 
+
     const renderMainContent = useMemo(() => {
         return (
-            <div className="w-full h-auto px-2 rounded-md bg-red">
+            <div className="w-full h-auto rounded-md">
 
                 <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
-                    <OutputText label="Author" value={app.author} />
-                    <OutputText label="Description" value={app.description} />
-                    <OutputText label="Url" value={app.appurl!} />
-                    <OutputText label="Path" value={app.apppath!} />
+
+                    <InputText ref={authorRef}
+                        disabled={disabled}
+                        label="Auhor"
+                        defaultvalue={app.author}
+                        maxlen={AppDef.AUTHOR_MAXLEN}
+                        name="author" />
+
+                    <InputText ref={descriptionRef}
+                        disabled={disabled}
+                        label="Description"
+                        defaultvalue={app.description}
+                        maxlen={AppDef.DESCRIPTION_MAXLEN}
+                        name="description" />
+
+                    <InputText ref={urlRef}
+                        label="url"
+                        disabled={disabled}
+                        defaultvalue={app.appurl}
+                        maxlen={AppDef.URL_MAXLEN}
+                        name="url" />
+
+                    <InputText ref={pathRef}
+                        label="path"
+                        disabled={disabled}
+                        defaultvalue={app.apppath}
+                        maxlen={AppDef.PATH_MAXLEN}
+                        name="path" />
                 </div>
 
                 <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-4">
 
-                    <FieldWrapper label="App. Type">
-                        <OutputText value={app.apptype} />
+                    <FieldWrapper label="Type">
+                        <InputText ref={typeRef}
+                            disabled={true}
+                            maxlen={200}
+                            name="type"
+                            defaultvalue={app.apptype} />
                     </FieldWrapper>
 
                     <FieldWrapper label="prog Lang">
-                        <OutputText value={app.proglanguage!} />
+                        <InputText ref={proglanguageRef}
+                            disabled={disabled}
+                            maxlen={200}
+                            name="proglanguage"
+                            defaultvalue={app.proglanguage!} />
                     </FieldWrapper>
 
                     <FieldWrapper label="Op. System">
-                        <OutputText value={app.osystem!} />
+                        <InputText ref={osystemRef}
+                            disabled={disabled}
+                            defaultvalue={app.osystem}
+                            maxlen={AppDef.OSSYSTEM_MAXLEN}
+                            name="opsystem" />
                     </FieldWrapper>
 
-                    <OutputCheck label="local Dev" chequed={app.localdev!} />
-                    <OutputCheck label="use Docker" chequed={app.localdev!} />
-                    <OutputCheck label="ctr. Users" chequed={app.controlusers!} />
-                    <OutputCheck label="use UI" chequed={app.useui!} />
-                    <OutputCheck label="use Agents" chequed={app.useagents!} />
-                    <OutputCheck label="cons. Db" chequed={app.consumedb!} />
-                    <OutputCheck label="cons. Api" chequed={app.consumeapi!} />
-                    <OutputCheck label="cons. AI" chequed={app.consumeai!} />
-                    <OutputCheck label="expose Api" chequed={app.exposedb!} />
-                    <OutputCheck label="cons. AI" chequed={app.exposeapi!} />
+                    <FieldWrapper label="local Dev">
+                        <InputCheck ref={localdevRef}
+                            disabled={disabled}
+                            defaultvalue={app.localdev!}
+                            name="localdev" />
+                    </FieldWrapper>
+
+                    <FieldWrapper label="Use Docker">
+                        <InputCheck ref={usedockerRef}
+                            disabled={disabled}
+                            defaultvalue={app.usedocker!}
+                            name="usedocker" />
+                    </FieldWrapper>
+
+                    <FieldWrapper label="ctr. Users">
+                        <InputCheck ref={controlusersRef!}
+                            disabled={disabled}
+                            defaultvalue={app.controlusers!}
+                            name="controlusers" />
+                    </FieldWrapper>
+
+                    <FieldWrapper label="use UI">
+                        <div className="w-full h-auto">
+                            <InputCheck ref={useuiRef}
+                                disabled={disabled}
+                                defaultvalue={app.useui!}
+                                name="useui" />
+                        </div>
+                    </FieldWrapper>
+
+                    <FieldWrapper label="use Agents">
+                        <InputCheck ref={useagentsRef}
+                            disabled={disabled}
+                            defaultvalue={app.useagents!}
+                            name="useagents" />
+                    </FieldWrapper>
+
+
+                    <FieldWrapper label="cons. Db">
+                        <InputCheck ref={consumedbRef}
+                            disabled={disabled}
+                            defaultvalue={app.consumedb!}
+                            name="consumedb" />
+                    </FieldWrapper>
+
+
+                    <FieldWrapper label="cons. Api">
+                        <InputCheck ref={consumeapiRef}
+                            disabled={disabled}
+                            defaultvalue={app.consumeapi!}
+                            name="consumeapi" />
+                    </FieldWrapper>
+
+                    <FieldWrapper label="cons. AI">
+                        <InputCheck ref={consumeaiRef}
+                            disabled={disabled}
+                            defaultvalue={app.consumeai!}
+                            name="consumeai" />
+                    </FieldWrapper>
+
+                    <FieldWrapper label="expose Db">
+                        <InputCheck ref={exposedbRef}
+                            disabled={disabled}
+                            defaultvalue={app.exposedb!}
+                            name="exposedb" />
+                    </FieldWrapper>
+
+                    <FieldWrapper label="expose Api">
+                        <InputCheck ref={exposeapiRef}
+                            disabled={disabled}
+                            defaultvalue={app.exposeapi!}
+                            name="exposeapi" />
+                    </FieldWrapper>
+
                 </div>
             </div>
 
         )
     }, []);
+
+ 
 
     return (
         <div className="w-full flex flex-col bg-base-100 p-[10px] border border-zinc-500">
