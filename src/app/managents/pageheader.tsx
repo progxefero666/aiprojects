@@ -1,4 +1,4 @@
-//src\app\appeditor\pageheader.tsx
+//src\app\manaielems\pageheader.tsx
 
 
 import { Search } from "@/libcomp/search";
@@ -9,10 +9,10 @@ import { XButton } from "@/libcomp/button";
 /**
  * Ai Manager Projects Header
  */
-export interface AppEditorHeaderIfc {
-     ontest: () => void;
+export interface PageAgentsHeaderIfc {
+     param:string;
 }
-export default function ApplicationEditorHeader({ ontest }: AppEditorHeaderIfc) {
+export default function PageAgentsHeader({ param }: PageAgentsHeaderIfc) {
 
     const maxLen: number = 50;
     const onSearchSubmit = (value:string): void => {

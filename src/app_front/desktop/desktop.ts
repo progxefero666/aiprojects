@@ -1,9 +1,6 @@
 //src\app_front\desktop\desktop.ts
 
-import { AppModule } from "@/lib/common/arquitect/model/appmodule";
-
-
-//
+import { AppModule } from "@/lib/arquitect/model/appmodule";
 
 /**
  * class Desktop.ACTIVE_MOD

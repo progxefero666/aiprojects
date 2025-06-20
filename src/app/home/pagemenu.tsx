@@ -4,21 +4,23 @@
 
 
 import { Search } from "@/libcomp/search";
-import { AppThemifyIcons } from "@/style/appthicons";
-import { XButton } from "@/libcomp/button";
-import { AppModule } from "@/lib/common/arquitect/model/appmodule";
 import { Desktop } from "@/app_front/desktop/desktop";
 import { useEffect, useMemo, useState } from "react";
 import { DataConstants } from "@/lib/common/app/dataconstants";
+import { useRouter } from "next/navigation";
+import { AppStorage } from "@/app_front/appstorge";
+import { PAGE_EDITOR_PATH } from "../appeditor/page";
+import { AppModule } from "@/lib/arquitect/model/appmodule";
 
 
 /**
  * Desktop Menu JSX
  */
 export interface DesktopMenuIfc {
-    onselectmodule?: () => void;
+    defmodulename?: () => void;
 }
-export default function DesktopMenu({ onselectmodule }: DesktopMenuIfc) {
+export default function DesktopMenu({ defmodulename }: DesktopMenuIfc) {
+    const router = useRouter();
 
     const [modules, setModules] = useState<AppModule[]>(Desktop.MODULES);
     const [actmodule, setActiveModule] = useState<AppModule>(Desktop.ACTIVE_MOD);
@@ -28,20 +30,18 @@ export default function DesktopMenu({ onselectmodule }: DesktopMenuIfc) {
     }, []);
 
     const onModuleSelected = (name: string) => {
-        alert(name);
-        let modPath: string = DataConstants.UNDEFINED;
-
         if (name === Desktop.MOD_AIAPPS.name) {
-            modPath = "./appeditor";
+            router.push(PAGE_EDITOR_PATH);
         }
         if (name === Desktop.MOD_CHATBOT.name) {
-            modPath = "./aichatbot";
+            router.push("./aichatbot"); 
         }
         if (name === Desktop.MOD_SERVICES.name) {
-            modPath = "./manservices";
+            router.push("./manservices"); 
         }
         else if (name === Desktop.MOD_SERVERS.name || name === Desktop.MOD_AGENTS.name ) {
-            modPath = "./manaielements";
+            //AppStorage.saveApplicationId(app_id);
+            router.push("./manaielems"); 
         }
     };
 

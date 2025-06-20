@@ -12,9 +12,11 @@ import { AppIntroCard } from "@/app_front/comp/appcard";
 import { Application } from "@/client_old/models/Application"
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 import { AppElementCard } from "@/app/home/appelementcard";
-import AppEditorHeader from "./pageheader";
+import ApplicationEditorHeader from "./pageheader";
 import { AppEditCard } from "../home/appeditcard";
 import { useAppReady } from "@/app_front/hooks/useappready";
+import { DataConstants } from "@/lib/common/app/dataconstants";
+import { AppEditorConfig } from "@/app_front/manapplications/appeditor";
 
 /**
  * Page Index JSX Client
@@ -35,7 +37,7 @@ export default function ApplicationEditor() {
     //application
     const [appId, setAppId] = useState<number>(-1);
     const [app, setApp] = useState<Application | null>(null);
-
+    const [section,setSection]= useState<string>(DataConstants.UNDEFINED);
     const onTest = () => { }
 
     useEffect(() => {
@@ -50,6 +52,19 @@ export default function ApplicationEditor() {
         };
         init();
     }, []);
+
+    const loadsection = (name: string): void => {
+        setSection(name);
+        if (name === AppEditorConfig.SECTION_MAIN.name) {
+        
+        }
+        else if (name === AppEditorConfig.SECTION_DOCS.name) {
+            
+        }
+        else if (name === AppEditorConfig.SECTION_TASKS.name) {
+            
+        }        
+    }
 
     if (!app) {
         return <div>Loading...</div>;
@@ -68,7 +83,7 @@ export default function ApplicationEditor() {
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <AppEditorHeader ontest={onTest} />
+            <ApplicationEditorHeader ontest={onTest} />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">

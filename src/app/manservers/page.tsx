@@ -4,13 +4,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import PageAiElementsHeader from "./pageheader";
+import PageServicesHeader from "./pageheader";
 
 
 /**
  * Page JSX Ai Elements
  */
-export default function PageAiElements() {
+export default function PageServices() {
 
     //ManagerAgents
     //ManagerServers
@@ -31,7 +31,7 @@ export default function PageAiElements() {
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <PageAiElementsHeader param={"param"} />
+            <PageServicesHeader param={"param"} />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">

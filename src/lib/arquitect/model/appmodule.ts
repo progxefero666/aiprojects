@@ -1,6 +1,8 @@
 //src\lib\arquitect\model\appmodule.ts
 
-import { DataConstants } from "../../app/dataconstants";
+import { DataConstants } from "@/lib/common/app/dataconstants";
+
+
 
 
 /**
