@@ -3,7 +3,7 @@ import { Option } from "@/lib/common/model/base/option";
 
 /**
  * class AppEditorConfig
- * AppEditorConfig.MENU_OPT_COLOR_DEF
+ * AppEditorConfig.ACTIVE_SECTION
  * AppEditorConfig.MENU_OPT_ACT_COLOR_DEF
  */
 export class AppEditorConfig {

@@ -9,14 +9,15 @@ import { AppStorage } from "@/app_front/appstorge";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 
-import ApplicationEditorHeader from "./pageheader";
+import PageHeader from "./header";
 import { AppEditCard } from "../home/appeditcard";
 
 import { DataConstants } from "@/lib/common/app/dataconstants";
 import { AppEditorConfig } from "@/app_front/manapplications/appeditor";
 import TwDaisyMenu from "@/twdaisy/twdaisymenu";
 import { Application } from "@/client/models/Application";
-
+import ApplicationEditorTools from "@/app/appeditor/paneltools";
+import { Option } from "@/lib/common/model/base/option";
 /**
  * Page Index JSX Client
  * start command:
@@ -36,7 +37,7 @@ export default function ApplicationEditor() {
     //application
     const [appId, setAppId] = useState<number>(-1);
     const [app, setApp] = useState<Application | null>(null);
-    const [section,setSection]= useState<string>(DataConstants.UNDEFINED);
+    const [section, setSection] = useState<Option>(AppEditorConfig.ACTIVE_SECTION);
     const onTest = () => { }
 
     useEffect(() => {
@@ -52,17 +53,25 @@ export default function ApplicationEditor() {
         init();
     }, []);
 
-    const loadsection = (name: string): void => {
-        setSection(name);
+    const loadsection = (name:string): void => {
+        let act_section:Option|null = null;
+
         if (name === AppEditorConfig.SECTION_MAIN.name) {
-        
+            act_section = AppEditorConfig.SECTION_MAIN;
         }
         else if (name === AppEditorConfig.SECTION_DOCS.name) {
-            
+            act_section = AppEditorConfig.SECTION_DOCS;
         }
         else if (name === AppEditorConfig.SECTION_TASKS.name) {
-            
+            act_section = AppEditorConfig.SECTION_TASKS;
+        }
+        if(act_section){
+            setSection(act_section);
         }        
+    }
+
+    const onToolsMessage = (message: string): void => {
+        console.log(message);
     }
 
     if (!app) {
@@ -71,10 +80,9 @@ export default function ApplicationEditor() {
 
     const renderMainContent = () => {
         return (
-            <div className="w-full h-auto py-2 px-2">
+            <div className="main_monitor min-h-screen rounded-lg">
                 <AppEditCard app={app} />
             </div>
-
         );
     };
 
@@ -82,30 +90,19 @@ export default function ApplicationEditor() {
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <ApplicationEditorHeader ontest={onTest} />
+            <PageHeader ontest={onTest} />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
-
-                {/* column left */}
                 <div className="w-full min-h-screen flex flex-col px-2 mb-2">
-                    <TwDaisyMenu onselection= {loadsection}
-                                 options    = {AppEditorConfig.SECTIONS}
-                                 optactname = {AppEditorConfig.ACTIVE_SECTION.name} 
-                                 optcolor   = {AppEditorConfig.MENU_OPT_COLOR}
-                                 optactcolor= {AppEditorConfig.MENU_OPT_ACT_COLOR} />
+                    <TwDaisyMenu onselection={loadsection}
+                        options={AppEditorConfig.SECTIONS}
+                        optactname={AppEditorConfig.ACTIVE_SECTION.name}
+                        optcolor={AppEditorConfig.MENU_OPT_COLOR}
+                        optactcolor={AppEditorConfig.MENU_OPT_ACT_COLOR} />
                 </div>
-
-                {/* column center */}
-                <div className="main_monitor w-full min-h-screen rounded-lg">
-                    {renderMainContent()}
-                </div>
-
-                {/* column right */}
-                <div className="w-full min-h-screen flex-col p-2">
-                    Right Panel
-                </div>
-
+                {renderMainContent()}
+                <ApplicationEditorTools ontoolsmessage={onToolsMessage} />
             </div>
 
         </div>
