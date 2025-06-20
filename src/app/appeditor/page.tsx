@@ -10,7 +10,7 @@ import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 
 import PageHeader from "./header";
-import { AppEditCard } from "../home/appeditcard";
+import { ApplicationCard } from "../home/appformcard";
 
 import { DataConstants } from "@/lib/common/app/dataconstants";
 import { AppEditorConfig } from "@/app_front/manapplications/appeditor";
@@ -79,11 +79,15 @@ export default function ApplicationEditor() {
     }
 
     const renderMainContent = () => {
-        return (
-            <div className="main_monitor min-h-screen rounded-lg">
-                <AppEditCard app={app} />
-            </div>
-        );
+        if(section === AppEditorConfig.SECTION_MAIN) {
+            return (<ApplicationCard app={app} />);
+        }
+        if(section === AppEditorConfig.SECTION_DOCS) {
+            return (<ApplicationCard app={app} />);
+        }
+        if(section === AppEditorConfig.SECTION_TASKS) {
+            return (<ApplicationCard app={app} />);
+        }         
     };
 
     return (
@@ -94,6 +98,7 @@ export default function ApplicationEditor() {
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
+
                 <div className="w-full min-h-screen flex flex-col px-2 mb-2">
                     <TwDaisyMenu onselection={loadsection}
                         options={AppEditorConfig.SECTIONS}
@@ -101,8 +106,13 @@ export default function ApplicationEditor() {
                         optcolor={AppEditorConfig.MENU_OPT_COLOR}
                         optactcolor={AppEditorConfig.MENU_OPT_ACT_COLOR} />
                 </div>
-                {renderMainContent()}
+
+                <div className="main_monitor min-h-screen rounded-lg">
+                    {renderMainContent()}
+                </div>
+                
                 <ApplicationEditorTools ontoolsmessage={onToolsMessage} />
+
             </div>
 
         </div>

@@ -47,14 +47,14 @@ const barConfig: BarButtonsConfig = {
     color: ["btn-info", "btn-success"],
     icons: ["none", "none"]
 }
-export interface AppElementCardIfc {
+export interface AppEditorProp {
     app: Application;
     onselection: (id: number) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppElementCard({ app, onselection, iconname, iconsize, iconcolor }: AppElementCardIfc) {
+export function AppEditorCard({ app, onselection, iconname, iconsize, iconcolor }: AppEditorProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
     let iconclass: string = DataConstants.UNDEFINED;

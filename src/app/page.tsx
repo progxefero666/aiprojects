@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { AppStorage } from "@/app_front/appstorge";
 
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-import { AppElementCard } from "@/app/home/appelementcard";
+import { AppEditorCard } from "@/app/home/appeditorcard";
 import { PAGE_EDITOR_PATH } from "@/app/appeditor/page";
 import DesktopHeader from "@/app/home/pageheader";
 
@@ -80,7 +80,7 @@ export default function Desktop() {
             <ul className="menu w-full rounded-box menu-md space-y-3">
                 {listApps.map((item, index) => (
                     <li className="list-row" key={index}>
-                        <AppElementCard
+                        <AppEditorCard
                             app={item}
                             onselection={onSelectApplication}
                             iconname="file"

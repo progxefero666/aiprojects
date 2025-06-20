@@ -24,38 +24,20 @@ import { Application } from "@/client/models/Application";
 import { ApptypesService } from "@/client_aidatabase/ApptypesService";
 
 
-const dummy_content: string = `## Introducción
-
-    Este es un **texto en negrita** y este es *texto en cursiva*.
-
-    ### Lista de tareas
-    - [x] Tarea completada
-    - [ ] Tarea pendiente
-    - [ ] Otra tarea
-
-    ### Lista numerada
-    1. Primer elemento
-    2. Segundo elemento
-    3. Tercer elemento
-
-    ## Código
-    Aquí hay código inline: \`console.log("Hola")\``;
-
-
 const barConfig: BarButtonsConfig = {
-    operations: ["viewdocs", "edit"],
-    texts: ["view docs", "edit"],
+    operations: ["edit", "delete"],
+    texts: ["edit", "delete"],
     disabled: [false, false],
     color: ["btn-info", "btn-success"],
-    icons: ["none", "none"]
+    icons: [AppThemifyIcons.TI_DELETE,AppThemifyIcons.TI_EDITFILE]
 }
-export interface AppEditCardIfc {
+export interface ApplicationCardProp {
     app: Application;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardIfc) {
+export function ApplicationCard({ app, iconname, iconsize, iconcolor }: ApplicationCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
     let iconclass: string = DataConstants.UNDEFINED;
@@ -108,8 +90,10 @@ export function AppEditCard({ app, iconname, iconsize, iconcolor }: AppEditCardI
         init();
     }, []);
 
-    const onClick = (operation: string) => {
-
+    const onClick = (opId: string) => {
+        if(opId === "edit"){
+            
+        }
     };
 
     const onSelectChange = (name: string, result: string) => {
