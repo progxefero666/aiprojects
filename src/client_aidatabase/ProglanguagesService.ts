@@ -1,9 +1,9 @@
 //src\api_client\ProglanguagesService.ts
 
-import type { ProgLanguage } from '@/client_old/models/ProgLanguage';
-import type { CancelablePromise } from '@/client_old/core/CancelablePromise';
-import { OpenAPI } from '@/client_old/core/OpenAPI';
-import { request as __request } from '@/client_old/core/request';
+import type { ProgLanguage } from '@/client/models/ProgLanguage';
+import type { CancelablePromise } from '@/client/core/CancelablePromise';
+import { OpenAPI } from '@/client/core/OpenAPI';
+import { request as __request } from '@/client/core/request';
 
 /**
  * FastAPI Client Service

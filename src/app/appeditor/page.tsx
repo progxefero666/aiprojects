@@ -6,18 +6,16 @@ import { useEffect, useMemo, useState } from "react";
 
 import { useRouter } from "next/navigation";
 import { AppStorage } from "@/app_front/appstorge";
-import DesktopHeader from "../home/pageheader";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
-import { AppIntroCard } from "@/app_front/comp/appcard";
-import { Application } from "@/client_old/models/Application"
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-import { AppElementCard } from "@/app/home/appelementcard";
+
 import ApplicationEditorHeader from "./pageheader";
 import { AppEditCard } from "../home/appeditcard";
-import { useAppReady } from "@/app_front/hooks/useappready";
+
 import { DataConstants } from "@/lib/common/app/dataconstants";
 import { AppEditorConfig } from "@/app_front/manapplications/appeditor";
 import TwDaisyMenu from "@/twdaisy/twdaisymenu";
+import { Application } from "@/client/models/Application";
 
 /**
  * Page Index JSX Client

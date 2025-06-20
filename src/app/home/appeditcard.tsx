@@ -6,13 +6,12 @@ import { MdPreview } from 'md-editor-rt';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { DataConstants } from "@/lib/common/app/dataconstants";
-import { Application } from "@/client_old/models/Application"
-import { ThemeColors } from "@/style/apptheme";
+
 
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
 import { XButton } from "@/libcomp/button";
-import { ApptypesService } from "@/client_old";
+
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { InputText } from "@/libcomp/inputtext";
 import { AppDef } from "../../app_front/manapplications/applicationdef";
@@ -21,6 +20,8 @@ import { InputSelect } from "@/libcomp/inputselect";
 import { FieldWrapper } from "@/libcomp/fieldwrapper";
 import { BarButtonsConfig } from "@/types/types";
 import { BarButtons } from "@/libcomp/barbutton";
+import { Application } from "@/client/models/Application";
+import { ApptypesService } from "@/client_aidatabase/ApptypesService";
 
 
 const dummy_content: string = `## Introducción

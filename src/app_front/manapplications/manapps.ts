@@ -1,5 +1,6 @@
 //src\app_front\modules\projects\appprojects.ts
-import {Application} from "@/client_old/models/Application"
+
+import {Application} from "@/client/models/Application"
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 
 /**

@@ -1,9 +1,9 @@
 //src\api_client\DoctypesService.ts
 
-import type { DocType } from '@/client_old/models/DocType';
-import type { CancelablePromise } from '@/client_old/core/CancelablePromise';
-import { OpenAPI } from '@/client_old/core/OpenAPI';
-import { request as __request } from '@/client_old/core/request';
+import type { DocType } from '@/client/models/DocType';
+import type { CancelablePromise } from '@/client/core/CancelablePromise';
+import { OpenAPI } from '@/client/core/OpenAPI';
+import { request as __request } from '@/client/core/request';
 
 /**
  * FastAPI Client Service

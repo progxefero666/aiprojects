@@ -1,9 +1,9 @@
 //src\api_client\DoccategoriesService.ts
 
-import type { CancelablePromise } from '@/client_old/core/CancelablePromise';
-import { OpenAPI } from '@/client_old/core/OpenAPI';
-import { request as __request } from '@/client_old/core/request'
-import type { DocCategory } from '@/client_old/models/DocCategory';
+import type { CancelablePromise } from '@/client/core/CancelablePromise';
+import { OpenAPI } from '@/client/core/OpenAPI';
+import { request as __request } from '@/client/core/request'
+import type { DocCategory } from '@/client/models/DocCategory';
 
 /**
  * FastAPI Client Service
