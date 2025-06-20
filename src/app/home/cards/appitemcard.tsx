@@ -25,19 +25,20 @@ import { ApptypesService } from "@/client_aidatabase/ApptypesService";
 
 
 const barConfig: BarButtonsConfig = {
-    operations: ["edit", "delete"],
-    texts: ["edit", "delete"],
-    disabled: [false, false],
-    color: ["btn-info", "btn-success"],
-    icons: [AppThemifyIcons.TI_DELETE,AppThemifyIcons.TI_EDITFILE]
+    operations: ["open"],
+    texts: ["open"],
+    disabled: [true],
+    color: ["btn-info"],
+    icons: [AppThemifyIcons.TI_EYE]
 }
 export interface AppItemCardProp {
     app: Application;
+    onselection: (appid:number) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppItemCard({ app, iconname, iconsize, iconcolor }: AppItemCardProp) {
+export function AppItemCard({app,onselection,iconname,iconsize,iconcolor}:AppItemCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
     let iconclass: string = DataConstants.UNDEFINED;
@@ -91,20 +92,8 @@ export function AppItemCard({ app, iconname, iconsize, iconcolor }: AppItemCardP
     }, []);
 
     const onClick = (opId: string) => {
-        if(opId === "edit"){
-            
-        }
+        onselection(app.id!);
     };
-
-    const onSelectChange = (name: string, result: string) => {
-        if (name == "type") {
-
-        }
-        else if (name == "proglanguage") {
-
-        }
-    }
-
 
     const renderMainContent = useMemo(() => {
         return (

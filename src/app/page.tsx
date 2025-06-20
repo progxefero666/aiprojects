@@ -9,12 +9,11 @@ import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 
 import { PAGE_EDITOR_PATH } from "@/app/appeditor/page";
 import PageHeader from "@/app/home/header";
-
 import { ManagerAplications } from "../app_front/manapplications/manapps";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import DesktopMenu from "./home/pagemenu";
 import { Application } from "@/client/models/Application";
-import { AppCard } from "./appeditor/cards/appcard";
+import { AppItemCard } from "./home/cards/appitemcard";
 
 
 /*
@@ -66,6 +65,7 @@ export default function Desktop() {
     }
 
     const onSelectApplication = (app_id: number) => {
+        alert(app_id);
         AppStorage.saveApplicationId(app_id);
         router.push(PAGE_EDITOR_PATH);     
     }
@@ -74,14 +74,13 @@ export default function Desktop() {
     
     }
 
-
     const renderMainContent = useMemo(() => {
        
         return (
             <ul className="menu w-full rounded-box menu-md space-y-3">
                 {listApps.map((item, index) => (
                     <li className="list-row" key={index}>
-                        <AppCard
+                        <AppItemCard
                             app={item}
                             onselection={onSelectApplication}
                             iconname="file"

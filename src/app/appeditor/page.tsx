@@ -58,11 +58,11 @@ export default function ApplicationEditor() {
     }, []);
 
     const onModeEdition = (): void => {
-        console.log("onModeEdition");
+        alert("onModeEdition");
     }
 
     const onDelete = (): void => {
-        console.log("onDelete");
+        alert("onDelete");
     }
 
     const loadsection = (name:string): void => {
@@ -86,7 +86,6 @@ export default function ApplicationEditor() {
     const onToolsMessage = (message: string): void => {
         console.log(message);
     }
-
 
     if (!app) {
         return <div>Loading...</div>;
