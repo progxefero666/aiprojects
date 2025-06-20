@@ -1,11 +1,10 @@
-//src\lib\arquitect\model\section.ts
-
+//src\lib\common\model\base\option.ts
 import { DataConstants } from "@/lib/common/app/dataconstants";
 
 /**
  * class Section
  */
-export class Section {
+export class Option {
 
     public name: string;
     public title: string;
@@ -23,9 +22,9 @@ export class Section {
         return JSON.stringify(this, null, 4);
     }
 
-    public static build(jsonString: string): Section {
+    public static build(jsonString: string): Option {
         const obj = JSON.parse(jsonString);
-        return new Section(obj.name, obj.title, obj.logo, obj.description);
+        return new Option(obj.name, obj.title, obj.logo, obj.description);
     }
 
 }//end class

@@ -17,6 +17,7 @@ import { AppEditCard } from "../home/appeditcard";
 import { useAppReady } from "@/app_front/hooks/useappready";
 import { DataConstants } from "@/lib/common/app/dataconstants";
 import { AppEditorConfig } from "@/app_front/manapplications/appeditor";
+import TwDaisyMenu from "@/twdaisy/twdaisymenu";
 
 /**
  * Page Index JSX Client
@@ -90,9 +91,11 @@ export default function ApplicationEditor() {
 
                 {/* column left */}
                 <div className="w-full min-h-screen flex flex-col px-2 mb-2">
-                    <div className="w-full h-auto">
-                        Btn New
-                    </div>
+                    <TwDaisyMenu onselection= {loadsection}
+                                 options    = {AppEditorConfig.SECTIONS}
+                                 optactname = {AppEditorConfig.ACTIVE_SECTION.name} 
+                                 optcolor   = {AppEditorConfig.MENU_OPT_COLOR}
+                                 optactcolor= {AppEditorConfig.MENU_OPT_ACT_COLOR} />
                 </div>
 
                 {/* column center */}
