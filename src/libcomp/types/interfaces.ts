@@ -3,6 +3,8 @@
 import { BarButtonsCfg } from "../model/barbuttonscfg";
 
 
+//btn-info 💾  
+
 export interface BarButtonsProps {
     onclick: (operation: string) => void;
     barconfig: BarButtonsCfg;

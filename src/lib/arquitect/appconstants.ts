@@ -1,7 +1,7 @@
 //src\app_front\appconstants.ts
 
 /**
- * class AppConstants.MODE_READONLY
+ * class AppConstants.NOT_DEF
  */
 export class AppConstants {
 

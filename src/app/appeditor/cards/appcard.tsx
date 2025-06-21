@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { AppThemifyIcons } from "@/style/appthicons";
-import { DataConstants } from "@/lib/common/app/dataconstants";
+
 import { FieldWrapper } from "@/libcomp/fieldwrapper";
 import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
@@ -26,30 +26,37 @@ import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { AppConstants } from "@/lib/arquitect/appconstants";
 import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 
+const style_component: string = "w-full flex flex-col bg-base-100 p-[10px] border border-zinc-500";
+const style_header: string = "w-full h-auto grid grid-cols-2 auto-cols-max  rounded-lg border border-sky-500";
+const style_header_title: string = "flex flex-row items-center pl-[6px] text-white text-xs";
+const style_title: string = "w-full flex items-center flex-row ml-[12px] text-white text-lg";
+const style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";
+
 export interface AppCardProp {
-    collapse:boolean;
+    collapse: boolean;
     app: Application;
-    barconfig:BarButtonsCfg;
+    barconfig: BarButtonsCfg;
     onedit: () => void;
-    onsave: () => void;
+    onsave: (app:Application) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppCard({ collapse, app,barconfig, onedit, onsave, iconname, iconsize, iconcolor }: AppCardProp) {
+export function AppCard({collapse,app,barconfig,onedit,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
 
     const [isCollapse, setIsCollapse] = useState<boolean>(collapse);
-
-    const onCollapse = (operation_id?: string) => {setIsCollapse(!collapse);};
-    
+    const onCollapse = (operation_id?: string) => { setIsCollapse(!collapse); };
     const [disabled, setDisabled] = useState<boolean>(false);
+
     //relational collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
-    const [appTypesNames, setAppTypesNames] = useState<string[]>(["uno", "dos"]);
+    const [appTypesNames, setAppTypesNames] = useState<string[]>([]);
 
-    const typeRef = useRef<HTMLSelectElement>(null);
-    const proglanguageRef = useRef<HTMLSelectElement>(null);
+    //aplication edition
     const nameRef = useRef<HTMLInputElement>(null);
+    
+    const typeRef = useRef<HTMLSelectElement>(null);
+    const proglanguageRef = useRef<HTMLSelectElement>(null);    
     const osystemRef = useRef<HTMLInputElement>(null);
     const authorRef = useRef<HTMLInputElement>(null);
     const referenceRef = useRef<HTMLInputElement>(null);
@@ -70,22 +77,38 @@ export function AppCard({ collapse, app,barconfig, onedit, onsave, iconname, ico
     const refInline: string = " - (".concat(app.reference!).concat(")");
 
     useEffect(() => {
+        
         const init = async () => {
-            const apptypes = await ApptypesService.getAll();
-            const apptypes_names: string[] = ApptypesService.getCollNames(apptypes);
-            setAppTypesNames(apptypes_names);
             const proglangsNames = await ProgLangCodeService.getAllNames();
+            const apptypes = await ApptypesService.getAll();
             setProgLangs(proglangsNames);
+            setAppTypesNames(ApptypesService.getCollNames(apptypes));
         };
         init();
     }, []);
 
     const onClick = (opId: string) => {
-        if (opId === AppConstants.MODE_EDITION) {  
-            onedit();
-        }
-        else if (opId === AppConstants.ACT_SAVE) {
-            onsave();
+        //app.updatedate
+        if (opId === AppConstants.MODE_EDITION) { onedit(); }
+        else if (opId === AppConstants.ACT_SAVE) { 
+            app.author      = authorRef.current?.value! ?? AppConstants.NOT_DEF;
+            app.description = descriptionRef.current?.value! ?? AppConstants.NOT_DEF;
+            app.appurl      = urlRef.current?.value! ?? AppConstants.NOT_DEF;
+            app.apppath     = pathRef.current?.value! ?? AppConstants.NOT_DEF;
+            app.apptype     = typeRef.current?.value! ?? AppConstants.NOT_DEF;
+            app.proglanguage= proglanguageRef.current?.value! ?? AppConstants.NOT_DEF;
+            app.osystem     = osystemRef.current?.value! ?? AppConstants.NOT_DEF;
+            app.localdev    = localdevRef.current?.checked?? true;
+            app.usedocker   = usedockerRef.current?.checked?? false;
+            app.consumeai   = consumeaiRef.current?.checked?? false;
+            app.consumeapi  = consumeapiRef.current?.checked?? false;
+            app.consumeai   = consumeaiRef.current?.checked?? false;
+            app.consumedb   = consumedbRef.current?.checked?? false;
+            app.exposeapi   = exposeapiRef.current?.checked?? false;
+            app.exposedb    = exposedbRef.current?.checked?? false;
+            app.useui       = useuiRef.current?.checked?? false;
+            app.useagents   = useagentsRef.current?.checked?? false;
+            onsave(app); 
         }
     };
 
@@ -199,64 +222,45 @@ export function AppCard({ collapse, app,barconfig, onedit, onsave, iconname, ico
 
                 </div>
             </div>
-
         )
-
     };
 
-    return (
-        <div className="w-full flex flex-col bg-base-100 p-[10px] border border-zinc-500">
+    //<div className={iconclass} />
 
-            {/* header */}
-            <div className="w-full h-auto grid grid-cols-2 auto-cols-max  rounded-lg border border-sky-500">
-
-                {/* collapse comp items-end */}
-                <div className="flex flex-row items-center pl-[6px] text-white text-xs">
+    const renderHeader = () => {
+        return (
+            <div className={style_header}>
+                {/* header title */}
+                <div className={style_header_title}>
                     <div>
                         {collapse ?
                             <XButton callback={onCollapse}
                                 iconcolor="white"
                                 iconname={AppThemifyIcons.TI_ARROW_DOWN}
-                                iconsize="xs" />
-                            : <XButton callback={onCollapse}
-                                iconcolor="red"
-                                iconsize="xs"
+                                iconsize="xs" /> :
+                            <XButton callback={onCollapse}
+                                iconcolor="red" iconsize="xs"
                                 iconname={AppThemifyIcons.TI_ANGLE_UP} />
                         }
                     </div>
-                    <div className="w-full flex items-center flex-row ml-[12px] text-white text-lg">
+                    <div className={style_title}>
                         <p>{app.name}</p> <p className="ml-[6px] text-sm">{refInline}</p>
                     </div>
-
                 </div>
 
-                {/* crud buttons */}
-                <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
-                    <BarButtons barconfig={barconfig} onclick={onClick} />
-                </div>
-
+                {/* headermbuttons */}
+                <BarButtons classname={style_barbuttons}
+                            barconfig={barconfig}
+                            onclick={onClick} />
             </div>
+        )
+    };
 
-
-            {/* body */}
+    return (
+        <div className={style_component}>
+            {renderHeader()}
             {!collapse ? renderMainContent() : null}
         </div>
     )
 
 } //end component
-
-/*
- <div className="w-full flex flex-col">
-                    <hr className="text-primary mb-2" />
-                    <div className="w-full text-white text-md pb-1">
-                        <MdPreview
-                            value={dummy_content}
-                            theme="dark" />
-
-                    </div>
-
-                </div>
-                    <XButton callback={onClick}
-                             btntext="open" 
-                             btncolor={ThemeColors.INFO} />
- */

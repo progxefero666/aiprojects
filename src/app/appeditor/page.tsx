@@ -70,8 +70,9 @@ export default function ApplicationEditor() {
         }));
     }, []);
 
-    const onSave = (): void => {
+    const onSave = (appEdited:Application): void => {
         alert("save app");
+        console.log(appEdited);
     }
 
     const loadsection = (name: string): void => {

@@ -1,22 +1,14 @@
 //src\libcomp\xuicomp\base\barbutton.tsx
 
+import { renderBarButtons } from "@/twdaisy/twdaisycomp";
+import { BarButtonsProps } from "./types/interfaces";
 
-import { BarButtonsCfg } from "./model/barbuttonscfg";
-import { renderBarButtons, renderButton, TwDaisyCompBase } from "@/twdaisy/twdaisycomp";
-
-//btn-info 💾  
 
 /**
- * JSX BarButtons
+ * JSX Comp BarButtons
+ * Tailwind - daisyUI 
+ * use: @/twdaisy/twdaisycomp
  */
-export interface BarButtonsProps {
-    onclick: (operation: string) => void;
-    barconfig: BarButtonsCfg;
-    btnsize?: string;
-    iconsize?: string;
-    iconscolor?: string;
-    classname?: string;
-}
 export function BarButtons({classname,onclick,barconfig,btnsize,iconsize,iconscolor}:BarButtonsProps) {
     const renderContent = () => (
         renderBarButtons(onclick,barconfig,btnsize??null,iconsize??null,iconscolor??null)
