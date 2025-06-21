@@ -96,16 +96,15 @@ export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
         app.apptype     = typeRef.current?.value! ?? AppConstants.NOT_DEF;
         app.proglanguage= proglanguageRef.current?.value! ?? AppConstants.NOT_DEF;
         app.osystem     = osystemRef.current?.value! ?? AppConstants.NOT_DEF;
-        app.localdev    = localdevRef.current?.checked?? true;
-        app.usedocker   = usedockerRef.current?.checked?? false;
-        app.consumeai   = consumeaiRef.current?.checked?? false;
-        app.consumeapi  = consumeapiRef.current?.checked?? false;
-        app.consumeai   = consumeaiRef.current?.checked?? false;
-        app.consumedb   = consumedbRef.current?.checked?? false;
-        app.exposeapi   = exposeapiRef.current?.checked?? false;
-        app.exposedb    = exposedbRef.current?.checked?? false;
-        app.useui       = useuiRef.current?.checked?? false;
-        app.useagents   = useagentsRef.current?.checked?? false;
+        app.localdev    = localdevRef.current?.checked?? AppDef.fdef_localdev;
+        app.usedocker   = usedockerRef.current?.checked?? AppDef.fdef_usedocker;
+        app.consumeai   = consumeaiRef.current?.checked?? AppDef.fdef_consumeai;
+        app.consumeapi  = consumeapiRef.current?.checked?? AppDef.fdef_consumeapi;
+        app.consumedb   = consumedbRef.current?.checked?? AppDef.fdef_consumedb;
+        app.exposeapi   = exposeapiRef.current?.checked?? AppDef.fdef_exposeapi;
+        app.exposedb    = exposedbRef.current?.checked?? AppDef.fdef_exposedb;
+        app.useui       = useuiRef.current?.checked?? AppDef.fdef_useui;
+        app.useagents   = useagentsRef.current?.checked?? AppDef.fdef_useagents;
     }
 
     const onClick = (opId: string) => {

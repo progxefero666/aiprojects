@@ -14,4 +14,16 @@ export class AppDef {
     public static readonly PATH_MAXLEN = 500;
     public static readonly DESCRIPTION_MAXLEN = 255;
 
+public static readonly fdef_localdev:boolean   = false;
+    public static readonly fdef_usedocker:boolean   = false;
+    public static readonly fdef_controlusers:boolean= false;
+    public static readonly fdef_useui:boolean       = false;
+    public static readonly fdef_useagents:boolean   = false;
+    public static readonly fdef_consumedb:boolean   = false;
+    public static readonly fdef_consumeapi:boolean  = false;
+    public static readonly fdef_consumeai:boolean   = false;
+    public static readonly fdef_exposedb:boolean    = false;
+    public static readonly fdef_exposeapi:boolean   = false;
+    
+
 }//end class

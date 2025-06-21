@@ -25,6 +25,7 @@ import { AppTheme } from "@/app_front/apptheme";
 import PageMainContent from "./pagemain";
 import PagePrimaryBar from "./primarybar";
 import PageSecondaryBar from "./secondarybar";
+
 /**
  * Page Index JSX Client
  * start command:
@@ -62,7 +63,7 @@ export default function ApplicationEditor() {
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
                 <PagePrimaryBar    chargesection={chargeSection} 
                                    section={section}  app={app} />
-                <PageMainContent          section={section}  app={app} /> 
+                <PageMainContent   section={section}  app={app} /> 
                 <PageSecondaryBar  section={section}  app={app}/>
             </div>
         </div>
