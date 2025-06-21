@@ -22,6 +22,7 @@ import { renderAlert } from "@/twdaisy/twdaisycomp";
 import PageHeader from "./header";
 import ApplicationEditorTools from "@/app/appeditor/secondarybar";
 import { AppTheme } from "@/app_front/apptheme";
+import PageMain from "./pagemain";
 /**
  * Page Index JSX Client
  * start command:
@@ -48,21 +49,6 @@ export default function ApplicationEditor() {
         init();
     }, []);
 
-     const saveApplication = async (application: Application) => {
-        try {
-            const result = await ApplicationsService.update(application.id!, application);
-        }
-        catch (error) {
-            if (error instanceof ApiError) {
-                AppAPI.outputApiError(error);
-            }
-            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_ERROR);
-        }
-        finally {
-            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_SUCCESS);
-            setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);       
-        }
-    };
 
     const loadsection = (name: string): void => {
         let act_section: Option | null = null;
@@ -92,7 +78,7 @@ export default function ApplicationEditor() {
     const renderMainContent = () => {
         if (section === AppEditorCfg.SECTION_MAIN) {          
             return (
-                <AppCard app={app} save={saveApplication} />
+                <PageMain section={AppEditorCfg.SECTION_MAIN} app={app}   />       
             );
         }
         if (section === AppEditorCfg.SECTION_DOCS) {
@@ -127,8 +113,10 @@ export default function ApplicationEditor() {
                 <ApplicationEditorTools  />
 
             </div>
-
-            {(alertMessage !== AppConstants.NOT_DEF) ? renderAlert(alertMessage) : null}
+            {/*
+             {(alertMessage !== AppConstants.NOT_DEF) ? renderAlert(alertMessage) : null}
+            */}
+           
 
         </div>
     );

@@ -1,25 +1,16 @@
 //src\app\appeditor\primarybar.tsx
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Option } from "@/lib/common/model/base/option";
-import { AppStorage } from "@/app_front/appstorge";
-import TwDaisyMenu from "@/twdaisy/twdaisymenu";
-
 import { AppEditorCfg, AppEditorMessages } from "@/app_front/manapplications/appeditor";
 import { Application } from "@/client/models/Application";
-import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-
 import { AppCard } from "./cards/appcard";
 import { AppConstants } from "@/app_front/appconstants";
-import { ApiError } from "@/client/core/ApiError"
-import { AppAPI } from "@/app_front/appapi";
 import { renderAlert } from "@/twdaisy/twdaisycomp";
-
-//page layout jsx components
-
-import ApplicationEditorTools from "@/app/appeditor/secondarybar";
 import { AppTheme } from "@/app_front/apptheme";
+import { OpResult } from "@/lib/arquitect/model/opresult";
+import { executeSaveApplication } from "@/app_front/manapplications/services/appservices";
+
 
 /**
  * JSX Component layout secondary column
@@ -28,32 +19,24 @@ import { AppTheme } from "@/app_front/apptheme";
 export interface PageMainProp {section:Option;app?:Application;}
 
 
-const executeSaveApplication = async (application: Application): Promise<string> => {
-    try {
-        const result = await ApplicationsService.update(application.id!, application);
-    }
-    catch (error) {
-        if (error instanceof ApiError) { AppAPI.outputApiError(error); }
-        return String(error);
-    }
-    finally {
-        return AppEditorMessages.MSG_SAVE_APP_SUCCESS;
-    }
-};
-
 export default function PageMain({ section,app }: PageMainProp) {
 
     const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
 
     const saveApplication = async (application: Application) => {
-        const result:string = await executeSaveApplication(application);
+        const result:OpResult = await executeSaveApplication(application);
+        if(result.isSuccess()){
+            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_SUCCESS);
+        }
+        else {
+            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_ERROR);
+        }
+        setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);  
     };
 
     const renderMainContent = () => {
         if (section === AppEditorCfg.SECTION_MAIN) {          
-            return (
-                <AppCard app={app!} save={saveApplication} />
-            );
+            return (<AppCard app={app!} save={saveApplication} />);
         }
         if (section === AppEditorCfg.SECTION_DOCS) {
             return (<div>docs</div>);
@@ -65,6 +48,8 @@ export default function PageMain({ section,app }: PageMainProp) {
     return (
         <div className={AppTheme.BODY_MONITOR_STYLE}>
             {renderMainContent()}
+
+             {(alertMessage !== AppConstants.NOT_DEF) ? renderAlert(alertMessage) : null}
         </div>
     )
 
