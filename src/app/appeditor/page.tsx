@@ -22,10 +22,10 @@ import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { showUiPopupConfirm } from "@/libcomp/puconfirm";
 import { AppConstants } from "@/lib/arquitect/appconstants";
 
-import {ApiError} from "@/client/core/ApiError"
+import { ApiError } from "@/client/core/ApiError"
 import { AppAPI } from "@/app_front/appapi";
 import { showUiPopupMessage } from "@/libcomp/pumessage";
-import { TwDaisyCompBase } from "@/twdaisy/twdaisycomp";
+import { renderAlert, TwDaisyCompBase } from "@/twdaisy/twdaisycomp";
 /**
  * Page Index JSX Client
  * start command:
@@ -38,6 +38,7 @@ export const PAGE_EDITOR_PATH: string = "./appeditor";
 export default function ApplicationEditor() {
 
     //const router = useRouter();
+    const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
     const [showAlert, setShowAlert] = useState<boolean>(false);
 
     const [collapse, setCollapse] = useState<boolean>(true);
@@ -76,19 +77,19 @@ export default function ApplicationEditor() {
         }));
     }, []);
 
-    const onSave = async (application: Application) => {
+     const onSave = async (application: Application) => {
         try {
             const result = await ApplicationsService.update(application.id!, application);
-        } 
+        }
         catch (error) {
             if (error instanceof ApiError) {
                 AppAPI.outputApiError(error);
-            }     
-            showUiPopupMessage("Error saving app");       
+            }
+            showUiPopupMessage("Error saving app");
         }
-        finally{
-            setShowAlert(true);                                        
-            setTimeout(() => setShowAlert(false), 3000);            
+        finally {
+            setAlertMessage("!! Operation Success !!");
+            setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);
         }
     };
 
@@ -108,7 +109,6 @@ export default function ApplicationEditor() {
             setSection(act_section);
         }
     }
-
 
     const onToolsMessage = (message: string): void => {
         console.log(message);
@@ -161,14 +161,7 @@ export default function ApplicationEditor() {
 
             </div>
 
-            {showAlert?
-                <div className={TwDaisyCompBase.ALERTS_SUCCESS_STYLE}>                    
-                    <div className = 
-                        {TwDaisyCompBase.getIconStyle(AppConstants.ICON_ACT_SAVE,null,null)} />
-                    <span>Operation Success!</span>
-                </div>
-
-            :null}
+            {(alertMessage !== AppConstants.NOT_DEF) ? renderAlert(alertMessage) : null}
 
         </div>
     );

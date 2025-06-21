@@ -1,7 +1,7 @@
 //src\app_front\appconstants.ts
 
 /**
- * class AppConstants.ICON_ACT_SAVE
+ * class AppConstants.NOT_DEF
  */
 export class AppConstants {
 
