@@ -15,6 +15,7 @@ import DesktopMenu from "./home/pagemenu";
 import { Application } from "@/client/models/Application";
 import { AppItemCard } from "./home/cards/appitemcard";
 import { showUiPopupConfirm } from "@/libcomp/puconfirm";
+import { AppTheme } from "@/app_front/apptheme";
 
 
 /*
@@ -102,7 +103,8 @@ export default function Desktop() {
     }, [listApps]);
 
     return (
-        <div id="cont_root" className="w-full h-auto bg-gray-900 " >
+
+        <div id="cont_root" className={AppTheme.LAYOUT_STYLE} >
 
             {/* header */}
             <PageHeader onaddapplication={onAddApplication} />
@@ -116,14 +118,12 @@ export default function Desktop() {
                 </div>
 
                 {/* column center */}
-                <div className="w-full h-auto">
-                    <div className="main_monitor w-full min-h-screen rounded-lg">
-                        {renderMainContent}
-                    </div>
+                <div className={AppTheme.BODY_MONITOR_STYLE}>
+                    {renderMainContent}
                 </div>
-
+ 
                 {/* column right */}
-                <div className="w-full min-h-screen flex-col p-2">
+                <div className="w-full min-h-screen flex flex-col p-2">
                     Right Panel
                 </div>
 

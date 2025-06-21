@@ -5,13 +5,8 @@ import { Option } from "@/lib/common/model/base/option";
 
 /**
  * class AppEditorConfig
- * AppEditorConfig.ACTIVE_SECTION
- * AppEditorConfig.MENU_OPT_ACT_COLOR_DEF
  */
 export class AppEditorCfg {
-
-    public static readonly MENU_OPT_COLOR: string = "btn-accent";
-    public static readonly MENU_OPT_ACT_COLOR: string = "btn-warning";
 
     public static readonly SECTION_MAIN: Option = new Option
         ("main", "Main", "application entity data");
@@ -21,7 +16,6 @@ export class AppEditorCfg {
 
     public static readonly SECTION_TASKS: Option
         = new Option("task", "Tasks", "application task collections");
-
 
     public static readonly SECTIONS: Option[]=[
         AppEditorCfg.SECTION_MAIN,

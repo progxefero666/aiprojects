@@ -32,14 +32,14 @@ import { AppConstants } from "./appconstants";
     //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
 */
 
+//AppTheme.BODY_MONITOR_STYLE
 export class AppTheme {
 
     public static readonly LAYOUT_COLOR: string = "bg-gray-900";
     public static readonly LAYOUT_STYLE: string = "w-full h-auto ".concat(AppTheme.LAYOUT_COLOR);
 
-
     public static readonly BODY_COLOR: string = "bg-base-100";
-    public static readonly BODY_MONITOR_COLOR: string = "main_monitor w-full min-h-screen rounded-lg"
+    public static readonly BODY_MONITOR_STYLE: string = "main_monitor w-full min-h-screen rounded-lg"
 
     public static readonly TEXT_BASE_COLOR: string = "text-white";
     public static readonly TEXT_BASE_SIZE: string   = "text-base";
@@ -61,7 +61,10 @@ export class AppTheme {
     public static readonly TEXT_H3_COLOR: string   = "text-white";
     public static readonly TEXT_H4_COLOR: string   = "text-white";
     public static readonly TEXT_H5_COLOR: string   = "text-white";
-      
+
+    public static readonly MENU_OPT_COLOR: string = "btn-accent";
+    public static readonly MENU_OPT_ACT_COLOR: string = "btn-warning";
+
 }//end class
 
 /**

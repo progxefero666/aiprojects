@@ -20,7 +20,8 @@ import { renderAlert } from "@/twdaisy/twdaisycomp";
 
 //page layout jsx components
 import PageHeader from "./header";
-import ApplicationEditorTools from "@/app/appeditor/paneltools";
+import ApplicationEditorTools from "@/app/appeditor/secondarybar";
+import { AppTheme } from "@/app_front/apptheme";
 /**
  * Page Index JSX Client
  * start command:
@@ -103,7 +104,7 @@ export default function ApplicationEditor() {
     };
 
     return (
-        <div id="cont_root" className="w-full h-auto bg-gray-900" >
+        <div id="cont_root" className={AppTheme.LAYOUT_STYLE} >
 
             {/* header */}
             <PageHeader />
@@ -115,15 +116,15 @@ export default function ApplicationEditor() {
                     <TwDaisyMenu onselection={loadsection}
                         options={AppEditorCfg.SECTIONS}
                         optactname={AppEditorCfg.ACTIVE_SECTION.name}
-                        optcolor={AppEditorCfg.MENU_OPT_COLOR}
-                        optactcolor={AppEditorCfg.MENU_OPT_ACT_COLOR} />
+                        optcolor={AppTheme.MENU_OPT_COLOR}
+                        optactcolor={AppTheme.MENU_OPT_ACT_COLOR} />
                 </div>
 
-                <div className="main_monitor min-h-screen rounded-lg">
+                <div className={AppTheme.BODY_MONITOR_STYLE}>
                     {renderMainContent()}
                 </div>
 
-                <ApplicationEditorTools ontoolsmessage={onToolsMessage} />
+                <ApplicationEditorTools  />
 
             </div>
 
