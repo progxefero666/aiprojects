@@ -33,16 +33,10 @@ import { renderAlert } from "@/twdaisy/twdaisycomp";
  *  ApplicationEditor
  */
 export const PAGE_EDITOR_PATH: string = "./appeditor";
+
 export default function ApplicationEditor() {
-
-    //const router = useRouter();
     const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
-    const [collapse, setCollapse] = useState<boolean>(false);
-    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
-
-    //application
     const [app, setApp]         = useState<Application | null>(null);
-    const [mode, setMode]       = useState<string>(AppConstants.MODE_READONLY);
     const [section, setSection] = useState<Option>(AppEditorConfig.ACTIVE_SECTION);
 
 
@@ -55,16 +49,6 @@ export default function ApplicationEditor() {
         init();
     }, []);
 
-    
-    function onModeEdition ():void {
-        setMode(AppConstants.MODE_EDITION);        
-        setCollapse(false);
-        setBarConfig(prev => ({
-            ...prev,
-            visibled: [false, true]
-        }));        
-    }
-
      const onSave = async (application: Application) => {
         try {
             const result = await ApplicationsService.update(application.id!, application);
@@ -76,7 +60,6 @@ export default function ApplicationEditor() {
             showUiPopupMessage("Error saving app");
         }
         finally {
-            setMode(AppConstants.MODE_READONLY);
             setAlertMessage("!! Operation Success !!");
             setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);       
         }
@@ -109,14 +92,9 @@ export default function ApplicationEditor() {
     }
 
     const renderMainContent = () => {
-        //if(mode==AppConstants.MODE_READONLY){}
-        //else if(mode==AppConstants.MODE_EDITION){}
-        if (section === AppEditorConfig.SECTION_MAIN) {
-          
+        if (section === AppEditorConfig.SECTION_MAIN) {          
             return (
-                <AppCard mode={mode} barconfig={barConfig} collapse={collapse}
-                    app={app} onedit={onModeEdition} onsave={onSave} />
-
+                <AppCard app={app} onsave={onSave} />
             );
         }
         if (section === AppEditorConfig.SECTION_DOCS) {

@@ -32,21 +32,17 @@ const style_header_title: string = "flex flex-row items-center pl-[6px] text-whi
 const style_title: string = "w-full flex items-center flex-row ml-[12px] text-white text-lg";
 const style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";
 
-export interface AppCardProp {
-    collapse: boolean;
+export interface AppCardProp {  
     app: Application;
-    barconfig: BarButtonsCfg;
-    mode: string;
-    onedit: () => void;
     onsave: (app:Application) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppCard({collapse,app,barconfig,mode,onedit,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
+export function AppCard({app,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
 
-    const [isCollapse, setIsCollapse] = useState<boolean>(collapse);
-    
+    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
+    const [collapse, setCollapse] = useState<boolean>(false);    
     const [disabled, setDisabled] = useState<boolean>(true);
 
     //relational collections
@@ -78,9 +74,12 @@ export function AppCard({collapse,app,barconfig,mode,onedit,onsave,iconname,icon
     const refInline: string = " - (".concat(app.reference!).concat(")");
 
     useEffect(() => {
+
+        /*
         if(mode===AppConstants.MODE_EDITION){            
             setDisabled(false);
         }        
+        */
         const init = async () => {
             const proglangsNames = await ProgLangCodeService.getAllNames();
             const apptypes = await ApptypesService.getAll();
@@ -96,7 +95,7 @@ export function AppCard({collapse,app,barconfig,mode,onedit,onsave,iconname,icon
         //alert(AppConstants.MODE_READONLY);
         if (opId === AppConstants.MODE_EDITION) {
             alert("ostia pasasa");
-             onedit();
+             
         }
         else if (opId === AppConstants.ACT_SAVE) { 
             app.author      = authorRef.current?.value! ?? AppConstants.NOT_DEF;
@@ -121,8 +120,8 @@ export function AppCard({collapse,app,barconfig,mode,onedit,onsave,iconname,icon
     };
 
     const onCollapse = (operation_id?: string) => { 
-        alert(!isCollapse);
-        setIsCollapse(!isCollapse); 
+        //alert(!collapse);
+        setCollapse(!collapse); 
     };
 
     const renderMainContent = () => {
@@ -265,7 +264,7 @@ export function AppCard({collapse,app,barconfig,mode,onedit,onsave,iconname,icon
 
                 {/* headermbuttons */}
                 <BarButtons classname={style_barbuttons}
-                            barconfig={barconfig}
+                            barconfig={barConfig}
                             onclick={onClick} />
             </div>
         )
@@ -274,7 +273,7 @@ export function AppCard({collapse,app,barconfig,mode,onedit,onsave,iconname,icon
     return (
         <div className={style_component}>
             {renderHeader()}
-            {!isCollapse ? renderMainContent() : null}
+            {!collapse ? renderMainContent() : null}
         </div>
     )
 
