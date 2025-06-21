@@ -1,14 +1,10 @@
 //src\lib\xuicards\cardproyect.tsx
 
 import React, { useState } from "react";
+import { AppThemifyIcons } from "@/style/appthicons";
+
 import { MdPreview } from 'md-editor-rt';
 //import 'md-editor-rt/lib/preview.css';
-
-import { AppThemifyIcons } from "@/style/appthicons";
-import { DataConstants } from "@/lib/common/app/dataconstants";
-
-import { ThemeColors } from "@/style/apptheme";
-
 import 'md-editor-rt/lib/style.css'; 
 import 'md-editor-rt/lib/preview.css';
 import { XButton } from "../../src/libcomp/button";

@@ -2,26 +2,25 @@
 
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Option } from "@/lib/common/model/base/option";
 import { AppStorage } from "@/app_front/appstorge";
 import TwDaisyMenu from "@/twdaisy/twdaisymenu";
 
-import { AppEditorConfig } from "@/app_front/manapplications/appeditorcfg";
-import ApplicationEditorTools from "@/app/appeditor/paneltools";
-
-//db model and services
+import { AppEditorCfg, AppEditorMessages } from "@/app_front/manapplications/appeditor";
 import { Application } from "@/client/models/Application";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-import PageHeader from "./header";
+
 import { AppCard } from "./cards/appcard";
 import { AppConstants } from "@/app_front/appconstants";
 import { ApiError } from "@/client/core/ApiError"
 import { AppAPI } from "@/app_front/appapi";
-import { showUiPopupMessage } from "@/libcomp/pumessage";
 import { renderAlert } from "@/twdaisy/twdaisycomp";
 
+//page layout jsx components
+import PageHeader from "./header";
+import ApplicationEditorTools from "@/app/appeditor/paneltools";
 /**
  * Page Index JSX Client
  * start command:
@@ -36,7 +35,7 @@ export const PAGE_EDITOR_PATH: string = "./appeditor";
 export default function ApplicationEditor() {
     const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
     const [app, setApp]         = useState<Application | null>(null);
-    const [section, setSection] = useState<Option>(AppEditorConfig.ACTIVE_SECTION);
+    const [section, setSection] = useState<Option>(AppEditorCfg.ACTIVE_SECTION);
 
 
     useEffect(() => {
@@ -56,10 +55,10 @@ export default function ApplicationEditor() {
             if (error instanceof ApiError) {
                 AppAPI.outputApiError(error);
             }
-            setAlertMessage("!! Error saving app !!");
+            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_ERROR);
         }
         finally {
-            setAlertMessage("!! Operation Success !!");
+            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_SUCCESS);
             setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);       
         }
     };
@@ -67,14 +66,14 @@ export default function ApplicationEditor() {
     const loadsection = (name: string): void => {
         let act_section: Option | null = null;
 
-        if (name === AppEditorConfig.SECTION_MAIN.name) {
-            act_section = AppEditorConfig.SECTION_MAIN;
+        if (name === AppEditorCfg.SECTION_MAIN.name) {
+            act_section = AppEditorCfg.SECTION_MAIN;
         }
-        else if (name === AppEditorConfig.SECTION_DOCS.name) {
-            act_section = AppEditorConfig.SECTION_DOCS;
+        else if (name === AppEditorCfg.SECTION_DOCS.name) {
+            act_section = AppEditorCfg.SECTION_DOCS;
         }
-        else if (name === AppEditorConfig.SECTION_TASKS.name) {
-            act_section = AppEditorConfig.SECTION_TASKS;
+        else if (name === AppEditorCfg.SECTION_TASKS.name) {
+            act_section = AppEditorCfg.SECTION_TASKS;
         }
         if (act_section) {
             setSection(act_section);
@@ -90,15 +89,15 @@ export default function ApplicationEditor() {
     }
 
     const renderMainContent = () => {
-        if (section === AppEditorConfig.SECTION_MAIN) {          
+        if (section === AppEditorCfg.SECTION_MAIN) {          
             return (
                 <AppCard app={app} save={saveApplication} />
             );
         }
-        if (section === AppEditorConfig.SECTION_DOCS) {
+        if (section === AppEditorCfg.SECTION_DOCS) {
             return (<div>docs</div>);
         }
-        if (section === AppEditorConfig.SECTION_TASKS) {
+        if (section === AppEditorCfg.SECTION_TASKS) {
             return (<div>tasks</div>);
         }
     };
@@ -114,10 +113,10 @@ export default function ApplicationEditor() {
 
                 <div className="w-full min-h-screen flex flex-col px-2 mb-2">
                     <TwDaisyMenu onselection={loadsection}
-                        options={AppEditorConfig.SECTIONS}
-                        optactname={AppEditorConfig.ACTIVE_SECTION.name}
-                        optcolor={AppEditorConfig.MENU_OPT_COLOR}
-                        optactcolor={AppEditorConfig.MENU_OPT_ACT_COLOR} />
+                        options={AppEditorCfg.SECTIONS}
+                        optactname={AppEditorCfg.ACTIVE_SECTION.name}
+                        optcolor={AppEditorCfg.MENU_OPT_COLOR}
+                        optactcolor={AppEditorCfg.MENU_OPT_ACT_COLOR} />
                 </div>
 
                 <div className="main_monitor min-h-screen rounded-lg">

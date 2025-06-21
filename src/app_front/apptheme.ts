@@ -25,6 +25,11 @@ import { AppConstants } from "./appconstants";
     <div class="rounded-md ..."></div>
     <div class="rounded-lg ..."></div>
     <div class="rounded-xl ..."></div>
+
+        //rounded-lg border border-sky-500
+    //text-white text-lg
+    // border border-zinc-500
+    //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
 */
 
 export class AppTheme {
@@ -34,17 +39,29 @@ export class AppTheme {
 
 
     public static readonly BODY_COLOR: string = "bg-base-100";
-
     public static readonly BODY_MONITOR_COLOR: string = "main_monitor w-full min-h-screen rounded-lg"
 
-    //rounded-lg border border-sky-500
-    //text-white text-lg
-    // border border-zinc-500
-    //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
+    public static readonly TEXT_BASE_COLOR: string = "text-white";
+    public static readonly TEXT_BASE_SIZE: string   = "text-base";
 
+    public static readonly TEXT_SMALL_COLOR: string = "text-white";
+    public static readonly TEXT_SMALL_SIZE: string  = "text-sm";
 
+    public static readonly TEXT_BIG_COLOR: string   = "text-white";
+    public static readonly TEXT_BIG_SIZE: string    = "text-lg";
 
+    public static readonly TEXT_H1_SIZE: string   = "text-4xl";
+    public static readonly TEXT_H2_SIZE: string   = "text-3xl";
+    public static readonly TEXT_H3_SIZE: string   = "text-2xl";
+    public static readonly TEXT_H4_SIZE: string   = "text-xl";
+    public static readonly TEXT_H5_SIZE: string   = "text-lg";
 
+    public static readonly TEXT_H1_COLOR: string   = "text-white";
+    public static readonly TEXT_H2_COLOR: string   = "text-white";
+    public static readonly TEXT_H3_COLOR: string   = "text-white";
+    public static readonly TEXT_H4_COLOR: string   = "text-white";
+    public static readonly TEXT_H5_COLOR: string   = "text-white";
+      
 }//end class
 
 /**

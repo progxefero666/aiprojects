@@ -8,7 +8,7 @@ import { Option } from "@/lib/common/model/base/option";
  * AppEditorConfig.ACTIVE_SECTION
  * AppEditorConfig.MENU_OPT_ACT_COLOR_DEF
  */
-export class AppEditorConfig {
+export class AppEditorCfg {
 
     public static readonly MENU_OPT_COLOR: string = "btn-accent";
     public static readonly MENU_OPT_ACT_COLOR: string = "btn-warning";
@@ -24,11 +24,22 @@ export class AppEditorConfig {
 
 
     public static readonly SECTIONS: Option[]=[
-        AppEditorConfig.SECTION_MAIN,
-        AppEditorConfig.SECTION_DOCS,
-        AppEditorConfig.SECTION_TASKS
+        AppEditorCfg.SECTION_MAIN,
+        AppEditorCfg.SECTION_DOCS,
+        AppEditorCfg.SECTION_TASKS
     ];
 
-    public static readonly ACTIVE_SECTION: Option = AppEditorConfig.SECTIONS[0];
+    public static readonly ACTIVE_SECTION: Option = AppEditorCfg.SECTIONS[0];
+
+}//end class
+
+/**
+ * AppEditorMessages.MSG_SAVE_APP_ERROR
+ */
+export class AppEditorMessages {
+
+    public static readonly MSG_SAVE_APP_ERROR: string = "!! Error saving app !!";
+    public static readonly MSG_SAVE_APP_SUCCESS: string = "!! Save Application Success !!"; 
+
 
 }//end class
