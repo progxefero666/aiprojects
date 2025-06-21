@@ -11,7 +11,7 @@ import { XButton } from "@/libcomp/button";
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { ApptypesService } from "@/client_aidatabase/ApptypesService";
 
-import { BARCFG_EDITION_TYPE } from "@/app_front/uimodel/uimodelbars";
+
 import { InputCheck } from "@/libcomp/inputcheck";
 import { AppDef } from "@/app_front/manapplications/applicationdef";
 import { InputText } from "@/libcomp/inputtext";
@@ -24,29 +24,27 @@ import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { AppConstants } from "@/lib/arquitect/appconstants";
+import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 export interface AppCardProp {
     app: Application;
+    barconfig:BarButtonsCfg;
     onedit: () => void;
     ondelete: () => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }: AppCardProp) {
+export function AppCard({ app,barconfig, onedit, ondelete, iconname, iconsize, iconcolor }: AppCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
 
-    let iconclass: string = DataConstants.UNDEFINED;
-    if (iconname) {
-        const icon_size: string = iconsize ?? AppThemifyIcons.DEF_SIZE;
-        iconclass = AppThemifyIcons.getIconClass(iconname, icon_size, iconcolor);
-    }
+
     const onCollapse = (operation_id?: string) => {
         setcollapse(!collapse);
     };
 
     const [disabled, setDisabled] = useState<boolean>(false);
-    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION_TYPE);
+    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
 
     //BarButtonsCfg
     //relational collections
@@ -89,13 +87,11 @@ export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }
     }, []);
 
     const onClick = (opId: string) => {
-
-        if (opId === "edit") {  
-
+        if (opId === AppConstants.MODE_EDITION) {  
+            onedit();
         }
         else if (opId === AppConstants.ACT_ITEM__DELETE) {
             ondelete();
-
         }
     };
 

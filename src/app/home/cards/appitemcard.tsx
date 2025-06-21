@@ -32,11 +32,7 @@ export interface AppItemCardProp {
 export function AppItemCard({ app, onselection, iconname, iconsize, iconcolor }: AppItemCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
-    let iconclass: string = DataConstants.UNDEFINED;
-    if (iconname) {
-        const icon_size: string = iconsize ?? AppThemifyIcons.DEF_SIZE;
-        iconclass = AppThemifyIcons.getIconClass(iconname, icon_size, iconcolor);
-    }
+
     const onCollapse = (operation_id?: string) => {
         setcollapse(!collapse);
     };

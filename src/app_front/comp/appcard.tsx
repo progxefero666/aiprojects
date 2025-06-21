@@ -6,12 +6,13 @@ import { MdPreview } from 'md-editor-rt';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { DataConstants } from "@/lib/common/app/dataconstants";
-import { Application } from "@/client_old/models/Application"
+
 import { ThemeColors } from "@/style/apptheme";
 
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
 import { XButton } from "@/libcomp/button";
+import { Application } from "@/client/models/Application";
 
 
 const dummy_content: string = `## Introducción
@@ -45,11 +46,11 @@ export function AppIntroCard({ app, onselection, iconname, iconsize, iconcolor }
     let iconclass: string = DataConstants.UNDEFINED;
     if (iconname) {
         const icon_size: string = iconsize ?? AppThemifyIcons.DEF_SIZE;
-        iconclass = AppThemifyIcons.getIconClass(iconname, icon_size, iconcolor);
+        //iconclass = AppThemifyIcons.getIconClass(iconname, icon_size, iconcolor);
     }
 
     const onOpen = () => {
-        onselection(app.id);
+        onselection(app.id!);
     };
 
     const onCollapse = (operation_id?: string) => {

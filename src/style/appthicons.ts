@@ -76,14 +76,15 @@ export class AppThemifyIcons {
     public static getColorClassName(color: string): string {
         return "icon-color-".concat(color);
     }
+    
     public static getIconClass(icon: string, iconSize: string, iconColor?: string): string {
         const icon_color: string = iconColor ?? AppThemifyIcons.DEF_COLOR;
         const colorClass: string = AppThemifyIcons.getColorClassName(icon_color);
         const sizeClass: string = AppThemifyIcons.getSizeClassName(iconSize);
         const iconclass: string = colorClass.concat(" ti ").concat(sizeClass).concat(" ti-").concat(icon);
-        console.log(iconclass)
         return iconclass;
     }
+    
 
 
 } //end class

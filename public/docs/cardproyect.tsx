@@ -42,12 +42,13 @@ export function CardProject({name,text,onselection,iconname,iconsize,iconcolor}:
 
     const [collapse, setcollapse] = useState<boolean>(true);
 
+    /*
     let iconclass: string = DataConstants.UNDEFINED;
     if (iconname) {
         const icon_size: string = iconsize ?? AppThemifyIcons.DEF_SIZE;
         iconclass = AppThemifyIcons.getIconClass(iconname, icon_size, iconcolor);
     }
-
+    */
     const onOpen = () => {
         onselection(name);
     };

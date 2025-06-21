@@ -15,9 +15,11 @@ import ApplicationEditorTools from "@/app/appeditor/paneltools";
 import { Application } from "@/client/models/Application";
 import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-
+import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 import PageHeader from "./header";
 import { AppCard } from "./cards/appcard";
+import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
+import { showUiPopupConfirm } from "@/libcomp/puconfirm";
 /**
  * Page Index JSX Client
  * start command:
@@ -30,6 +32,8 @@ export const PAGE_EDITOR_PATH: string = "./appeditor";
 export default function ApplicationEditor() {
     //const router = useRouter();
 
+    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
+    
     //collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
     const [appTypes, setAppTypes] = useState<string[]>([]);
@@ -54,11 +58,17 @@ export default function ApplicationEditor() {
     }, []);
 
     const onModeEdition = (): void => {
-        alert("onModeEdition");
+        const bar_config:BarButtonsCfg = barConfig;
+        bar_config.disabled=[true,true,false];
+        setBarConfig(bar_config);
     }
 
     const onDelete = (): void => {
-        alert("onDelete");
+        showUiPopupConfirm("¿confirm delete application?").then(({ confirmed }) => {
+            if (confirmed) {
+                alert("delete app");     
+            }
+        });
     }
 
     const loadsection = (name:string): void => {
@@ -89,7 +99,13 @@ export default function ApplicationEditor() {
 
     const renderMainContent = () => {
         if(section === AppEditorConfig.SECTION_MAIN) {
-            return (<AppCard app={app} onedit={onModeEdition}  ondelete={onDelete} />);
+            return (
+                <AppCard app={app} 
+                         onedit={onModeEdition}  
+                         ondelete={onDelete}
+                         barconfig={BARCFG_EDITION} />
+
+            );
         }
         if(section === AppEditorConfig.SECTION_DOCS) {
             return (<div>docs</div>);

@@ -32,8 +32,9 @@ export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }
     const buttonSize = btnsize ?? "md";
     const iconSize = iconsize ?? "sm";
     const iconColor = iconscolor ?? "icon-color-white";
-    const iconStyleBase:string = TwDaisyUtil.addSpace(iconColor).concat("ti ti-").concat(iconSize);
-
+    //const iconStyleBase:string = TwDaisyUtil.addSpace(iconColor).concat("ti ti-").concat(iconSize);
+    const iconStyleBase:string = "ti ti-".concat(iconSize);
+    
     const renderButton = (key:string, operation:string, disabled: boolean,
                           text:string,color:string, icon?: string|null) => {
 
@@ -46,19 +47,21 @@ export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }
 
         const getButtonClass = (color:string):string => {
             let style:string = "btn btn-".concat(buttonSize).concat(" ").concat(color);
+            console.log(color);
             return style;
         };
 
         const getIconClass= (name:string):string => {
             let style:string = TwDaisyUtil.addSpace(iconStyleBase).concat(name);
+            //console.log(style);
             return style;
         };
-
+        //    
         return (
             <button key={key} className={getButtonClass(color)}
                     disabled={disabled}
                     onClick={onButtonClick}>
-                {icon ? <div className={getIconClass(icon)} /> : null}    
+                {icon ? <div className={getIconClass(icon)} /> : null}
                 {text ? text : null}
             </button>
         )

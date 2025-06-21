@@ -16,17 +16,22 @@ const barConfig: BarButtonsConfig = {
 
 // template: BARCFG_OPEN
 export const BARCFG_OPEN: BarButtonsCfg = new BarButtonsCfg(
-    ["open"],["open"],["btn-info"],["ti-eye"],[false]
+    [AppConstants.ACT_OPEN],
+    [AppConstants.ACT_OPEN],
+    [AppConstants.COLOR_ACT_OPEN],
+    [AppConstants.ICON_OPEN],
+    [false]
 );
 
 export const BARCFG_EDITION: BarButtonsCfg = new BarButtonsCfg(
-    [AppConstants.ACT_ITEM__DELETE, AppConstants.MODE_EDITION,AppConstants.ACT_SAVE],
-    [AppConstants.ACT_ITEM__DELETE, AppConstants.MODE_EDITION,AppConstants.ACT_SAVE],
-    [AppConstants.COLOR_DELETE,AppConstants.COLOR_MODE_EDITION,AppConstants.COLOR_ACT_SAVE],
-    ["ti-trash","ti-write", "ti-save"],
+    [AppConstants.ACT_ITEM__DELETE, AppConstants.MODE_EDITION,      AppConstants.ACT_SAVE],
+    [AppConstants.ACT_ITEM__DELETE, AppConstants.MODE_EDITION,      AppConstants.ACT_SAVE],
+    [AppConstants.COLOR_DELETE,     AppConstants.COLOR_MODE_EDITION,AppConstants.COLOR_ACT_SAVE],
+    [AppConstants.ICON_DELETE,      AppConstants.ICON_MODE_EDITION, AppConstants.ICON_ACT_SAVE],
     [false, false, true]
 );
 
+/*
 export const BARCFG_EDITION_TYPE: BarButtonsConfig = {
     operations: ["delete", "edit", "save"],
     texts: ["delete", "edit", "save"],
@@ -42,3 +47,4 @@ export const BARCFG_DELETE_OPEN: BarButtonsConfig = {
     color: ["btn-info", "btn-success"],
     icons: ["none", "none"]
 }
+*/
