@@ -4,16 +4,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from "react-dom/client";
 import { AppThemifyIcons } from "@/style/appthicons";
-import { ThemeColors } from "@/style/apptheme";
 import { InputText } from '@/libcomp/inputtext';
 import { InputSelect } from '@/libcomp/inputselect';
 import { InputCheckold } from '@/libcomp/inputcheckold';
-import { AppConstants } from '../appconstants';
+import { AppConstants } from '../../lib/arquitect/appconstants';
 import { ProgLangCodeService } from '@/client_aidatabase/ProglanguagesService';
 import { ApptypesService } from '@/client_aidatabase/ApptypesService';
-import { AppType } from '@/client_old/models/AppType';
 import { AppDef } from '../manapplications/applicationdef';
-import { Application } from '@/client_old/models/Application';
+import { Application } from '@/client/models/Application';
+
 
 /*
 showApplicationForm(app,mode).then(({ confirmed }) => {
@@ -32,7 +31,7 @@ const icon_cancel_class = AppThemifyIcons.getIconClass(icon_cancel, icons_size);
 
 interface ApplicationFormIfc {
     app: Application;
-    mode: number;
+    mode: string;
     onClose: () => void;
     onCancel: () => void;
     isOpen: boolean;
@@ -86,7 +85,7 @@ export const ApplicationForm = ({ app, mode, onClose, onCancel, isOpen }: Applic
     };
 
     useEffect(() => {
-        if (mode == AppConstants.MODE_INSERT || mode == AppConstants.MODE_UPDATE) {
+        if (mode == AppConstants.MODE_INSERT || mode == AppConstants.MODE_EDITION) {
             setDisabled(false);
         }
         init();
@@ -332,7 +331,7 @@ export const ApplicationForm = ({ app, mode, onClose, onCancel, isOpen }: Applic
 };
 
 // Función controladora para mostrar el modal
-export const showApplicationForm = (app: Application, mode: number): Promise<{ confirmed: boolean }> => {
+export const showApplicationForm = (app:Application,mode:string):Promise<{confirmed:boolean}> => {
     return new Promise((resolve) => {
 
         const modalRoot = document.createElement("div");

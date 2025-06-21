@@ -18,15 +18,10 @@ import { XButton } from "@/libcomp/button";
 
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
+import { BARCFG_OPEN } from "@/app_front/uimodel/uimodelbars";
 
 
-const barConfig: BarButtonsConfig = {
-    operations: ["open"],
-    texts: ["open"],
-    disabled: [false],
-    color: ["btn-info"],
-    icons: [AppThemifyIcons.TI_EYE]
-}
+
 export interface AppItemCardProp {
     app: Application;
     onselection: (appid: number) => void;
@@ -139,7 +134,7 @@ export function AppItemCard({ app, onselection, iconname, iconsize, iconcolor }:
 
                 {/* crud buttons */}
                 <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
-                    <BarButtons barconfig={barConfig} onclick={onClick} />
+                    <BarButtons barconfig={BARCFG_OPEN} onclick={onClick} />
                 </div>
 
             </div>

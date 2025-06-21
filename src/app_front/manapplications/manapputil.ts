@@ -1,6 +1,6 @@
 //src\app_front\manager\manappsutil.ts
 
-import { AppConstants } from "../appconstants";
+import { AppConstants } from "../../lib/arquitect/appconstants";
 
 /**
  * class ManApplicationUtil.getFormEntity()

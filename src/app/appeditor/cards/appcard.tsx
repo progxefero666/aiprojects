@@ -1,13 +1,9 @@
 //src\app\appeditor\appeditorcard.tsx
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 import { AppThemifyIcons } from "@/style/appthicons";
 import { DataConstants } from "@/lib/common/app/dataconstants";
 import { FieldWrapper } from "@/libcomp/fieldwrapper";
-import { OutputText } from "@/libcomp/ouputtext";
-import { OutputCheck } from "@/libcomp/outputcheck";
-import { BarButtonsConfig } from "@/types/types";
 import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
 import { XButton } from "@/libcomp/button";
@@ -15,17 +11,19 @@ import { XButton } from "@/libcomp/button";
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { ApptypesService } from "@/client_aidatabase/ApptypesService";
 
-import { MdPreview } from 'md-editor-rt';
-import 'md-editor-rt/lib/preview.css';
-import 'md-editor-rt/lib/style.css';
-import 'md-editor-rt/lib/preview.css';
-import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
+import { BARCFG_EDITION_TYPE } from "@/app_front/uimodel/uimodelbars";
 import { InputCheck } from "@/libcomp/inputcheck";
 import { AppDef } from "@/app_front/manapplications/applicationdef";
 import { InputText } from "@/libcomp/inputtext";
 import { InputSelect } from "@/libcomp/inputselect";
 
 
+import { MdPreview } from 'md-editor-rt';
+import 'md-editor-rt/lib/preview.css';
+import 'md-editor-rt/lib/style.css';
+import 'md-editor-rt/lib/preview.css';
+import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
+import { AppConstants } from "@/lib/arquitect/appconstants";
 export interface AppCardProp {
     app: Application;
     onedit: () => void;
@@ -37,7 +35,6 @@ export interface AppCardProp {
 export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }: AppCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
-    const [ready, setReady] = useState<boolean>(false);
 
     let iconclass: string = DataConstants.UNDEFINED;
     if (iconname) {
@@ -49,15 +46,15 @@ export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }
     };
 
     const [disabled, setDisabled] = useState<boolean>(false);
+    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION_TYPE);
 
+    //BarButtonsCfg
     //relational collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
-    //const [appTypes, setAppTypes] = useState<AppType[]>([]);
     const [appTypesNames, setAppTypesNames] = useState<string[]>(["uno", "dos"]);
 
     const typeRef = useRef<HTMLSelectElement>(null);
     const proglanguageRef = useRef<HTMLSelectElement>(null);
-
     const nameRef = useRef<HTMLInputElement>(null);
     const osystemRef = useRef<HTMLInputElement>(null);
     const authorRef = useRef<HTMLInputElement>(null);
@@ -80,22 +77,26 @@ export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }
 
     useEffect(() => {
         const init = async () => {
-            if (!ready) {
-                const apptypes = await ApptypesService.getAll();
-                const apptypes_names: string[] = ApptypesService.getCollNames(apptypes);
-                setAppTypesNames(apptypes_names);
-                
-                const proglangsNames = await ProgLangCodeService.getAllNames();
-                setProgLangs(proglangsNames);
-                setReady(true);
-            }
+
+            const apptypes = await ApptypesService.getAll();
+            const apptypes_names: string[] = ApptypesService.getCollNames(apptypes);
+            setAppTypesNames(apptypes_names);
+
+            const proglangsNames = await ProgLangCodeService.getAllNames();
+            setProgLangs(proglangsNames);
         };
         init();
     }, []);
 
     const onClick = (opId: string) => {
-        if (opId === "delete") { ondelete(); }
-        else if (opId === "edit") { onedit(); }
+
+        if (opId === "edit") {  
+
+        }
+        else if (opId === AppConstants.ACT_ITEM__DELETE) {
+            ondelete();
+
+        }
     };
 
     const renderMainContent = () => {
@@ -105,105 +106,105 @@ export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }
                 <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
 
                     <InputText name="author" ref={authorRef} label="Auhor"
-                               defaultvalue={app.author} maxlen={AppDef.AUTHOR_MAXLEN}
-                               disabled={disabled} autofocus={true}  />
+                        defaultvalue={app.author} maxlen={AppDef.AUTHOR_MAXLEN}
+                        disabled={disabled} autofocus={true} />
 
-                    <InputText name="reference" ref={referenceRef} label="reference"                                                         
-                               defaultvalue={app.reference} maxlen={AppDef.REFERENCE_MAXLEN}
-                               disabled={disabled} />
+                    <InputText name="reference" ref={referenceRef} label="reference"
+                        defaultvalue={app.reference} maxlen={AppDef.REFERENCE_MAXLEN}
+                        disabled={disabled} />
 
                     <InputText name="description" ref={descriptionRef} label="Description"
-                               defaultvalue={app.description} maxlen={AppDef.DESCRIPTION_MAXLEN}
-                               disabled={disabled}/>
+                        defaultvalue={app.description} maxlen={AppDef.DESCRIPTION_MAXLEN}
+                        disabled={disabled} />
 
-                    <InputText name="url" ref={urlRef} label="url"                        
-                               defaultvalue={app.appurl} maxlen={AppDef.URL_MAXLEN}  
-                               disabled={disabled}/>
+                    <InputText name="url" ref={urlRef} label="url"
+                        defaultvalue={app.appurl} maxlen={AppDef.URL_MAXLEN}
+                        disabled={disabled} />
 
-                    <InputText name="path" ref={pathRef} label="path"                                                         
-                               defaultvalue={app.apppath} maxlen={AppDef.PATH_MAXLEN}
-                               disabled={disabled} />
+                    <InputText name="path" ref={pathRef} label="path"
+                        defaultvalue={app.apppath} maxlen={AppDef.PATH_MAXLEN}
+                        disabled={disabled} />
                 </div>
 
                 <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-4">
 
                     <FieldWrapper label="Type">
                         <InputSelect name="type" ref={typeRef} collection={appTypesNames}
-                                     defaultvalue={appTypesNames[0]}
-                                     disabled={disabled} />
+                            defaultvalue={appTypesNames[0]}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="prog Lang">
                         <InputSelect name="proglanguage" ref={proglanguageRef} collection={progLangs}
-                                     defaultvalue={app.proglanguage!}
-                                     disabled={disabled} />
+                            defaultvalue={app.proglanguage!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="System">
-                        <InputText name="opsystem" ref={osystemRef}                                   
-                                   defaultvalue={app.osystem}
-                                   maxlen={AppDef.OSSYSTEM_MAXLEN}
-                                   disabled={disabled}/>
+                        <InputText name="opsystem" ref={osystemRef}
+                            defaultvalue={app.osystem}
+                            maxlen={AppDef.OSSYSTEM_MAXLEN}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="local Dev" >
-                        <InputCheck name="localdev" ref={localdevRef} classname="ml-[12px]"                            
-                                    defaultvalue={app.localdev!} 
-                                    disabled={disabled}/>
+                        <InputCheck name="localdev" ref={localdevRef} classname="ml-[12px]"
+                            defaultvalue={app.localdev!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="Docker">
-                        <InputCheck name="usedocker" ref={usedockerRef} classname="ml-[12px]"                            
-                                    defaultvalue={app.usedocker!} 
-                                    disabled={disabled}/>
+                        <InputCheck name="usedocker" ref={usedockerRef} classname="ml-[12px]"
+                            defaultvalue={app.usedocker!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="ctr. Users">
                         <InputCheck name="controlusers" ref={controlusersRef!} classname="ml-[12px]"
-                                    defaultvalue={app.controlusers!}
-                                    disabled={disabled} />
+                            defaultvalue={app.controlusers!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
-                    <FieldWrapper label="use UI">                     
-                        <InputCheck name="useui" ref={useuiRef} classname="ml-[12px]"                                
-                                    defaultvalue={app.useui!}
-                                    disabled={disabled} />                        
+                    <FieldWrapper label="use UI">
+                        <InputCheck name="useui" ref={useuiRef} classname="ml-[12px]"
+                            defaultvalue={app.useui!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="use Agents">
-                        <InputCheck name="useagents" ref={useagentsRef} classname="ml-[12px]"                            
-                                    defaultvalue={app.useagents!}                            
-                                    disabled={disabled} />
+                        <InputCheck name="useagents" ref={useagentsRef} classname="ml-[12px]"
+                            defaultvalue={app.useagents!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. Db">
                         <InputCheck name="consumedb" ref={consumedbRef} classname="ml-[12px]"
-                                    defaultvalue={app.consumedb!}
-                                    disabled={disabled} />
+                            defaultvalue={app.consumedb!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. Api">
-                        <InputCheck name="consumeapi" ref={consumeapiRef} classname="ml-[12px]"                                    
-                                    defaultvalue={app.consumeapi!}
-                                    disabled={disabled} />
+                        <InputCheck name="consumeapi" ref={consumeapiRef} classname="ml-[12px]"
+                            defaultvalue={app.consumeapi!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. AI">
                         <InputCheck name="consumeai" ref={consumeaiRef} classname="ml-[12px]"
-                                    defaultvalue={app.consumeai!}
-                                    disabled={disabled} />
+                            defaultvalue={app.consumeai!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="expose Db">
                         <InputCheck name="exposedb" ref={exposedbRef} classname="ml-[12px]"
-                                    defaultvalue={app.exposedb!}
-                                    disabled={disabled} />
+                            defaultvalue={app.exposedb!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="expose Api">
                         <InputCheck name="exposeapi" ref={exposeapiRef} classname="ml-[12px]"
-                                    defaultvalue={app.exposeapi!}
-                                    disabled={disabled} />
+                            defaultvalue={app.exposeapi!}
+                            disabled={disabled} />
                     </FieldWrapper>
 
                 </div>
@@ -241,7 +242,7 @@ export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }
 
                 {/* crud buttons */}
                 <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
-                    <BarButtons barconfig={BARCFG_DELETE_OPEN} onclick={onClick} />
+                    <BarButtons barconfig={barConfig} onclick={onClick} />
                 </div>
 
             </div>

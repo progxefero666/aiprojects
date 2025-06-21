@@ -6,15 +6,23 @@ import { DataConstants } from "@/lib/common/app/dataconstants";
 import { BarButtonsConfig } from "@/types/types";
 import { useEffect } from "react";
 import { TwDaisyUtil } from "@/twdaisy/twdaisyutil";
+import { BarButtonsCfg } from "./model/barbuttonscfg";
 
 /*
 btn-info 💾  
 ti ti-sm ti-write
 AppThemifyIcons.TI_EDIT
+export const BARCFG_EDITION: BarButtonsConfig = {
+    operations: ["delete","edit","save"],
+    texts:      ["delete", "edit","save"],
+    disabled:   [false, false, true],
+    color:      ["btn-info", "btn-success","btn-error"],
+    icons:      ["ti-trash","ti-write","ti-save"]
+}
 */
 export interface BarButtonsIfc {
     onclick: (operation: string) => void;
-    barconfig: BarButtonsConfig;
+    barconfig: BarButtonsCfg;
     btnsize?: string;
     iconsize?: string;
     iconscolor?: string;
@@ -22,14 +30,17 @@ export interface BarButtonsIfc {
 export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }: BarButtonsIfc) {
 
     const buttonSize = btnsize ?? "md";
-    const iconSize = iconsize ?? "md";
+    const iconSize = iconsize ?? "sm";
     const iconColor = iconscolor ?? "icon-color-white";
     const iconStyleBase:string = TwDaisyUtil.addSpace(iconColor).concat("ti ti-").concat(iconSize);
 
     const renderButton = (key:string, operation:string, disabled: boolean,
-                          text:string,color:string, icon?: string) => {
+                          text:string,color:string, icon?: string|null) => {
 
-        const onButtonClick = () => {alert(operation);
+        if(disabled){
+            return null;
+        }
+        const onButtonClick = () => {
             onclick(operation);
         };
 
@@ -56,6 +67,7 @@ export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }
     return (
         <div className="w-auto h-auto flex flex-row gap-3">
             {barconfig.operations.map((op: string, index: number) => (
+   
                 renderButton(index.toString(),op,
                     barconfig.disabled[index],
                     barconfig.texts[index],

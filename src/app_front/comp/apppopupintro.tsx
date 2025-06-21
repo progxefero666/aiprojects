@@ -8,7 +8,7 @@ import { ThemeColors } from "@/style/apptheme";
 import { InputText } from '@/libcomp/inputtext';
 import { InputSelect } from '@/libcomp/inputselect';
 import { InputCheckold } from '@/libcomp/inputcheckold';
-import { AppConstants } from '../appconstants';
+import { AppConstants } from '../../lib/arquitect/appconstants';
 import { ProgLangCodeService } from '@/client_aidatabase/ProglanguagesService';
 import { ApptypesService } from '@/client_aidatabase/ApptypesService';
 import { AppType } from '@/client_old/models/AppType';
