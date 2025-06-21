@@ -74,7 +74,6 @@
     }
 }
 
-
 .menu {
     font-size: 0.875rem;
     :where(li > .menu-dropdown:not(.menu-dropdown-show)) {
@@ -84,40 +83,32 @@
     :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
         align-items: flex-start;
     }
-
 }
 
-/*
-@plugin "daisyui" {
-    themes: dark --default, abyss, acid, aqua, autumn, black, bumblebee, business, caramellatte,
-        coffee, corporate, cmyk, cupcake, cyberpunk, dark, dim, emerald, dracula fantasy, forest, garden, halloween, lemonade, light, lofi, luxury, night,
-        nord, pastel, retro, silk, sunset, synthwave, valentine, winter;
+.modal-box {
+    max-width: 80%;
+    max-height: 600px;
 }
 
-themes: false;
-themes: dark --prefersdark;
-themes: light --preferslight
-@apply text-3xl;
 
-.input {
-display: inline-block;
-	background-color: var(--color-base-content)
-}
-  .rowselector {
-  display: inline-block;
+.main_monitor {
+    width: 100%;
+    height: auto;
+    background-color: #2d323c;
+    border-radius: 16px;
+    box-sizing: border-box;
+    /* ← esto es la clave */
+    padding: 8px 10px 8px 10px;
+    padding-inline:10px ;
+    box-shadow: -1px -1px 5px 7px rgba(48, 46, 46, 0.75) inset;
+    -webkit-box-shadow: -1px -1px 5px 7px rgba(48, 46, 46, 0.75) inset;
+    -moz-box-shadow: -1px -1px 5px 7px rgba(48, 46, 46, 0.75) inset;
 
-  border-radius: 50%;
-  aspect-ratio: 1; 
-  background-color: cornflowerblue; 
-    
-  display: flex;
-  align-items: center;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
 }
-*/
-.card-body {
-    padding: 0;
-    font-size: var(--card-fs, 0.875rem);
-}
+
 
 .ti-xs {
     font-size: 12px !important;
@@ -139,67 +130,6 @@ display: inline-block;
     font-size: 48px !important;
 }
 
-
-.modal-box {
-    max-width: 80%;
-    max-height: 600px;
-}
-
-.center-both {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.rowselector {
-    width: fit-content;
-    border-width: 2px;
-    border-color: #000000;
-    border-radius: 8px;
-}
-
-.p_base {
-    vertical-align: top;
-    line-height: 1;
-}
-
-.p_big {
-    vertical-align: top;
-    font-size: var(--text-xl);
-    color: var(--color-primary);
-}
-
-h1 {
-    font-size: var(--text-4xl);
-    color: var(--color-primary);
-}
-
-h2 {
-    font-size: calc(var(--text-3xl) * 1.15);
-    font-weight: normal;
-    /*color: var(--color-primary);*/
-    color: var(--color-primary);
-}
-
-h3 {
-    font-size: var(--text-2xl);
-    color: var(--color-primary);
-}
-
-h4 {
-    font-size: var(--text-xl);
-    color: var(--color-primary);
-}
-
-h5 {
-    font-size: var(--text-base);
-    color: var(--color-primary);
-}
-
-h6 {
-    font-size: var(--text-sm);
-    color: var(--color-primary);
-}
 
 /* Icon color classes for AppThemifyIcons */
 .icon-color-primary {

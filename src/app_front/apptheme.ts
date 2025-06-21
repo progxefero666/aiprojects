@@ -11,6 +11,7 @@ import { AppConstants } from "./appconstants";
 export class AppTheme {
 
     public static readonly LAYOUT_COLOR: string = "bg-gray-900";
+    public static readonly BODY_COLOR: string = "bg-base-100";
 
     //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
     //public static readonly ACT_OPEN:string = "bg-base-100 ";
