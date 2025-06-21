@@ -36,12 +36,12 @@ const style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";
 
 export interface AppCardProp {  
     app: Application;
-    onsave: (app:Application) => void;
+    save: (app:Application) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppCard({app,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
+export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
 
     const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
     const [mode,setMode]           = useState<string>(AppConstants.MODE_READONLY);
@@ -86,39 +86,42 @@ export function AppCard({app,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
         if(appTypesNames.length==0){init();}        
     });
 
+    const updateObjApplication = () => {
+        app.author      = authorRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.description = descriptionRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.appurl      = urlRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.apppath     = pathRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.apptype     = typeRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.proglanguage= proglanguageRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.osystem     = osystemRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.localdev    = localdevRef.current?.checked?? true;
+        app.usedocker   = usedockerRef.current?.checked?? false;
+        app.consumeai   = consumeaiRef.current?.checked?? false;
+        app.consumeapi  = consumeapiRef.current?.checked?? false;
+        app.consumeai   = consumeaiRef.current?.checked?? false;
+        app.consumedb   = consumedbRef.current?.checked?? false;
+        app.exposeapi   = exposeapiRef.current?.checked?? false;
+        app.exposedb    = exposedbRef.current?.checked?? false;
+        app.useui       = useuiRef.current?.checked?? false;
+        app.useagents   = useagentsRef.current?.checked?? false;
+    }
+
     const onClick = (opId: string) => {
 
         if (opId === AppConstants.MODE_EDITION) {
+            const bar_cfg:BarButtonsCfg = barConfig;
+            barConfig.visibled = [false,true];
+            setBarConfig(bar_cfg);
             setDisabled(false);  
-            setMode(AppConstants.MODE_EDITION);
-            // Dar foco al input del nombre después de habilitar la edición
             setTimeout(() => {
                 nameRef.current?.focus();
             }, 100);           
         }
-        else if (opId === AppConstants.ACT_SAVE) { 
-            alert("execute save");
-            setMode(AppConstants.MODE_EDITION);   
-            /*
-            app.author      = authorRef.current?.value! ?? AppConstants.NOT_DEF;
-            app.description = descriptionRef.current?.value! ?? AppConstants.NOT_DEF;
-            app.appurl      = urlRef.current?.value! ?? AppConstants.NOT_DEF;
-            app.apppath     = pathRef.current?.value! ?? AppConstants.NOT_DEF;
-            app.apptype     = typeRef.current?.value! ?? AppConstants.NOT_DEF;
-            app.proglanguage= proglanguageRef.current?.value! ?? AppConstants.NOT_DEF;
-            app.osystem     = osystemRef.current?.value! ?? AppConstants.NOT_DEF;
-            app.localdev    = localdevRef.current?.checked?? true;
-            app.usedocker   = usedockerRef.current?.checked?? false;
-            app.consumeai   = consumeaiRef.current?.checked?? false;
-            app.consumeapi  = consumeapiRef.current?.checked?? false;
-            app.consumeai   = consumeaiRef.current?.checked?? false;
-            app.consumedb   = consumedbRef.current?.checked?? false;
-            app.exposeapi   = exposeapiRef.current?.checked?? false;
-            app.exposedb    = exposedbRef.current?.checked?? false;
-            app.useui       = useuiRef.current?.checked?? false;
-            app.useagents   = useagentsRef.current?.checked?? false;
-            onsave(app); 
-            */
+        else if (opId === AppConstants.ACT_SAVE) {
+            updateObjApplication();   
+            save(app);                
+            setBarConfig(BARCFG_EDITION);
+            setDisabled(true);  
         }
     };
 

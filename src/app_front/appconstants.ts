@@ -29,7 +29,7 @@ export class AppConstants {
 /**
  * class AppTwDaisyConstants
  */
-export class AppTwDaisyConstants {
+export class AppUiConst {
     public static readonly COLOR_ACT_OPEN:string     = "btn-info";
     public static readonly COLOR_DELETE:string       = "btn-success";
     public static readonly COLOR_MODE_EDITION:string = "btn-success";

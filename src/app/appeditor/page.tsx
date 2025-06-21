@@ -47,7 +47,7 @@ export default function ApplicationEditor() {
         init();
     }, []);
 
-     const onSave = async (application: Application) => {
+     const saveApplication = async (application: Application) => {
         try {
             const result = await ApplicationsService.update(application.id!, application);
         }
@@ -92,7 +92,7 @@ export default function ApplicationEditor() {
     const renderMainContent = () => {
         if (section === AppEditorConfig.SECTION_MAIN) {          
             return (
-                <AppCard app={app} onsave={onSave} />
+                <AppCard app={app} save={saveApplication} />
             );
         }
         if (section === AppEditorConfig.SECTION_DOCS) {
