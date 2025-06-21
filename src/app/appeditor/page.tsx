@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Option } from "@/lib/common/model/base/option";
 import { AppStorage } from "@/app_front/appstorge";
@@ -20,6 +20,7 @@ import PageHeader from "./header";
 import { AppCard } from "./cards/appcard";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { showUiPopupConfirm } from "@/libcomp/puconfirm";
+import { AppConstants } from "@/lib/arquitect/appconstants";
 /**
  * Page Index JSX Client
  * start command:
@@ -32,18 +33,21 @@ export const PAGE_EDITOR_PATH: string = "./appeditor";
 export default function ApplicationEditor() {
     //const router = useRouter();
 
-    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
     
+    const [collapse, setCollapse] = useState<boolean>(true);
+    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
+
     //collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
     const [appTypes, setAppTypes] = useState<string[]>([]);
 
     //application
+    const [mode, setMode] = useState<string>(AppConstants.MODE_READONLY);
     const [appId, setAppId] = useState<number>(-1);
     const [app, setApp] = useState<Application | null>(null);
     const [section, setSection] = useState<Option>(AppEditorConfig.ACTIVE_SECTION);
-    const onTest = () => { }
 
+   
     useEffect(() => {
         const app_id: number = AppStorage.readApplicationId()
         setAppId(app_id);
@@ -57,22 +61,21 @@ export default function ApplicationEditor() {
         init();
     }, []);
 
-    const onModeEdition = (): void => {
-        const bar_config:BarButtonsCfg = barConfig;
-        bar_config.disabled=[true,true,false];
-        setBarConfig(bar_config);
+    const onModeEdition = useCallback((): void => {
+        setMode(AppConstants.MODE_EDITION);
+        setCollapse(false);
+        setBarConfig(prev => ({
+            ...prev,
+            visibled: [false, true]
+        }));
+    }, []);
+
+    const onSave = (): void => {
+        alert("save app");
     }
 
-    const onDelete = (): void => {
-        showUiPopupConfirm("¿confirm delete application?").then(({ confirmed }) => {
-            if (confirmed) {
-                alert("delete app");     
-            }
-        });
-    }
-
-    const loadsection = (name:string): void => {
-        let act_section:Option|null = null;
+    const loadsection = (name: string): void => {
+        let act_section: Option | null = null;
 
         if (name === AppEditorConfig.SECTION_MAIN.name) {
             act_section = AppEditorConfig.SECTION_MAIN;
@@ -83,9 +86,9 @@ export default function ApplicationEditor() {
         else if (name === AppEditorConfig.SECTION_TASKS.name) {
             act_section = AppEditorConfig.SECTION_TASKS;
         }
-        if(act_section){
+        if (act_section) {
             setSection(act_section);
-        }        
+        }
     }
 
 
@@ -98,28 +101,28 @@ export default function ApplicationEditor() {
     }
 
     const renderMainContent = () => {
-        if(section === AppEditorConfig.SECTION_MAIN) {
+        //if(mode==AppConstants.MODE_READONLY){}
+        //else if(mode==AppConstants.MODE_EDITION){}
+        if (section === AppEditorConfig.SECTION_MAIN) {
             return (
-                <AppCard app={app} 
-                         onedit={onModeEdition}  
-                         ondelete={onDelete}
-                         barconfig={BARCFG_EDITION} />
+                <AppCard barconfig={barConfig} collapse={collapse}
+                         app={app} onedit={onModeEdition} onsave={onSave} />
 
             );
         }
-        if(section === AppEditorConfig.SECTION_DOCS) {
+        if (section === AppEditorConfig.SECTION_DOCS) {
             return (<div>docs</div>);
         }
-        if(section === AppEditorConfig.SECTION_TASKS) {
-           return (<div>tasks</div>);
-        }         
+        if (section === AppEditorConfig.SECTION_TASKS) {
+            return (<div>tasks</div>);
+        }
     };
 
     return (
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <PageHeader ontest={onTest} />
+            <PageHeader />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
@@ -135,7 +138,7 @@ export default function ApplicationEditor() {
                 <div className="main_monitor min-h-screen rounded-lg">
                     {renderMainContent()}
                 </div>
-                
+
                 <ApplicationEditorTools ontoolsmessage={onToolsMessage} />
 
             </div>

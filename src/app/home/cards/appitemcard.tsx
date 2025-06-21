@@ -18,18 +18,20 @@ import { XButton } from "@/libcomp/button";
 
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
-import { BARCFG_OPEN } from "@/app_front/uimodel/uimodelbars";
+import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
+import { AppConstants } from "@/lib/arquitect/appconstants";
 
 
 
 export interface AppItemCardProp {
     app: Application;
+    ondelete: () => void;
     onselection: (appid: number) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppItemCard({ app, onselection, iconname, iconsize, iconcolor }: AppItemCardProp) {
+export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, iconcolor }: AppItemCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
 
@@ -59,8 +61,14 @@ export function AppItemCard({ app, onselection, iconname, iconsize, iconcolor }:
     }, []);
 
     const onClick = (opId: string) => {
-        onselection(app.id!);
+        if (opId === AppConstants.ACT_OPEN) {  
+            onselection(app.id!);
+        }
+        else if (opId === AppConstants.ACT_ITEM__DELETE) {
+            ondelete();
+        }
     };
+
    const renderMainContent = useMemo(() => {
         return (
             <div className="w-full h-auto px-2 rounded-md bg-red">
@@ -130,7 +138,7 @@ export function AppItemCard({ app, onselection, iconname, iconsize, iconcolor }:
 
                 {/* crud buttons */}
                 <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
-                    <BarButtons barconfig={BARCFG_OPEN} onclick={onClick} />
+                    <BarButtons barconfig={BARCFG_DELETE_OPEN} onclick={onClick} />
                 </div>
 
             </div>

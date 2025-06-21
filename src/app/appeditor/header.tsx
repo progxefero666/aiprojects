@@ -9,7 +9,7 @@ import { XButton } from "@/libcomp/button";
  * Ai Manager Projects Header
  */
 export interface PageHeaderProp {
-     ontest: () => void;
+     ontest?: () => void;
 }
 export default function PageHeader({ ontest }: PageHeaderProp) {
 

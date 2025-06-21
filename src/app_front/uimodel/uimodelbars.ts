@@ -4,47 +4,21 @@ import { AppConstants } from "@/lib/arquitect/appconstants";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { BarButtonsConfig } from "@/types/types";
 
-/*
-const barConfig: BarButtonsConfig = {
-    operations: ["open"],
-    texts: ["open"],
-    disabled: [false],
-    color: ["btn-info"],
-    icons: [AppThemifyIcons.TI_EYE]
-}
-*/
-
 // template: BARCFG_OPEN
-export const BARCFG_OPEN: BarButtonsCfg = new BarButtonsCfg(
-    [AppConstants.ACT_OPEN],
-    [AppConstants.ACT_OPEN],
-    [AppConstants.COLOR_ACT_OPEN],
-    [AppConstants.ICON_OPEN],
-    [false]
+export const BARCFG_DELETE_OPEN: BarButtonsCfg = new BarButtonsCfg(
+    [AppConstants.ACT_ITEM__DELETE,AppConstants.ACT_OPEN],
+    [AppConstants.ACT_ITEM__DELETE,AppConstants.ACT_OPEN],
+    [AppConstants.COLOR_DELETE,AppConstants.COLOR_ACT_OPEN],
+    [AppConstants.ICON_DELETE,AppConstants.ICON_OPEN],
+    [false,false],
+    [true,true]
 );
 
 export const BARCFG_EDITION: BarButtonsCfg = new BarButtonsCfg(
-    [AppConstants.ACT_ITEM__DELETE, AppConstants.MODE_EDITION,      AppConstants.ACT_SAVE],
-    [AppConstants.ACT_ITEM__DELETE, AppConstants.MODE_EDITION,      AppConstants.ACT_SAVE],
-    [AppConstants.COLOR_DELETE,     AppConstants.COLOR_MODE_EDITION,AppConstants.COLOR_ACT_SAVE],
-    [AppConstants.ICON_DELETE,      AppConstants.ICON_MODE_EDITION, AppConstants.ICON_ACT_SAVE],
-    [false, false, true]
+    [AppConstants.MODE_EDITION,       AppConstants.ACT_SAVE],
+    [AppConstants.MODE_EDITION,       AppConstants.ACT_SAVE],
+    [AppConstants.COLOR_MODE_EDITION, AppConstants.COLOR_ACT_SAVE],
+    [AppConstants.ICON_MODE_EDITION,  AppConstants.ICON_ACT_SAVE],
+    [false,false],
+    [true, false]
 );
-
-/*
-export const BARCFG_EDITION_TYPE: BarButtonsConfig = {
-    operations: ["delete", "edit", "save"],
-    texts: ["delete", "edit", "save"],
-    disabled: [false, false, true],
-    color: ["btn-info", "btn-success", "btn-error"],
-    icons: ["ti-trash", "ti-write", "ti-save"]
-}
-
-export const BARCFG_DELETE_OPEN: BarButtonsConfig = {
-    operations: ["delete", "edit"],
-    texts: ["delete", "edit"],
-    disabled: [false, false],
-    color: ["btn-info", "btn-success"],
-    icons: ["none", "none"]
-}
-*/

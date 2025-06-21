@@ -35,10 +35,10 @@ export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }
     //const iconStyleBase:string = TwDaisyUtil.addSpace(iconColor).concat("ti ti-").concat(iconSize);
     const iconStyleBase:string = "ti ti-".concat(iconSize);
     
-    const renderButton = (key:string, operation:string, disabled: boolean,
+    const renderButton = (key:string, operation:string, disabled: boolean, visibled: boolean,
                           text:string,color:string, icon?: string|null) => {
 
-        if(disabled){
+        if(!visibled){
             return null;
         }
         const onButtonClick = () => {
@@ -47,7 +47,6 @@ export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }
 
         const getButtonClass = (color:string):string => {
             let style:string = "btn btn-".concat(buttonSize).concat(" ").concat(color);
-            console.log(color);
             return style;
         };
 
@@ -73,6 +72,7 @@ export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }
    
                 renderButton(index.toString(),op,
                     barconfig.disabled[index],
+                    barconfig.visibled[index],
                     barconfig.texts[index],
                     barconfig.color[index],
                     barconfig.icons[index])

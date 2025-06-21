@@ -25,28 +25,24 @@ import 'md-editor-rt/lib/preview.css';
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { AppConstants } from "@/lib/arquitect/appconstants";
 import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
+
 export interface AppCardProp {
+    collapse:boolean;
     app: Application;
     barconfig:BarButtonsCfg;
     onedit: () => void;
-    ondelete: () => void;
+    onsave: () => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppCard({ app,barconfig, onedit, ondelete, iconname, iconsize, iconcolor }: AppCardProp) {
+export function AppCard({ collapse, app,barconfig, onedit, onsave, iconname, iconsize, iconcolor }: AppCardProp) {
 
-    const [collapse, setcollapse] = useState<boolean>(true);
+    const [isCollapse, setIsCollapse] = useState<boolean>(collapse);
 
-
-    const onCollapse = (operation_id?: string) => {
-        setcollapse(!collapse);
-    };
-
+    const onCollapse = (operation_id?: string) => {setIsCollapse(!collapse);};
+    
     const [disabled, setDisabled] = useState<boolean>(false);
-    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
-
-    //BarButtonsCfg
     //relational collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
     const [appTypesNames, setAppTypesNames] = useState<string[]>(["uno", "dos"]);
@@ -75,11 +71,9 @@ export function AppCard({ app,barconfig, onedit, ondelete, iconname, iconsize, i
 
     useEffect(() => {
         const init = async () => {
-
             const apptypes = await ApptypesService.getAll();
             const apptypes_names: string[] = ApptypesService.getCollNames(apptypes);
             setAppTypesNames(apptypes_names);
-
             const proglangsNames = await ProgLangCodeService.getAllNames();
             setProgLangs(proglangsNames);
         };
@@ -90,8 +84,8 @@ export function AppCard({ app,barconfig, onedit, ondelete, iconname, iconsize, i
         if (opId === AppConstants.MODE_EDITION) {  
             onedit();
         }
-        else if (opId === AppConstants.ACT_ITEM__DELETE) {
-            ondelete();
+        else if (opId === AppConstants.ACT_SAVE) {
+            onsave();
         }
     };
 
@@ -238,7 +232,7 @@ export function AppCard({ app,barconfig, onedit, ondelete, iconname, iconsize, i
 
                 {/* crud buttons */}
                 <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
-                    <BarButtons barconfig={barConfig} onclick={onClick} />
+                    <BarButtons barconfig={barconfig} onclick={onClick} />
                 </div>
 
             </div>

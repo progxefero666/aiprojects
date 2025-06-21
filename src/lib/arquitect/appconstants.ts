@@ -1,7 +1,7 @@
 //src\app_front\appconstants.ts
 
 /**
- * class AppConstants.ACT_OPEN
+ * class AppConstants.MODE_READONLY
  */
 export class AppConstants {
 
@@ -23,7 +23,7 @@ export class AppConstants {
     public static readonly COLOR_ACT_OPEN:string = "btn-info";
     public static readonly COLOR_DELETE:string = "btn-info";
     public static readonly COLOR_MODE_EDITION:string = "btn-success";
-    public static readonly COLOR_ACT_SAVE:string = "btn-error";
+    public static readonly COLOR_ACT_SAVE:string = "btn-warning";
 
     public static readonly ICON_OPEN:string = "ti-eye";
     public static readonly ICON_DELETE:string = "ti-trash";

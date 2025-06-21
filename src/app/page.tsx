@@ -14,6 +14,7 @@ import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import DesktopMenu from "./home/pagemenu";
 import { Application } from "@/client/models/Application";
 import { AppItemCard } from "./home/cards/appitemcard";
+import { showUiPopupConfirm } from "@/libcomp/puconfirm";
 
 
 /*
@@ -69,6 +70,14 @@ export default function Desktop() {
         router.push(PAGE_EDITOR_PATH);     
     }
 
+    const onDelete = (): void => {
+        showUiPopupConfirm("¿confirm delete application?").then(({ confirmed }) => {
+            if (confirmed) {
+                alert("delete app");     
+            }
+        });
+    }
+        
     const onAddApplication = () => {
     
     }
@@ -79,8 +88,9 @@ export default function Desktop() {
             <ul className="menu w-full rounded-box menu-md space-y-3">
                 {listApps.map((item, index) => (
                     <li className="list-row" key={index}>
-                        <AppItemCard
+                        <AppItemCard 
                             app={item}
+                            ondelete={onDelete}
                             onselection={onSelectApplication}
                             iconname="file"
                             iconsize={undefined}
