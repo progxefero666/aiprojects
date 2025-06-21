@@ -2,7 +2,6 @@
 
 import { AppConstants } from "@/lib/arquitect/appconstants";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
-import { BarButtonsConfig } from "@/types/types";
 
 // template: BARCFG_OPEN
 export const BARCFG_DELETE_OPEN: BarButtonsCfg = new BarButtonsCfg(

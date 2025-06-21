@@ -1,27 +1,22 @@
 //src\app\home\appformcard.tsx
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { MdPreview } from 'md-editor-rt';
-//import 'md-editor-rt/lib/preview.css';
-
 import { AppThemifyIcons } from "@/style/appthicons";
-import { DataConstants } from "@/lib/common/app/dataconstants";
 import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
 import { FieldWrapper } from "@/libcomp/fieldwrapper";
-import { BarButtonsConfig } from "@/types/types";
 import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
 import { ApptypesService } from "@/client_aidatabase/ApptypesService";
 import { OutputCheck } from "@/libcomp/outputcheck";
 import { OutputText } from "@/libcomp/ouputtext";
 import { XButton } from "@/libcomp/button";
-
-import 'md-editor-rt/lib/style.css';
-import 'md-editor-rt/lib/preview.css';
 import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
 import { AppConstants } from "@/lib/arquitect/appconstants";
 
-
+import { MdPreview } from 'md-editor-rt';
+//import 'md-editor-rt/lib/preview.css';
+import 'md-editor-rt/lib/style.css';
+import 'md-editor-rt/lib/preview.css';
 
 export interface AppItemCardProp {
     app: Application;

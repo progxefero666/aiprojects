@@ -1,25 +1,11 @@
 //src\libcomp\xuicomp\base\barbutton.tsx
 
-import { AppThemifyIcons } from "@/style/appthicons";
-import { AppUIButtons } from "@/style/appui";
-import { DataConstants } from "@/lib/common/app/dataconstants";
-import { BarButtonsConfig } from "@/types/types";
-import { useEffect } from "react";
 import { TwDaisyUtil } from "@/twdaisy/twdaisyutil";
 import { BarButtonsCfg } from "./model/barbuttonscfg";
+import { TwDaisyCompBase } from "@/twdaisy/twdaisycomp";
 
-/*
-btn-info 💾  
-ti ti-sm ti-write
-AppThemifyIcons.TI_EDIT
-export const BARCFG_EDITION: BarButtonsConfig = {
-    operations: ["delete","edit","save"],
-    texts:      ["delete", "edit","save"],
-    disabled:   [false, false, true],
-    color:      ["btn-info", "btn-success","btn-error"],
-    icons:      ["ti-trash","ti-write","ti-save"]
-}
-*/
+//btn-info 💾  
+
 export interface BarButtonsIfc {
     onclick: (operation: string) => void;
     barconfig: BarButtonsCfg;
@@ -29,38 +15,22 @@ export interface BarButtonsIfc {
 }
 export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }: BarButtonsIfc) {
 
-    const buttonSize = btnsize ?? "md";
-    const iconSize = iconsize ?? "sm";
-    const iconColor = iconscolor ?? "icon-color-white";
-    //const iconStyleBase:string = TwDaisyUtil.addSpace(iconColor).concat("ti ti-").concat(iconSize);
-    const iconStyleBase:string = "ti ti-".concat(iconSize);
-    
+    const iconSize = iconsize ?? TwDaisyCompBase.ICON_SIZE_DEF;
+    const iconColor = iconscolor ?? TwDaisyCompBase.ICON_COLOR_DEF;
+
     const renderButton = (key:string, operation:string, disabled: boolean, visibled: boolean,
-                          text:string,color:string, icon?: string|null) => {
+                          text:string, color:string, icon?: string|null) => {
 
-        if(!visibled){
-            return null;
-        }
-        const onButtonClick = () => {
-            onclick(operation);
-        };
+        const buttonSize:string = btnsize ?? TwDaisyCompBase.BUTTON_SIZE_DEF;
 
-        const getButtonClass = (color:string):string => {
-            let style:string = "btn btn-".concat(buttonSize).concat(" ").concat(color);
-            return style;
-        };
 
-        const getIconClass= (name:string):string => {
-            let style:string = TwDaisyUtil.addSpace(iconStyleBase).concat(name);
-            //console.log(style);
-            return style;
-        };
-        //    
+        if(!visibled){return null;}
+        const onButtonClick = () => {onclick(operation);};
         return (
-            <button key={key} className={getButtonClass(color)}
+            <button key={key} className={TwDaisyCompBase.getButtonStyle(buttonSize,color)}
                     disabled={disabled}
                     onClick={onButtonClick}>
-                {icon ? <div className={getIconClass(icon)} /> : null}
+                {icon ? <div className={TwDaisyCompBase.getIconStyle(icon,iconSize,iconColor)} /> : null}
                 {text ? text : null}
             </button>
         )
