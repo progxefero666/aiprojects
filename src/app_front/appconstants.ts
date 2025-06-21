@@ -20,7 +20,15 @@ export class AppConstants {
     public static readonly ACT_ITEM__UPDATE:string = "update";
     public static readonly ACT_ITEM__DELETE:string = "delete";
    
-    //btn-primary
+   
+
+
+}//end class
+
+/**
+ * class AppTwDaisyConstants
+ */
+export class AppTwDaisyConstants {
     public static readonly COLOR_ACT_OPEN:string     = "btn-info";
     public static readonly COLOR_DELETE:string       = "btn-success";
     public static readonly COLOR_MODE_EDITION:string = "btn-success";
@@ -30,6 +38,7 @@ export class AppConstants {
     public static readonly ICON_DELETE:string = "ti-trash";
     public static readonly ICON_MODE_EDITION:string = "ti-write";
     public static readonly ICON_ACT_SAVE:string = "ti-save";
-
-
 }//end class
+
+
+ //btn-primary

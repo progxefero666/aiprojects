@@ -3,7 +3,7 @@
 import { Search } from "@/libcomp/search";
 import { Desktop } from "@/app_front/desktop/desktop";
 import { useEffect, useMemo, useState } from "react";
-import { DataConstants } from "@/lib/common/app/dataconstants";
+
 import { useRouter } from "next/navigation";
 import { AppStorage } from "@/app_front/appstorge";
 import { PAGE_EDITOR_PATH } from "../appeditor/page";
