@@ -70,9 +70,10 @@ export default function ApplicationEditor() {
         }));
     }, []);
 
-    const onSave = (appEdited:Application): void => {
-        alert("save app");
-        console.log(appEdited);
+    const onSave = async (application:Application) => {
+        const result = await ApplicationsService.update(application.id!,application);
+        console.log(result);
+        alert("App Saved");
     }
 
     const loadsection = (name: string): void => {
