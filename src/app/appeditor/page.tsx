@@ -20,9 +20,11 @@ import { renderAlert } from "@/twdaisy/twdaisycomp";
 
 //page layout jsx components
 import PageHeader from "./header";
-import ApplicationEditorTools from "@/app/appeditor/secondarybar";
+
 import { AppTheme } from "@/app_front/apptheme";
-import PageMain from "./pagemain";
+import PageMainContent from "./pagemain";
+import PagePrimaryBar from "./primarybar";
+import PageSecondaryBar from "./secondarybar";
 /**
  * Page Index JSX Client
  * start command:
@@ -35,10 +37,9 @@ import PageMain from "./pagemain";
 export const PAGE_EDITOR_PATH: string = "./appeditor";
 
 export default function ApplicationEditor() {
-    const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
-    const [app, setApp]         = useState<Application | null>(null);
-    const [section, setSection] = useState<Option>(AppEditorCfg.ACTIVE_SECTION);
 
+    const [app, setApp]         = useState<Application | null>(null);
+    const [section, setSection] = useState<string>(AppEditorCfg.SECTION_MAIN.name);
 
     useEffect(() => {
         const init = async () => {
@@ -49,75 +50,21 @@ export default function ApplicationEditor() {
         init();
     }, []);
 
-
-    const loadsection = (name: string): void => {
-        let act_section: Option | null = null;
-
-        if (name === AppEditorCfg.SECTION_MAIN.name) {
-            act_section = AppEditorCfg.SECTION_MAIN;
-        }
-        else if (name === AppEditorCfg.SECTION_DOCS.name) {
-            act_section = AppEditorCfg.SECTION_DOCS;
-        }
-        else if (name === AppEditorCfg.SECTION_TASKS.name) {
-            act_section = AppEditorCfg.SECTION_TASKS;
-        }
-        if (act_section) {
-            setSection(act_section);
-        }
+    const chargeSection = (section:string): void => {
+        setSection(section);
     }
 
-    const onToolsMessage = (message: string): void => {
-        console.log(message);
-    }
-
-    if (!app) {
-        return <div>Loading...</div>;
-    }
-
-    const renderMainContent = () => {
-        if (section === AppEditorCfg.SECTION_MAIN) {          
-            return (
-                <PageMain section={AppEditorCfg.SECTION_MAIN} app={app}   />       
-            );
-        }
-        if (section === AppEditorCfg.SECTION_DOCS) {
-            return (<div>docs</div>);
-        }
-        if (section === AppEditorCfg.SECTION_TASKS) {
-            return (<div>tasks</div>);
-        }
-    };
+    if (!app) {return <div>Loading...</div>;}
 
     return (
         <div id="cont_root" className={AppTheme.LAYOUT_STYLE} >
-
-            {/* header */}
             <PageHeader />
-
-            {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
-
-                <div className="w-full min-h-screen flex flex-col px-2 mb-2">
-                    <TwDaisyMenu onselection={loadsection}
-                        options={AppEditorCfg.SECTIONS}
-                        optactname={AppEditorCfg.ACTIVE_SECTION.name}
-                        optcolor={AppTheme.MENU_OPT_COLOR}
-                        optactcolor={AppTheme.MENU_OPT_ACT_COLOR} />
-                </div>
-
-                <div className={AppTheme.BODY_MONITOR_STYLE}>
-                    {renderMainContent()}
-                </div>
-
-                <ApplicationEditorTools  />
-
+                <PagePrimaryBar    chargesection={chargeSection} 
+                                   section={section}  app={app} />
+                <PageMainContent          section={section}  app={app} /> 
+                <PageSecondaryBar  section={section}  app={app}/>
             </div>
-            {/*
-             {(alertMessage !== AppConstants.NOT_DEF) ? renderAlert(alertMessage) : null}
-            */}
-           
-
         </div>
     );
 

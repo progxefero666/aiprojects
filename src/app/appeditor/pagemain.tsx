@@ -16,11 +16,11 @@ import { executeSaveApplication } from "@/app_front/manapplications/services/app
  * JSX Component layout secondary column
  * Application Editor Tools
  */
-export interface PageMainProp {section:Option;app?:Application;}
-
-
-export default function PageMain({ section,app }: PageMainProp) {
-
+export interface PageMainContentProp {
+    section:string;
+    app?:Application;
+}
+export default function PageMainContent({ section,app }: PageMainContentProp) {
     const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
 
     const saveApplication = async (application: Application) => {
@@ -35,13 +35,13 @@ export default function PageMain({ section,app }: PageMainProp) {
     };
 
     const renderMainContent = () => {
-        if (section === AppEditorCfg.SECTION_MAIN) {          
+        if (section === AppEditorCfg.SECTION_MAIN.name) {          
             return (<AppCard app={app!} save={saveApplication} />);
         }
-        if (section === AppEditorCfg.SECTION_DOCS) {
+        if (section === AppEditorCfg.SECTION_DOCS.name) {
             return (<div>docs</div>);
         }
-        if (section === AppEditorCfg.SECTION_TASKS) {
+        if (section === AppEditorCfg.SECTION_TASKS.name) {
             return (<div>tasks</div>);
         }
     };
