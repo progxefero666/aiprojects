@@ -1,15 +1,15 @@
 //src\app_front\appconstants.ts
 
 /**
- * class AppConstants.MODE_EDITION
+ * class AppConstants.CHAR_SPACE
  */
 export class AppConstants {
+
+    public static readonly CHAR_SPACE:string = " ";
 
     public static readonly NOT_DEF:string = "undefined";
     public static readonly ACT_OPEN:string = "open";
     public static readonly ACT_SAVE:string = "save";
-
-    //["btn-info","btn-success", "btn-error"],
 
     public static readonly MODE_INSERT:string = "insert";
     public static readonly MODE_EDITION:string = "edit";
@@ -20,7 +20,8 @@ export class AppConstants {
     public static readonly ACT_ITEM__UPDATE:string = "update";
     public static readonly ACT_ITEM__DELETE:string = "delete";
    
-   
+    public static readonly DISPLAY_ROW:string = "display-row";
+    public static readonly DISPLAY_COLUMN:string = "display-col";
 
 
 }//end class

@@ -10,10 +10,10 @@ export interface OutputTextIfc {
     display?:string;
     value: string;
     label?: string;
-    classname?: string;    
     maxlen?: number;
 }
-export function OutputText({ value, classname, label }: OutputTextIfc) {
+export function OutputText({display, value, label }: OutputTextIfc) {
+    
     const renderContent = () => (
         <div className="input w-full bg-gray-700 rounded-md">
             <p>{value}</p>
