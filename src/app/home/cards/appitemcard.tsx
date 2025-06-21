@@ -50,7 +50,7 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
 
    const renderMainContent = useMemo(() => {
         return (
-            <div className="w-full h-auto px-2 rounded-md bg-red">
+            <div className="w-full h-auto px-2 rounded-md">
 
                 <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
                     <OutputText label="Author" value={app.author} />

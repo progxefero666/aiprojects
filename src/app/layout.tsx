@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import "@/css/containers.css";
 import "@/css/input.css";
 import "@/css/lists.css";
 import "@/css/cards.css"

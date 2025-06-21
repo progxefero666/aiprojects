@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ChromePicker } from "react-color";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
-import { CmOperation } from "@/libcomp/appcommon";
+
 
 
 /*
@@ -44,11 +44,11 @@ export const UiPuSelectColor = ({ initcolor, onClose, onCancel, isOpen }: UiPuSe
           <form method="dialog">
             <button className="btn btn-primary mr-2" onClick={() => onClose(color)}>
               <CheckIcon className="h-6 w-6 mr-2" />
-              {CmOperation.OPID_CONFIRM}
+              "OK"
             </button>
             <button className="btn btn-secondary" onClick={() => onCancel()}>
               <XMarkIcon className="h-6 w-6 mr-2" />
-              {CmOperation.OPID_CANCEL}
+              "Cancel"
             </button>
           </form>
         </div>

@@ -1,5 +1,4 @@
 //src\lib\common\model\base\option.ts
-import { DataConstants } from "@/lib/common/app/dataconstants";
 
 /**
  * class Section
@@ -14,8 +13,8 @@ export class Option {
     constructor(name: string, title: string,description?:string,logo?:string) {
         this.name = name;
         this.title = title;
-        this.logo = logo ?? DataConstants.UNDEFINED;
-        this.description = description  ?? DataConstants.UNDEFINED;
+        this.logo = logo ?? "undefined";
+        this.description = description  ?? "undefined";
     }
 
     public toJsonString(): string {

@@ -1,4 +1,4 @@
-import { AppConstants } from "@/libold/app/constants";
+//src\lib\common\model\base\uioperation.ts
 
 
 export class UiOperation {

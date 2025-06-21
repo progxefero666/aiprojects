@@ -1,9 +1,8 @@
 //src\lib\xuicomp\base\button.tsx
 
-import { ThemeColors } from "@/style/apptheme";
 import { AppThemifyIcons } from "@/style/appthicons";
 import { AppUIButtons } from "@/style/appui";
-import { DataConstants } from "@/lib/common/app/dataconstants";
+
 
 
 export interface XButtonIfc {    
@@ -25,9 +24,9 @@ export function XButton({ callback,operation,
     const btn_color: string     = btncolor ?? AppUIButtons.DEF_ICON_COLOR;
     const btn_size: string      = btnsize ?? AppUIButtons.DEF_SIZE;
     const btn_class:string      = AppUIButtons.getButtonClass(btn_color,btn_size);
-    const btn_oper: string      = operation ?? DataConstants.UNDEFINED;              
+    const btn_oper: string      = operation ?? "undefined";              
 
-    let iconclass:string = DataConstants.UNDEFINED;
+    let iconclass:string = "undefined";
     if(iconname){
         const icon_size: string = iconsize ?? AppThemifyIcons.DEF_SIZE;        
         iconclass= AppThemifyIcons.getIconClass(iconname,icon_size,iconcolor);

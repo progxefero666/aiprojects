@@ -14,10 +14,8 @@ import ApplicationEditorTools from "@/app/appeditor/paneltools";
 //db model and services
 import { Application } from "@/client/models/Application";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 import PageHeader from "./header";
 import { AppCard } from "./cards/appcard";
-import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { AppConstants } from "@/app_front/appconstants";
 import { ApiError } from "@/client/core/ApiError"
 import { AppAPI } from "@/app_front/appapi";
@@ -106,7 +104,7 @@ export default function ApplicationEditor() {
     };
 
     return (
-        <div id="cont_root" className="w-full h-auto bg-gray-900 " >
+        <div id="cont_root" className="w-full h-auto bg-gray-900" >
 
             {/* header */}
             <PageHeader />
