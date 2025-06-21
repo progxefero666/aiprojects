@@ -9,7 +9,7 @@
 */
 
 /**
- * class AppThemifyIcons.TI_CLOSE TI_ANGLE_UP
+ * class AppThemifyIcons.TI_EDIT TI_ANGLE_UP
  */
 export class AppThemifyIcons {
 
@@ -81,6 +81,7 @@ export class AppThemifyIcons {
         const colorClass: string = AppThemifyIcons.getColorClassName(icon_color);
         const sizeClass: string = AppThemifyIcons.getSizeClassName(iconSize);
         const iconclass: string = colorClass.concat(" ti ").concat(sizeClass).concat(" ti-").concat(icon);
+        console.log(iconclass)
         return iconclass;
     }
 

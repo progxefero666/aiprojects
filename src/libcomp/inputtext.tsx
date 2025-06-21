@@ -1,29 +1,40 @@
 //src\lib\xuicomp\form\inputtext.tsx
 
-import { forwardRef, useState } from "react";
-
-export interface InputTextProps {
-    disabled?:boolean;
+import { forwardRef, useEffect, useState } from "react";
+interface InputTextProps {
     name: string;
+    disabled?: boolean;
     classname?: string;
     label?: string;
-    defaultvalue?: string;
-    onchange?: (name: string, result: unknown) => void;
     placeholder?: string;
-    maxlen: number;
+    defaultvalue?: string;
+    maxlen?: number;
+    autofocus?: boolean;  // Añadir esta prop
+    onchange?: (value: string) => void;  // Si la usas
 }
+
 export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
-    ({name,disabled,classname,label,placeholder,defaultvalue,maxlen},ref) => {
+    ({ name, disabled, classname, label, placeholder, defaultvalue, maxlen, autofocus, onchange }, ref) => {
 
         const handleOnChange = (value: string) => {
             if (onchange) {
+                onchange(value);
             }
         }
+
+        /*
+        useEffect(() => {
+            if (autofocus && ref && typeof ref !== 'function') {
+                ref.current?.focus(); 
+            }
+        }, [autofocus, ref]);
+        */
 
         const renderContent = () => (
             <>
                 {label && <p className="w-full p-0 mx-0 mt-0 mb-1">{label}</p>}
-                <input                
+                <input
+                    autoFocus={autofocus}
                     name={name}
                     className="input w-full bg-gray-700 rounded-md"
                     ref={ref}
@@ -31,11 +42,12 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
                     placeholder={placeholder}
                     defaultValue={defaultvalue}
                     onChange={(e) => handleOnChange(e.target.value)}
-                    maxLength={maxlen} />
+                    maxLength={maxlen}
+                    disabled={disabled}  // Faltaba esta prop
+                />
             </>
         );
 
-        // Decide si envolver el contenido en un div con className o no
         return classname ? (
             <div className={classname}>{renderContent()}</div>
         ) : (

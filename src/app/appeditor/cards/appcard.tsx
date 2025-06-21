@@ -55,8 +55,9 @@ export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }
     //const [appTypes, setAppTypes] = useState<AppType[]>([]);
     const [appTypesNames, setAppTypesNames] = useState<string[]>(["uno", "dos"]);
 
-    const typeRef = useRef<HTMLInputElement>(null);
-    const proglanguageRef = useRef<HTMLInputElement>(null);
+    const typeRef = useRef<HTMLSelectElement>(null);
+    const proglanguageRef = useRef<HTMLSelectElement>(null);
+
     const nameRef = useRef<HTMLInputElement>(null);
     const osystemRef = useRef<HTMLInputElement>(null);
     const authorRef = useRef<HTMLInputElement>(null);
@@ -83,8 +84,7 @@ export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }
                 const apptypes = await ApptypesService.getAll();
                 const apptypes_names: string[] = ApptypesService.getCollNames(apptypes);
                 setAppTypesNames(apptypes_names);
-                console.log(apptypes_names);
-
+                
                 const proglangsNames = await ProgLangCodeService.getAllNames();
                 setProgLangs(proglangsNames);
                 setReady(true);
@@ -104,126 +104,105 @@ export function AppCard({ app, onedit, ondelete, iconname, iconsize, iconcolor }
 
                 <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
 
-                    <InputText ref={authorRef}
-                        disabled={disabled}
-                        label="Auhor"
-                        defaultvalue={app.author}
-                        maxlen={AppDef.AUTHOR_MAXLEN}
-                        name="author" />
+                    <InputText name="author" ref={authorRef} label="Auhor"
+                               defaultvalue={app.author} maxlen={AppDef.AUTHOR_MAXLEN}
+                               disabled={disabled} autofocus={true}  />
 
-                    <InputText ref={descriptionRef}
-                        disabled={disabled}
-                        label="Description"
-                        defaultvalue={app.description}
-                        maxlen={AppDef.DESCRIPTION_MAXLEN}
-                        name="description" />
+                    <InputText name="reference" ref={referenceRef} label="reference"                                                         
+                               defaultvalue={app.reference} maxlen={AppDef.REFERENCE_MAXLEN}
+                               disabled={disabled} />
 
-                    <InputText ref={urlRef}
-                        label="url"
-                        disabled={disabled}
-                        defaultvalue={app.appurl}
-                        maxlen={AppDef.URL_MAXLEN}
-                        name="url" />
+                    <InputText name="description" ref={descriptionRef} label="Description"
+                               defaultvalue={app.description} maxlen={AppDef.DESCRIPTION_MAXLEN}
+                               disabled={disabled}/>
 
-                    <InputText ref={pathRef}
-                        label="path"
-                        disabled={disabled}
-                        defaultvalue={app.apppath}
-                        maxlen={AppDef.PATH_MAXLEN}
-                        name="path" />
+                    <InputText name="url" ref={urlRef} label="url"                        
+                               defaultvalue={app.appurl} maxlen={AppDef.URL_MAXLEN}  
+                               disabled={disabled}/>
+
+                    <InputText name="path" ref={pathRef} label="path"                                                         
+                               defaultvalue={app.apppath} maxlen={AppDef.PATH_MAXLEN}
+                               disabled={disabled} />
                 </div>
 
                 <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-4">
 
                     <FieldWrapper label="Type">
-                        <InputSelect name="type"
-                            collection={appTypesNames}
-                            defaultvalue={appTypesNames[0]}
-                            disabled={disabled} />
+                        <InputSelect name="type" ref={typeRef} collection={appTypesNames}
+                                     defaultvalue={appTypesNames[0]}
+                                     disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="prog Lang">
-                        <InputSelect name="proglanguage"
-                            collection={progLangs}
-                            defaultvalue={app.proglanguage!}
-                            disabled={disabled} />
+                        <InputSelect name="proglanguage" ref={proglanguageRef} collection={progLangs}
+                                     defaultvalue={app.proglanguage!}
+                                     disabled={disabled} />
                     </FieldWrapper>
 
-                    <FieldWrapper label="Op. System">
-                        <InputText ref={osystemRef}
-                            disabled={disabled}
-                            defaultvalue={app.osystem}
-                            maxlen={AppDef.OSSYSTEM_MAXLEN}
-                            name="opsystem" />
+                    <FieldWrapper label="System">
+                        <InputText name="opsystem" ref={osystemRef}                                   
+                                   defaultvalue={app.osystem}
+                                   maxlen={AppDef.OSSYSTEM_MAXLEN}
+                                   disabled={disabled}/>
                     </FieldWrapper>
 
                     <FieldWrapper label="local Dev" >
-                        <InputCheck name="localdev"  ref={localdevRef}
-                                    classname="ml-[6px]"                            
+                        <InputCheck name="localdev" ref={localdevRef} classname="ml-[12px]"                            
                                     defaultvalue={app.localdev!} 
                                     disabled={disabled}/>
                     </FieldWrapper>
 
-                    <FieldWrapper label="Use Docker">
-                        <InputCheck name="usedocker" ref={usedockerRef}
-                                    classname="ml-[6px]"                            
+                    <FieldWrapper label="Docker">
+                        <InputCheck name="usedocker" ref={usedockerRef} classname="ml-[12px]"                            
                                     defaultvalue={app.usedocker!} 
                                     disabled={disabled}/>
                     </FieldWrapper>
 
                     <FieldWrapper label="ctr. Users">
-                        <InputCheck name="controlusers" ref={controlusersRef!}
-                                    classname="ml-[6px]"
+                        <InputCheck name="controlusers" ref={controlusersRef!} classname="ml-[12px]"
                                     defaultvalue={app.controlusers!}
                                     disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="use UI">                     
-                        <InputCheck name="useui" ref={useuiRef}
-                                    classname="ml-[6px]"                                
+                        <InputCheck name="useui" ref={useuiRef} classname="ml-[12px]"                                
                                     defaultvalue={app.useui!}
                                     disabled={disabled} />                        
                     </FieldWrapper>
 
                     <FieldWrapper label="use Agents">
-                        <InputCheck name="useagents" ref={useagentsRef}
-                                    classname="ml-[6px]"                            
+                        <InputCheck name="useagents" ref={useagentsRef} classname="ml-[12px]"                            
                                     defaultvalue={app.useagents!}                            
                                     disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. Db">
-                        <InputCheck name="consumedb" ref={consumedbRef}
-                                    classname="ml-[6px]"
+                        <InputCheck name="consumedb" ref={consumedbRef} classname="ml-[12px]"
                                     defaultvalue={app.consumedb!}
                                     disabled={disabled} />
                     </FieldWrapper>
 
-
                     <FieldWrapper label="cons. Api">
-                        <InputCheck name="consumeapi" ref={consumeapiRef}
-                                    classname="ml-[6px]"                                    
+                        <InputCheck name="consumeapi" ref={consumeapiRef} classname="ml-[12px]"                                    
                                     defaultvalue={app.consumeapi!}
                                     disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. AI">
-                        <InputCheck name="consumeai" ref={consumeaiRef}
-                                    classname="ml-[6px]"
+                        <InputCheck name="consumeai" ref={consumeaiRef} classname="ml-[12px]"
                                     defaultvalue={app.consumeai!}
                                     disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="expose Db">
-                        <InputCheck name="exposedb" ref={exposedbRef}
-                                    classname="ml-[6px]"
+                        <InputCheck name="exposedb" ref={exposedbRef} classname="ml-[12px]"
                                     defaultvalue={app.exposedb!}
                                     disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="expose Api">
-                        <InputCheck name="exposeapi" ref={exposeapiRef}
-                                    classname="ml-[6px]" defaultvalue={app.exposeapi!}
+                        <InputCheck name="exposeapi" ref={exposeapiRef} classname="ml-[12px]"
+                                    defaultvalue={app.exposeapi!}
                                     disabled={disabled} />
                     </FieldWrapper>
 

@@ -5,7 +5,13 @@ import { AppUIButtons } from "@/style/appui";
 import { DataConstants } from "@/lib/common/app/dataconstants";
 import { BarButtonsConfig } from "@/types/types";
 import { useEffect } from "react";
+import { TwDaisyUtil } from "@/twdaisy/twdaisyutil";
 
+/*
+btn-info 💾  
+ti ti-sm ti-write
+AppThemifyIcons.TI_EDIT
+*/
 export interface BarButtonsIfc {
     onclick: (operation: string) => void;
     barconfig: BarButtonsConfig;
@@ -15,46 +21,36 @@ export interface BarButtonsIfc {
 }
 export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }: BarButtonsIfc) {
 
-    const buttonSize = btnsize ?? "sm";
-    const iconSize = iconsize ?? "sm";
-    const iconColor = iconscolor ?? "white";
+    const buttonSize = btnsize ?? "md";
+    const iconSize = iconsize ?? "md";
+    const iconColor = iconscolor ?? "icon-color-white";
+    const iconStyleBase:string = TwDaisyUtil.addSpace(iconColor).concat("ti ti-").concat(iconSize);
 
-    useEffect(() => {
+    const renderButton = (key:string, operation:string, disabled: boolean,
+                          text:string,color:string, icon?: string) => {
 
-    }, []);
-
-    const renderButton = (key:string,operation: string, disabled: boolean,
-                          text: string, color: string, icon?: string) => {
-        const onButtonClick = () => {
+        const onButtonClick = () => {alert(operation);
             onclick(operation);
         };
 
-        //btn-info
-        const getClassName = (color:string):string => {
-            let style:string = "btn btn-sm ".concat(color);
+        const getButtonClass = (color:string):string => {
+            let style:string = "btn btn-".concat(buttonSize).concat(" ").concat(color);
             return style;
         };
 
-        if (!icon) {
-            return (
-                <button key={key}
-                    className={getClassName(color)}
+        const getIconClass= (name:string):string => {
+            let style:string = TwDaisyUtil.addSpace(iconStyleBase).concat(name);
+            return style;
+        };
+
+        return (
+            <button key={key} className={getButtonClass(color)}
                     disabled={disabled}
                     onClick={onButtonClick}>
-                    {text ? text : null}
-                </button>
-            )
-        }
-        else {
-            return (
-                <button  key={key}
-                    className={getClassName(color)}
-                    disabled={disabled}
-                    onClick={onButtonClick}>
-                    {text ? text : null}
-                </button>
-            )
-        }
+                {icon ? <div className={getIconClass(icon)} /> : null}    
+                {text ? text : null}
+            </button>
+        )
     }
 
     return (
