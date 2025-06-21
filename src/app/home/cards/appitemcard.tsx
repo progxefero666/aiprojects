@@ -11,7 +11,7 @@ import { OutputCheck } from "@/libcomp/outputcheck";
 import { OutputText } from "@/libcomp/ouputtext";
 import { XButton } from "@/libcomp/button";
 import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
-import { AppConstants } from "@/lib/arquitect/appconstants";
+import { AppConstants } from "@/app_front/appconstants";
 
 import { MdPreview } from 'md-editor-rt';
 //import 'md-editor-rt/lib/preview.css';
@@ -29,30 +29,14 @@ export interface AppItemCardProp {
 export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, iconcolor }: AppItemCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
-
     const onCollapse = (operation_id?: string) => {
         setcollapse(!collapse);
     };
-
-    const [disabled, setDisabled] = useState<boolean>(false);
-
-    //relational collections
-    const [progLangs, setProgLangs] = useState<string[]>([]);
-    //const [appTypes, setAppTypes] = useState<AppType[]>([]);
-    const [appTypesNames, setAppTypesNames] = useState<string[]>([]);
-
     const refInline: string = " (".concat(app.reference!).concat(")");
 
-    const init = async () => {
-        const proglangsNames = await ProgLangCodeService.getAllNames();
-        const apptypes = await ApptypesService.getAll();
-        setProgLangs(proglangsNames);
-        setAppTypesNames(ApptypesService.getCollNames(apptypes));
-    };
-
     useEffect(() => {
-        //setDisabled(false);
-        init();
+        //const init = async () => {};
+        //init();
     }, []);
 
     const onClick = (opId: string) => {

@@ -22,14 +22,6 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
             }
         }
 
-        /*
-        useEffect(() => {
-            if (autofocus && ref && typeof ref !== 'function') {
-                ref.current?.focus(); 
-            }
-        }, [autofocus, ref]);
-        */
-
         const inputClassName = classname && classname.includes('flex-1') 
             ? "input w-full bg-gray-700 rounded-md flex-1" 
             : "input w-full bg-gray-700 rounded-md";

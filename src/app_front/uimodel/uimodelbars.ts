@@ -1,6 +1,6 @@
 //src\app_front\uimodel\uimodelbars.ts
 
-import { AppConstants } from "@/lib/arquitect/appconstants";
+import { AppConstants } from "@/app_front/appconstants";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 
 // template: BARCFG_OPEN

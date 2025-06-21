@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { TwDaisyUtil } from "./twdaisyutil";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
-import { AppConstants } from "@/lib/arquitect/appconstants";
+import { AppConstants } from "@/app_front/appconstants";
 
 
 /**

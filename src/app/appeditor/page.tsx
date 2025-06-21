@@ -18,7 +18,7 @@ import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 import PageHeader from "./header";
 import { AppCard } from "./cards/appcard";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
-import { AppConstants } from "@/lib/arquitect/appconstants";
+import { AppConstants } from "@/app_front/appconstants";
 import { ApiError } from "@/client/core/ApiError"
 import { AppAPI } from "@/app_front/appapi";
 import { showUiPopupMessage } from "@/libcomp/pumessage";

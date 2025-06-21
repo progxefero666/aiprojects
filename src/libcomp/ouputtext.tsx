@@ -2,7 +2,12 @@
 
 import { forwardRef, useState } from "react";
 
+
+const contStyle: string = "w-full h-auto flex items-center grid grid-cols-[35%_65%] px-[8px]";
+const cellStyle:string = "w-full h-auto";
+
 export interface OutputTextIfc {
+    display?:string;
     value: string;
     label?: string;
     classname?: string;    
@@ -22,5 +27,6 @@ export function OutputText({ value, classname, label }: OutputTextIfc) {
             {renderContent()}
         </div>
     ) 
-}
+
+}//end comp
 

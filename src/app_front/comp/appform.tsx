@@ -7,7 +7,7 @@ import { AppThemifyIcons } from "@/style/appthicons";
 import { InputText } from '@/libcomp/inputtext';
 import { InputSelect } from '@/libcomp/inputselect';
 import { InputCheckold } from '@/libcomp/inputcheckold';
-import { AppConstants } from '../../lib/arquitect/appconstants';
+import { AppConstants } from '../appconstants';
 import { ProgLangCodeService } from '@/client_aidatabase/ProglanguagesService';
 import { ApptypesService } from '@/client_aidatabase/ApptypesService';
 import { AppDef } from '../manapplications/applicationdef';

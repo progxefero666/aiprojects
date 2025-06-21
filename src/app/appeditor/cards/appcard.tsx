@@ -23,7 +23,7 @@ import 'md-editor-rt/lib/preview.css';
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
-import { AppConstants } from "@/lib/arquitect/appconstants";
+import { AppConstants } from "@/app_front/appconstants";
 import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 
 const style_component: string = "w-full flex flex-col bg-base-100 p-[10px] rounded-lg border border-zinc-500";
