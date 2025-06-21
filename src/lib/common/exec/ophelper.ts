@@ -1,8 +1,8 @@
 //only server
 
 import { OpDataResult } from "./model/opdataresult";
-import { OpResult } from "./model/opresult";
-import { OpCfg } from "./opconfig";
+import { OpResult } from "../../arquitect/model/opresult";
+import { OpCfg } from "../../arquitect/model/opconfig";
 
 /**
  * class OpHelper 

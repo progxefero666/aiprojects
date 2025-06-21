@@ -1,5 +1,5 @@
 
-import { OpCfg } from "../opconfig";
+import { OpCfg } from "../../../arquitect/model/opconfig";
 
 
 /**

@@ -1,6 +1,6 @@
 //only server
 
-import { OpCfg } from "../opconfig";
+import { OpCfg } from "./opconfig";
 
 
 /**

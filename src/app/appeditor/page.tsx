@@ -22,7 +22,6 @@ import { renderAlert } from "@/twdaisy/twdaisycomp";
 import PageHeader from "./header";
 import ApplicationEditorTools from "@/app/appeditor/secondarybar";
 import { AppTheme } from "@/app_front/apptheme";
-import PageMain from "./pagemain";
 /**
  * Page Index JSX Client
  * start command:
@@ -49,17 +48,86 @@ export default function ApplicationEditor() {
         init();
     }, []);
 
+     const saveApplication = async (application: Application) => {
+        try {
+            const result = await ApplicationsService.update(application.id!, application);
+        }
+        catch (error) {
+            if (error instanceof ApiError) {
+                AppAPI.outputApiError(error);
+            }
+            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_ERROR);
+        }
+        finally {
+            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_SUCCESS);
+            setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);       
+        }
+    };
+
+    const loadsection = (name: string): void => {
+        let act_section: Option | null = null;
+
+        if (name === AppEditorCfg.SECTION_MAIN.name) {
+            act_section = AppEditorCfg.SECTION_MAIN;
+        }
+        else if (name === AppEditorCfg.SECTION_DOCS.name) {
+            act_section = AppEditorCfg.SECTION_DOCS;
+        }
+        else if (name === AppEditorCfg.SECTION_TASKS.name) {
+            act_section = AppEditorCfg.SECTION_TASKS;
+        }
+        if (act_section) {
+            setSection(act_section);
+        }
+    }
 
     const onToolsMessage = (message: string): void => {
         console.log(message);
     }
 
-    if (!app) {return <div>Loading...</div>;}
+    if (!app) {
+        return <div>Loading...</div>;
+    }
+
+    const renderMainContent = () => {
+        if (section === AppEditorCfg.SECTION_MAIN) {          
+            return (
+                <AppCard app={app} save={saveApplication} />
+            );
+        }
+        if (section === AppEditorCfg.SECTION_DOCS) {
+            return (<div>docs</div>);
+        }
+        if (section === AppEditorCfg.SECTION_TASKS) {
+            return (<div>tasks</div>);
+        }
+    };
 
     return (
         <div id="cont_root" className={AppTheme.LAYOUT_STYLE} >
+
+            {/* header */}
             <PageHeader />
-            <PageMain app={app}/>
+
+            {/* body */}
+            <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
+
+                <div className="w-full min-h-screen flex flex-col px-2 mb-2">
+                    <TwDaisyMenu onselection={loadsection}
+                        options={AppEditorCfg.SECTIONS}
+                        optactname={AppEditorCfg.ACTIVE_SECTION.name}
+                        optcolor={AppTheme.MENU_OPT_COLOR}
+                        optactcolor={AppTheme.MENU_OPT_ACT_COLOR} />
+                </div>
+
+                <div className={AppTheme.BODY_MONITOR_STYLE}>
+                    {renderMainContent()}
+                </div>
+
+                <ApplicationEditorTools  />
+
+            </div>
+
             {(alertMessage !== AppConstants.NOT_DEF) ? renderAlert(alertMessage) : null}
 
         </div>

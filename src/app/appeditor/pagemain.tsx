@@ -25,46 +25,35 @@ import { AppTheme } from "@/app_front/apptheme";
  * JSX Component layout secondary column
  * Application Editor Tools
  */
-export interface PageMainProp {
-    app: Application;
-}
-export default function PageMain({ app }: PageMainProp) {
+export interface PageMainProp {section:Option;app?:Application;}
+
+
+const executeSaveApplication = async (application: Application): Promise<string> => {
+    try {
+        const result = await ApplicationsService.update(application.id!, application);
+    }
+    catch (error) {
+        if (error instanceof ApiError) { AppAPI.outputApiError(error); }
+        return String(error);
+    }
+    finally {
+        return AppEditorMessages.MSG_SAVE_APP_SUCCESS;
+    }
+};
+
+export default function PageMain({ section,app }: PageMainProp) {
 
     const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
-    const [section, setSection] = useState<Option>(AppEditorCfg.ACTIVE_SECTION);
-
-    const loadsection = (name: string): void => {
-        let act_section: Option | null = null;
-
-        if (name === AppEditorCfg.SECTION_MAIN.name) {
-            act_section = AppEditorCfg.SECTION_MAIN;
-        }
-        else if (name === AppEditorCfg.SECTION_DOCS.name) {
-            act_section = AppEditorCfg.SECTION_DOCS;
-        }
-        else if (name === AppEditorCfg.SECTION_TASKS.name) {
-            act_section = AppEditorCfg.SECTION_TASKS;
-        }
-        if (act_section) {setSection(act_section);}
-    }
 
     const saveApplication = async (application: Application) => {
-        try {
-            const result = await ApplicationsService.update(application.id!, application);
-        }
-        catch (error) {
-            if (error instanceof ApiError) {AppAPI.outputApiError(error);}
-            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_ERROR);
-        }
-        finally {
-            setAlertMessage(AppEditorMessages.MSG_SAVE_APP_SUCCESS);
-            setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);
-        }
+        const result:string = await executeSaveApplication(application);
     };
 
     const renderMainContent = () => {
-        if (section === AppEditorCfg.SECTION_MAIN) {
-            return (<AppCard app={app} save={saveApplication} />);
+        if (section === AppEditorCfg.SECTION_MAIN) {          
+            return (
+                <AppCard app={app!} save={saveApplication} />
+            );
         }
         if (section === AppEditorCfg.SECTION_DOCS) {
             return (<div>docs</div>);
@@ -74,18 +63,8 @@ export default function PageMain({ app }: PageMainProp) {
         }
     };
     return (
-        <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
-            <div className="w-full min-h-screen flex flex-col px-2 mb-2">
-                <TwDaisyMenu onselection={loadsection}
-                    options={AppEditorCfg.SECTIONS}
-                    optactname={AppEditorCfg.ACTIVE_SECTION.name}
-                    optcolor={AppTheme.MENU_OPT_COLOR}
-                    optactcolor={AppTheme.MENU_OPT_ACT_COLOR} />
-            </div>
-            <div className={AppTheme.BODY_MONITOR_STYLE}>
-                {renderMainContent()}
-            </div>
-            <ApplicationEditorTools />
+        <div className={AppTheme.BODY_MONITOR_STYLE}>
+            {renderMainContent()}
         </div>
     )
 
