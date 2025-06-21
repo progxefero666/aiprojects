@@ -36,17 +36,18 @@ export interface AppCardProp {
     collapse: boolean;
     app: Application;
     barconfig: BarButtonsCfg;
+    mode: string;
     onedit: () => void;
     onsave: (app:Application) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppCard({collapse,app,barconfig,onedit,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
+export function AppCard({collapse,app,barconfig,mode,onedit,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
 
     const [isCollapse, setIsCollapse] = useState<boolean>(collapse);
-    const onCollapse = (operation_id?: string) => { setIsCollapse(!collapse); };
-    const [disabled, setDisabled] = useState<boolean>(false);
+    
+    const [disabled, setDisabled] = useState<boolean>(true);
 
     //relational collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
@@ -54,7 +55,7 @@ export function AppCard({collapse,app,barconfig,onedit,onsave,iconname,iconsize,
 
     //aplication edition
     const nameRef = useRef<HTMLInputElement>(null);
-    
+
     const typeRef = useRef<HTMLSelectElement>(null);
     const proglanguageRef = useRef<HTMLSelectElement>(null);    
     const osystemRef = useRef<HTMLInputElement>(null);
@@ -77,19 +78,26 @@ export function AppCard({collapse,app,barconfig,onedit,onsave,iconname,iconsize,
     const refInline: string = " - (".concat(app.reference!).concat(")");
 
     useEffect(() => {
-        
+        if(mode===AppConstants.MODE_EDITION){            
+            setDisabled(false);
+        }        
         const init = async () => {
             const proglangsNames = await ProgLangCodeService.getAllNames();
             const apptypes = await ApptypesService.getAll();
             setProgLangs(proglangsNames);
             setAppTypesNames(ApptypesService.getCollNames(apptypes));
         };
-        init();
-    }, []);
+        if(appTypesNames.length==0){init();}        
+    });
 
     const onClick = (opId: string) => {
         //app.updatedate
-        if (opId === AppConstants.MODE_EDITION) { onedit(); }
+        //alert(opId);
+        //alert(AppConstants.MODE_READONLY);
+        if (opId === AppConstants.MODE_EDITION) {
+            alert("ostia pasasa");
+             onedit();
+        }
         else if (opId === AppConstants.ACT_SAVE) { 
             app.author      = authorRef.current?.value! ?? AppConstants.NOT_DEF;
             app.description = descriptionRef.current?.value! ?? AppConstants.NOT_DEF;
@@ -112,6 +120,11 @@ export function AppCard({collapse,app,barconfig,onedit,onsave,iconname,iconsize,
         }
     };
 
+    const onCollapse = (operation_id?: string) => { 
+        alert(!isCollapse);
+        setIsCollapse(!isCollapse); 
+    };
+
     const renderMainContent = () => {
         return (
             <div className="w-full h-auto rounded-md">
@@ -120,7 +133,7 @@ export function AppCard({collapse,app,barconfig,onedit,onsave,iconname,iconsize,
 
                     <InputText name="author" ref={authorRef} label="Auhor"
                         defaultvalue={app.author} maxlen={AppDef.AUTHOR_MAXLEN}
-                        disabled={disabled} autofocus={true} />
+                        disabled={disabled} />
 
                     <InputText name="reference" ref={referenceRef} label="reference"
                         defaultvalue={app.reference} maxlen={AppDef.REFERENCE_MAXLEN}
@@ -244,7 +257,9 @@ export function AppCard({collapse,app,barconfig,onedit,onsave,iconname,iconsize,
                         }
                     </div>
                     <div className={style_title}>
-                        <p>{app.name}</p> <p className="ml-[6px] text-sm">{refInline}</p>
+                        <InputText name="name" ref={authorRef} 
+                                   defaultvalue={app.name} maxlen={AppDef.NAME_MAXLEN}
+                                   disabled={disabled} autofocus={true} />           
                     </div>
                 </div>
 
@@ -259,7 +274,7 @@ export function AppCard({collapse,app,barconfig,onedit,onsave,iconname,iconsize,
     return (
         <div className={style_component}>
             {renderHeader()}
-            {!collapse ? renderMainContent() : null}
+            {!isCollapse ? renderMainContent() : null}
         </div>
     )
 

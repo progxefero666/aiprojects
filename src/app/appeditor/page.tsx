@@ -13,69 +13,57 @@ import ApplicationEditorTools from "@/app/appeditor/paneltools";
 
 //db model and services
 import { Application } from "@/client/models/Application";
-import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
 import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 import PageHeader from "./header";
 import { AppCard } from "./cards/appcard";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
-import { showUiPopupConfirm } from "@/libcomp/puconfirm";
 import { AppConstants } from "@/lib/arquitect/appconstants";
-
 import { ApiError } from "@/client/core/ApiError"
 import { AppAPI } from "@/app_front/appapi";
 import { showUiPopupMessage } from "@/libcomp/pumessage";
-import { renderAlert, TwDaisyCompBase } from "@/twdaisy/twdaisycomp";
+import { renderAlert } from "@/twdaisy/twdaisycomp";
+
 /**
  * Page Index JSX Client
  * start command:
  *  npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
  *  ManApplicationUtil.getFormEntity
+ *  
+ *  ApplicationEditor
  */
-
 export const PAGE_EDITOR_PATH: string = "./appeditor";
-
 export default function ApplicationEditor() {
 
     //const router = useRouter();
     const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
-    const [showAlert, setShowAlert] = useState<boolean>(false);
-
-    const [collapse, setCollapse] = useState<boolean>(true);
+    const [collapse, setCollapse] = useState<boolean>(false);
     const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
 
-    //collections
-    const [progLangs, setProgLangs] = useState<string[]>([]);
-    const [appTypes, setAppTypes] = useState<string[]>([]);
-
     //application
-    const [mode, setMode] = useState<string>(AppConstants.MODE_READONLY);
-    const [appId, setAppId] = useState<number>(-1);
-    const [app, setApp] = useState<Application | null>(null);
+    const [app, setApp]         = useState<Application | null>(null);
+    const [mode, setMode]       = useState<string>(AppConstants.MODE_READONLY);
     const [section, setSection] = useState<Option>(AppEditorConfig.ACTIVE_SECTION);
 
 
     useEffect(() => {
-        const app_id: number = AppStorage.readApplicationId()
-        setAppId(app_id);
         const init = async () => {
-            const appColls: ManCmmCollections = new ManCmmCollections();
+            const app_id: number = AppStorage.readApplicationId()
             const app_load: Application = await ApplicationsService.getById(app_id);
-            setProgLangs(appColls.codelangsNames);
-            setAppTypes(appColls.apptypesNames);
             setApp(app_load);
         };
         init();
     }, []);
 
-    const onModeEdition = useCallback((): void => {
-        setMode(AppConstants.MODE_EDITION);
+    
+    function onModeEdition ():void {
+        setMode(AppConstants.MODE_EDITION);        
         setCollapse(false);
         setBarConfig(prev => ({
             ...prev,
             visibled: [false, true]
-        }));
-    }, []);
+        }));        
+    }
 
      const onSave = async (application: Application) => {
         try {
@@ -88,9 +76,11 @@ export default function ApplicationEditor() {
             showUiPopupMessage("Error saving app");
         }
         finally {
+            setMode(AppConstants.MODE_READONLY);
             setAlertMessage("!! Operation Success !!");
-            setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);
+            setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);       
         }
+        
     };
 
     const loadsection = (name: string): void => {
@@ -122,8 +112,9 @@ export default function ApplicationEditor() {
         //if(mode==AppConstants.MODE_READONLY){}
         //else if(mode==AppConstants.MODE_EDITION){}
         if (section === AppEditorConfig.SECTION_MAIN) {
+          
             return (
-                <AppCard barconfig={barConfig} collapse={collapse}
+                <AppCard mode={mode} barconfig={barConfig} collapse={collapse}
                     app={app} onedit={onModeEdition} onsave={onSave} />
 
             );
