@@ -76,9 +76,9 @@ export  const renderButton = (key:string, operation:string,
 
 export const renderBarButtons = (onclick:(operation:string)=>void, 
                                  barconfig: BarButtonsCfg, 
-                                 btnsize: string, 
-                                 iconsize: string, 
-                                 iconcolor: string) => {
+                                 btnsize:   string|null, 
+                                 iconsize:  string|null,
+                                 iconcolor: string|null) => {
     return(
         <div className={TwDaisyCompBase.BAR_ROW_STYLE}>
             {barconfig.operations.map((op: string, index: number) => (

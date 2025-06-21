@@ -1,14 +1,5 @@
 //src\libcomp\model\barbuttonscfg.ts
 
-
-/**
- *     operations: ["delete","edit","save"],
-    texts:      ["delete", "edit","save"],
-    disabled:   [false, false, true],
-    color:      ["btn-info", "btn-success","btn-error"],
-    icons:      ["ti-trash","ti-write","ti-save"]
- */
-
 /**
  * class Template
  */

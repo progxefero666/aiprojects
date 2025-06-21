@@ -2,34 +2,26 @@
 
 
 import { BarButtonsCfg } from "./model/barbuttonscfg";
-import { renderButton, TwDaisyCompBase } from "@/twdaisy/twdaisycomp";
+import { renderBarButtons, renderButton, TwDaisyCompBase } from "@/twdaisy/twdaisycomp";
 
 //btn-info 💾  
 
-export interface BarButtonsIfc {
+/**
+ * JSX BarButtons
+ */
+export interface BarButtonsProps {
     onclick: (operation: string) => void;
     barconfig: BarButtonsCfg;
     btnsize?: string;
     iconsize?: string;
     iconscolor?: string;
+    classname?: string;
 }
-export function BarButtons({ onclick, barconfig, btnsize, iconsize, iconscolor }: BarButtonsIfc) {
-
-    return (
-        <div className={TwDaisyCompBase.BAR_ROW_STYLE}>
-            {barconfig.operations.map((op: string, index: number) => (
-                renderButton(index.toString(),
-                             op,onclick,
-                             btnsize??TwDaisyCompBase.BUTTON_SIZE_DEF,
-                             iconsize??TwDaisyCompBase.ICON_SIZE_DEF,
-                             iconscolor??TwDaisyCompBase.ICON_COLOR_DEF,
-                             barconfig.disabled[index],
-                             barconfig.visibled[index],
-                             barconfig.texts[index],                             
-                             barconfig.color[index],
-                             barconfig.icons[index])
-            ))}
-        </div>
-    )
+export function BarButtons({classname,onclick,barconfig,btnsize,iconsize,iconscolor}:BarButtonsProps) {
+    const renderContent = () => (
+        renderBarButtons(onclick,barconfig,btnsize??null,iconsize??null,iconscolor??null)
+    );
+    return classname ? (<div className={classname}>{renderContent()}</div>) 
+                     : (renderContent());
 
 }//end component
