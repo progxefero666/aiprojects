@@ -26,7 +26,7 @@ export default function PageHeader({ ontest }: PageHeaderProp) {
 
     return (
 
-        <div className="w-full h-auto grid grid-cols-[17%_65%_17%] pt-[12px] pb-[6px]">
+        <div className="w-full h-auto grid grid-cols-[17%_65%_17%] pt-[12px] pb-[10px]">
 
             {/*column left */}
             <div className="w-full flex flex-row items-center px-2 top-2">

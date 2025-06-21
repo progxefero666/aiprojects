@@ -1,4 +1,4 @@
-//src\app\appeditor\appeditorcard.tsx
+//src\app\appeditor\cards\appcard.tsx
 
 import React, { useEffect, useRef, useState } from "react";
 import { AppThemifyIcons } from "@/style/appthicons";
@@ -26,10 +26,12 @@ import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { AppConstants } from "@/lib/arquitect/appconstants";
 import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 
-const style_component: string = "w-full flex flex-col bg-base-100 p-[10px] border border-zinc-500";
-const style_header: string = "w-full h-auto grid grid-cols-2 auto-cols-max  rounded-lg border border-sky-500";
-const style_header_title: string = "flex flex-row items-center pl-[6px] text-white text-xs";
-const style_title: string = "w-full flex items-center flex-row ml-[12px] text-white text-lg";
+const style_component: string = "w-full flex flex-col bg-base-100 p-[10px] rounded-lg border border-zinc-500";
+const style_header: string = "w-full h-auto flex flex-row items-center justify-between rounded-lg border border-sky-500";
+const style_header_title: string = "flex flex-row items-center pl-[6px] text-white text-xs flex-1";
+
+const style_title: string = "flex items-center flex-row ml-[12px] text-white text-lg flex-1";
+
 const style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";
 
 export interface AppCardProp {  
@@ -42,8 +44,9 @@ export interface AppCardProp {
 export function AppCard({app,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
 
     const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
-    const [collapse, setCollapse] = useState<boolean>(false);    
-    const [disabled, setDisabled] = useState<boolean>(true);
+    const [mode,setMode]           = useState<string>(AppConstants.MODE_READONLY);
+    const [collapse, setCollapse]   = useState<boolean>(false);    
+    const [disabled, setDisabled]   = useState<boolean>(true);
 
     //relational collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
@@ -74,12 +77,6 @@ export function AppCard({app,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
     const refInline: string = " - (".concat(app.reference!).concat(")");
 
     useEffect(() => {
-
-        /*
-        if(mode===AppConstants.MODE_EDITION){            
-            setDisabled(false);
-        }        
-        */
         const init = async () => {
             const proglangsNames = await ProgLangCodeService.getAllNames();
             const apptypes = await ApptypesService.getAll();
@@ -90,14 +87,19 @@ export function AppCard({app,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
     });
 
     const onClick = (opId: string) => {
-        //app.updatedate
-        //alert(opId);
-        //alert(AppConstants.MODE_READONLY);
+
         if (opId === AppConstants.MODE_EDITION) {
-            alert("ostia pasasa");
-             
+            setDisabled(false);  
+            setMode(AppConstants.MODE_EDITION);
+            // Dar foco al input del nombre después de habilitar la edición
+            setTimeout(() => {
+                nameRef.current?.focus();
+            }, 100);           
         }
         else if (opId === AppConstants.ACT_SAVE) { 
+            alert("execute save");
+            setMode(AppConstants.MODE_EDITION);   
+            /*
             app.author      = authorRef.current?.value! ?? AppConstants.NOT_DEF;
             app.description = descriptionRef.current?.value! ?? AppConstants.NOT_DEF;
             app.appurl      = urlRef.current?.value! ?? AppConstants.NOT_DEF;
@@ -116,6 +118,7 @@ export function AppCard({app,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
             app.useui       = useuiRef.current?.checked?? false;
             app.useagents   = useagentsRef.current?.checked?? false;
             onsave(app); 
+            */
         }
     };
 
@@ -256,9 +259,10 @@ export function AppCard({app,onsave,iconname,iconsize,iconcolor}: AppCardProp) {
                         }
                     </div>
                     <div className={style_title}>
-                        <InputText name="name" ref={authorRef} 
+                        <InputText name="name" ref={nameRef} 
                                    defaultvalue={app.name} maxlen={AppDef.NAME_MAXLEN}
-                                   disabled={disabled} autofocus={true} />           
+                                   disabled={disabled} autofocus={true} 
+                                   classname="flex-1 mr-[10px]" />           
                     </div>
                 </div>
 

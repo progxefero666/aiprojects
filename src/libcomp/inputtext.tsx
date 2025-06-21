@@ -30,20 +30,24 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
         }, [autofocus, ref]);
         */
 
+        const inputClassName = classname && classname.includes('flex-1') 
+            ? "input w-full bg-gray-700 rounded-md flex-1" 
+            : "input w-full bg-gray-700 rounded-md";
+
         const renderContent = () => (
             <>
                 {label && <p className="w-full p-0 mx-0 mt-0 mb-1">{label}</p>}
                 <input
                     autoFocus={autofocus}
                     name={name}
-                    className="input w-full bg-gray-700 rounded-md"
+                    className={inputClassName}
                     ref={ref}
                     type="text"
                     placeholder={placeholder}
                     defaultValue={defaultvalue}
                     onChange={(e) => handleOnChange(e.target.value)}
                     maxLength={maxlen}
-                    disabled={disabled}  // Faltaba esta prop
+                    disabled={disabled}
                 />
             </>
         );
