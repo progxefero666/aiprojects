@@ -1,3 +1,5 @@
+//src\app_front\manapplications\appeditorcfg.ts
+
 import { Option } from "@/lib/common/model/base/option";
 
 

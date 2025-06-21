@@ -8,7 +8,7 @@ import { Option } from "@/lib/common/model/base/option";
 import { AppStorage } from "@/app_front/appstorge";
 import TwDaisyMenu from "@/twdaisy/twdaisymenu";
 
-import { AppEditorConfig } from "@/app_front/manapplications/appeditor";
+import { AppEditorConfig } from "@/app_front/manapplications/appeditorcfg";
 import ApplicationEditorTools from "@/app/appeditor/paneltools";
 
 //db model and services
@@ -29,6 +29,7 @@ import { renderAlert } from "@/twdaisy/twdaisycomp";
  *  ManApplicationUtil.getFormEntity
  *  
  *  ApplicationEditor
+ *  src\app_front\manapplications\appeditorcfg.ts
  */
 export const PAGE_EDITOR_PATH: string = "./appeditor";
 
@@ -55,13 +56,12 @@ export default function ApplicationEditor() {
             if (error instanceof ApiError) {
                 AppAPI.outputApiError(error);
             }
-            showUiPopupMessage("Error saving app");
+            setAlertMessage("!! Error saving app !!");
         }
         finally {
             setAlertMessage("!! Operation Success !!");
             setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);       
         }
-        
     };
 
     const loadsection = (name: string): void => {

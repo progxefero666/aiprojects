@@ -33,7 +33,9 @@ const style_header_title: string = "flex flex-row items-center pl-[6px] text-whi
 const style_title: string = "flex items-center flex-row ml-[12px] text-white text-lg flex-1";
 
 const style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";
-
+/**
+ * src\app_front\manapplications\appeditorcfg.ts
+ */
 export interface AppCardProp {  
     app: Application;
     save: (app:Application) => void;
