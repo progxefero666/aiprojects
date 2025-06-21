@@ -7,7 +7,7 @@ import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 
 /**
  * class TwDaisyCompBase 
- * TwDaisyCompBase.BAR_ROW_STYLE
+ * TwDaisyCompBase.ALERTS_SUCCESS_STYLE
  */
 export class TwDaisyCompBase {
 
@@ -18,6 +18,9 @@ export class TwDaisyCompBase {
     public static ICON_SIZE_DEF: string = "sm";
     
     public static readonly BAR_ROW_STYLE:string ="w-auto h-auto flex flex-row gap-3"
+
+    public static readonly ALERTS_SUCCESS_STYLE:string 
+        = "alert alert-success flex justify-center fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-auto";
 
     //icon-color-white1
     public static ICON_STYLE_BASE:string = TwDaisyUtil

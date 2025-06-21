@@ -21,6 +21,11 @@ import { AppCard } from "./cards/appcard";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { showUiPopupConfirm } from "@/libcomp/puconfirm";
 import { AppConstants } from "@/lib/arquitect/appconstants";
+
+import {ApiError} from "@/client/core/ApiError"
+import { AppAPI } from "@/app_front/appapi";
+import { showUiPopupMessage } from "@/libcomp/pumessage";
+import { TwDaisyCompBase } from "@/twdaisy/twdaisycomp";
 /**
  * Page Index JSX Client
  * start command:
@@ -31,9 +36,10 @@ import { AppConstants } from "@/lib/arquitect/appconstants";
 export const PAGE_EDITOR_PATH: string = "./appeditor";
 
 export default function ApplicationEditor() {
-    //const router = useRouter();
 
-    
+    //const router = useRouter();
+    const [showAlert, setShowAlert] = useState<boolean>(false);
+
     const [collapse, setCollapse] = useState<boolean>(true);
     const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
 
@@ -47,7 +53,7 @@ export default function ApplicationEditor() {
     const [app, setApp] = useState<Application | null>(null);
     const [section, setSection] = useState<Option>(AppEditorConfig.ACTIVE_SECTION);
 
-   
+
     useEffect(() => {
         const app_id: number = AppStorage.readApplicationId()
         setAppId(app_id);
@@ -70,11 +76,21 @@ export default function ApplicationEditor() {
         }));
     }, []);
 
-    const onSave = async (application:Application) => {
-        const result = await ApplicationsService.update(application.id!,application);
-        console.log(result);
-        alert("App Saved");
-    }
+    const onSave = async (application: Application) => {
+        try {
+            const result = await ApplicationsService.update(application.id!, application);
+        } 
+        catch (error) {
+            if (error instanceof ApiError) {
+                AppAPI.outputApiError(error);
+            }     
+            showUiPopupMessage("Error saving app");       
+        }
+        finally{
+            setShowAlert(true);                                        
+            setTimeout(() => setShowAlert(false), 3000);            
+        }
+    };
 
     const loadsection = (name: string): void => {
         let act_section: Option | null = null;
@@ -108,7 +124,7 @@ export default function ApplicationEditor() {
         if (section === AppEditorConfig.SECTION_MAIN) {
             return (
                 <AppCard barconfig={barConfig} collapse={collapse}
-                         app={app} onedit={onModeEdition} onsave={onSave} />
+                    app={app} onedit={onModeEdition} onsave={onSave} />
 
             );
         }
@@ -144,6 +160,15 @@ export default function ApplicationEditor() {
                 <ApplicationEditorTools ontoolsmessage={onToolsMessage} />
 
             </div>
+
+            {showAlert?
+                <div className={TwDaisyCompBase.ALERTS_SUCCESS_STYLE}>                    
+                    <div className = 
+                        {TwDaisyCompBase.getIconStyle(AppConstants.ICON_ACT_SAVE,null,null)} />
+                    <span>Operation Success!</span>
+                </div>
+
+            :null}
 
         </div>
     );
