@@ -12,6 +12,7 @@ import { OutputText } from "@/libcomp/ouputtext";
 import { XButton } from "@/libcomp/button";
 import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
 import { AppConstants } from "@/app_front/appconstants";
+import { AppTheme } from "@/app_front/apptheme";
 
 /*
 import { MdPreview } from 'md-editor-rt';
@@ -30,7 +31,7 @@ export interface AppItemCardProp {
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, iconcolor }: AppItemCardProp) {
+export function AppItemCard({ app, onselection, ondelete, iconname, iconsize, iconcolor }: AppItemCardProp) {
 
     const [collapse, setcollapse] = useState<boolean>(true);
     const onCollapse = (operation_id?: string) => {
@@ -39,7 +40,7 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
     const refInline: string = " (".concat(app.reference!).concat(")");
 
     const onClick = (opId: string) => {
-        if (opId === AppConstants.ACT_OPEN) {  
+        if (opId === AppConstants.ACT_OPEN) {
             onselection(app.id!);
         }
         else if (opId === AppConstants.ACT_ITEM__DELETE) {
@@ -47,28 +48,28 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
         }
     };
 
-   const renderMainContent = useMemo(() => {
+    const renderContent = () => {
         return (
-            <div className="w-full h-auto p-2 rounded-md">
+            <div className = {AppTheme.CARD_DATA_STYLE}>
 
-                <div className="w-full h-auto flex flex-col space-y-3 mb-4">
+                <div className = {AppTheme.LIST_IOTEXT_STYLE}>
                     <OutputText label="Author" value={app.author} />
                     <OutputText label="Description" value={app.description} />
                     <OutputText label="Url" value={app.appurl!} />
                     <OutputText label="Path" value={app.apppath!} />
                 </div>
 
-                <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-4">
+                <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-2">
 
                     <FieldWrapper label="App. Type">
                         <OutputText value={app.apptype} />
                     </FieldWrapper>
 
-                    <FieldWrapper label="prog Lang">
+                    <FieldWrapper label="code-lang">
                         <OutputText value={app.proglanguage!} />
                     </FieldWrapper>
 
-                    <FieldWrapper label="Op. System">
+                    <FieldWrapper label="System">
                         <OutputText value={app.osystem!} />
                     </FieldWrapper>
 
@@ -86,16 +87,18 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
             </div>
 
         )
-    }, []);
+    }
+    const HorizontalSeparator = ({ width = 20 }) => {
+    return <div style={{ width: `${width}px`, height: 'auto' }} />;
+    };
 
     return (
-        <div className="w-full flex flex-col bg-base-100 border border-zinc-500 rounded-lg p-2">
+        <div className = {AppTheme.CARD_STYLE}>
 
             {/* header */}
-            <div className="w-full h-auto grid grid-cols-2 auto-cols-max  rounded-lg border border-sky-500">
+            <div className = {AppTheme.CARD_HEADER_BAR_STYLE}>
 
-                {/* collapse comp items-end */}
-                <div className="flex flex-row items-center pl-[6px] text-white text-xs">
+                <div className = {AppTheme.CARD_HEADER_STYLE}>
                     <div>
                         {collapse ?
                             <XButton callback={onCollapse}
@@ -108,8 +111,11 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
                                 iconname={AppThemifyIcons.TI_ANGLE_UP} />
                         }
                     </div>
-                    <div className="w-full flex items-center flex-row ml-[12px] text-white text-lg">
-                        <p>{app.name}</p> <p className="ml-[6px] text-sm">{refInline}</p>
+
+                    <div className= {AppTheme.CARD_TITLE_STYLE}>
+                        <p className={AppTheme.TEXT_BIG_SIZE}>{app.name}</p> 
+                        <HorizontalSeparator width={10} />
+                        <p className={AppTheme.TEXT_BASE_SIZE}>{refInline}</p>
                     </div>
 
                 </div>
@@ -118,26 +124,10 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
                 <div className=" h-auto mr-[6px] my-[6px] flex justify-end">
                     <BarButtons barconfig={BARCFG_DELETE_OPEN} onclick={onClick} />
                 </div>
-
             </div>
 
-            {/* body */}
-              {!collapse ? renderMainContent : null}
+            {!collapse ? renderContent():null}
         </div>
     )
 
-
 } //end component
-
-/*
- <div className="w-full flex flex-col">
-                    <hr className="text-primary mb-2" />
-                    <div className="w-full text-white text-md pb-1">
-
-                    </div>
-
-                </div>
-                    <XButton callback={onClick}
-                             btntext="open" 
-                             btncolor={ThemeColors.INFO} />
- */

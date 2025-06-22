@@ -25,6 +25,7 @@ import 'md-editor-rt/lib/preview.css';
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
 import { AppConstants } from "@/app_front/appconstants";
 import { BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
+import { AppTheme } from "@/app_front/apptheme";
 
 const style_component: string = "w-full flex flex-col bg-base-100 p-[10px] rounded-lg border border-zinc-500";
 const style_header: string = "w-full h-auto flex flex-row items-center justify-between rounded-lg border border-sky-500";
@@ -133,9 +134,9 @@ export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
 
     const renderMainContent = () => {
         return (
-            <div className="w-full h-auto rounded-md">
+            <div className={AppTheme.CARD_DATA_STYLE}>
 
-                <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
+                <div className = {AppTheme.LIST_IOTEXT_STYLE}>
 
                     <InputText name="author" ref={authorRef} label="Auhor"
                         defaultvalue={app.author} maxlen={AppDef.AUTHOR_MAXLEN}

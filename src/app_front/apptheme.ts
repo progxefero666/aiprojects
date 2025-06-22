@@ -32,7 +32,7 @@ import { AppConstants } from "./appconstants";
     //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
 */
 
-//AppTheme.BODY_MONITOR_STYLE
+//AppTheme.LIST_IOTEXT_STYLE
 export class AppTheme {
 
     public static readonly LAYOUT_COLOR: string = "bg-gray-900";
@@ -67,6 +67,23 @@ export class AppTheme {
 
     public static readonly CARD_BORDER_COLOR: string = "border-zinc-500";
     public static readonly CARD_HEADER_BORDER_COLOR: string = "border-sky-500";
+
+    public static readonly CARD_STYLE: string 
+        ="w-full flex flex-col bg-base-100 border border-zinc-500 rounded-lg p-2";
+
+    public static readonly CARD_HEADER_BAR_STYLE: string 
+        = "w-full h-auto grid grid-cols-2 auto-cols-max  rounded-lg border border-sky-500";
+
+    public static readonly CARD_HEADER_STYLE: string =
+        "flex flex-row items-center pl-[6px] text-white text-xs"
+
+    public static readonly CARD_TITLE_STYLE: string 
+        = "w-full flex items-center flex-row ml-[12px] text-white text-lg";
+
+    public static readonly CARD_DATA_STYLE: string ="w-full h-auto p-2 rounded-md";
+
+    public static readonly LIST_IOTEXT_STYLE: string = "w-full h-auto flex flex-col space-y-3 mb-4";
+    
 
 }//end class
 
