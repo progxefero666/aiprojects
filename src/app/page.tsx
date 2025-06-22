@@ -44,7 +44,7 @@ if(manApps.appSel){
  *  npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
  */
 export default function Desktop() {
-    
+
     const router = useRouter();
     const [listApps, setListApps] = useState<Application[]>([]);
 
@@ -63,47 +63,47 @@ export default function Desktop() {
     }, []);
 
     const onSelectModule = () => {
-    
+
     }
 
     const onSelectApplication = (app_id: number) => {
         AppStorage.saveApplicationId(app_id);
-        router.push(PAGE_EDITOR_PATH);     
+        router.push(PAGE_EDITOR_PATH);
     }
 
     const onDelete = (): void => {
         showUiPopupConfirm("¿confirm delete application?").then(({ confirmed }) => {
             if (confirmed) {
-                alert("delete app");     
+                alert("delete app");
             }
         });
     }
-        
+
     const onAddApplication = () => {
-    
+
     }
 
-    const renderMainContent = useMemo(() => {
-       
+    const renderMainContent = () => {
         return (
-            <ul className="menu w-full rounded-box menu-md space-y-3">
+            <div className="w-full space-y-2">
                 {listApps.map((item, index) => (
-                    <li className="list-row" key={index}>
-                        <AppItemCard 
+                    <div key={index}>
+                        <AppItemCard
                             app={item}
                             ondelete={onDelete}
                             onselection={onSelectApplication}
                             iconname="file"
                             iconsize={undefined}
                             iconcolor={undefined} />
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
+
         );
-    }, [listApps]);
+    }
+
 
     return (
-
         <div id="cont_root" className={AppTheme.LAYOUT_STYLE} >
 
             {/* header */}
@@ -119,9 +119,9 @@ export default function Desktop() {
 
                 {/* column center */}
                 <div className={AppTheme.BODY_MONITOR_STYLE}>
-                    {renderMainContent}
+                    {renderMainContent()}
                 </div>
- 
+
                 {/* column right */}
                 <div className="w-full min-h-screen flex flex-col p-2">
                     Right Panel
@@ -132,4 +132,4 @@ export default function Desktop() {
         </div>
     );
 
-}//end 
+}//end

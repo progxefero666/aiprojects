@@ -13,11 +13,15 @@ import { XButton } from "@/libcomp/button";
 import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
 import { AppConstants } from "@/app_front/appconstants";
 
+/*
 import { MdPreview } from 'md-editor-rt';
 //import 'md-editor-rt/lib/preview.css';
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
-
+<MdPreview
+    value={dummy_content}
+    theme="dark" />
+*/
 export interface AppItemCardProp {
     app: Application;
     ondelete: () => void;
@@ -34,11 +38,6 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
     };
     const refInline: string = " (".concat(app.reference!).concat(")");
 
-    useEffect(() => {
-        //const init = async () => {};
-        //init();
-    }, []);
-
     const onClick = (opId: string) => {
         if (opId === AppConstants.ACT_OPEN) {  
             onselection(app.id!);
@@ -50,9 +49,9 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
 
    const renderMainContent = useMemo(() => {
         return (
-            <div className="w-full h-auto px-2 rounded-md">
+            <div className="w-full h-auto p-2 rounded-md">
 
-                <div className="w-full h-auto flex flex-col space-y-3 mb-[12px]">
+                <div className="w-full h-auto flex flex-col space-y-3 mb-4">
                     <OutputText label="Author" value={app.author} />
                     <OutputText label="Description" value={app.description} />
                     <OutputText label="Url" value={app.appurl!} />
@@ -90,7 +89,7 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
     }, []);
 
     return (
-        <div className="w-full flex flex-col bg-base-100 p-[10px] border border-zinc-500">
+        <div className="w-full flex flex-col bg-base-100 border border-zinc-500 rounded-lg p-2">
 
             {/* header */}
             <div className="w-full h-auto grid grid-cols-2 auto-cols-max  rounded-lg border border-sky-500">
@@ -121,10 +120,9 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
                 </div>
 
             </div>
-    
 
             {/* body */}
-            {!collapse ? renderMainContent : null}
+              {!collapse ? renderMainContent : null}
         </div>
     )
 
@@ -135,9 +133,6 @@ export function AppItemCard({ app, onselection, ondelete,iconname, iconsize, ico
  <div className="w-full flex flex-col">
                     <hr className="text-primary mb-2" />
                     <div className="w-full text-white text-md pb-1">
-                        <MdPreview
-                            value={dummy_content}
-                            theme="dark" />
 
                     </div>
 

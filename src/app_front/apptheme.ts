@@ -65,6 +65,9 @@ export class AppTheme {
     public static readonly MENU_OPT_COLOR: string = "btn-accent";
     public static readonly MENU_OPT_ACT_COLOR: string = "btn-warning";
 
+    public static readonly CARD_BORDER_COLOR: string = "border-zinc-500";
+    public static readonly CARD_HEADER_BORDER_COLOR: string = "border-sky-500";
+
 }//end class
 
 /**
