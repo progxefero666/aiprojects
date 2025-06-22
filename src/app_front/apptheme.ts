@@ -32,7 +32,7 @@ import { AppConstants } from "./appconstants";
     //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
 */
 
-//AppTheme.LIST_IOTEXT_STYLE
+//AppTheme.GRID_IOCHECKS_STYLE
 export class AppTheme {
 
     public static readonly LAYOUT_COLOR: string = "bg-gray-900";
@@ -82,8 +82,11 @@ export class AppTheme {
 
     public static readonly CARD_DATA_STYLE: string ="w-full h-auto p-2 rounded-md";
 
-    public static readonly LIST_IOTEXT_STYLE: string = "w-full h-auto flex flex-col space-y-3 mb-4";
-    
+    public static readonly LIST_IOTEXT_STYLE: string 
+        = "w-full h-auto flex flex-col space-y-3 mb-4";
+
+    public static readonly GRID_IOELEMS_STYLE: string 
+        = "w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-2";
 
 }//end class
 

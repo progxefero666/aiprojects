@@ -3,25 +3,14 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Option } from "@/lib/common/model/base/option";
 import { AppStorage } from "@/app_front/appstorge";
-import TwDaisyMenu from "@/twdaisy/twdaisymenu";
-
-import { AppEditorCfg, AppEditorMessages } from "@/app_front/manapplications/appeditor";
+import { AppEditorCfg } from "@/app_front/manapplications/appeditor";
 import { Application } from "@/client/models/Application";
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-
-import { AppCard } from "./cards/appcard";
-import { AppConstants } from "@/app_front/appconstants";
-import { ApiError } from "@/client/core/ApiError"
-import { AppAPI } from "@/app_front/appapi";
-import { renderAlert } from "@/twdaisy/twdaisycomp";
+import { AppTheme } from "@/app_front/apptheme";
 
 //page layout jsx components
 import PageHeader from "./header";
-
-import { AppTheme } from "@/app_front/apptheme";
 import PageMainContent from "./pagemain";
 import PagePrimaryBar from "./primarybar";
 import PageSecondaryBar from "./secondarybar";

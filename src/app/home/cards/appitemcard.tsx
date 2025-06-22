@@ -23,6 +23,10 @@ import 'md-editor-rt/lib/preview.css';
     value={dummy_content}
     theme="dark" />
 */
+
+export const HorizontalSeparator = ({ width = 20 }) => {
+    return <div style={{ width: `${width}px`, height: 'auto' }} />;
+};
 export interface AppItemCardProp {
     app: Application;
     ondelete: () => void;
@@ -59,7 +63,7 @@ export function AppItemCard({ app, onselection, ondelete, iconname, iconsize, ic
                     <OutputText label="Path" value={app.apppath!} />
                 </div>
 
-                <div className="w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-2">
+                <div className = {AppTheme.GRID_IOELEMS_STYLE}>
 
                     <FieldWrapper label="App. Type">
                         <OutputText value={app.apptype} />
@@ -88,9 +92,8 @@ export function AppItemCard({ app, onselection, ondelete, iconname, iconsize, ic
 
         )
     }
-    const HorizontalSeparator = ({ width = 20 }) => {
-    return <div style={{ width: `${width}px`, height: 'auto' }} />;
-    };
+
+
 
     return (
         <div className = {AppTheme.CARD_STYLE}>

@@ -4,44 +4,22 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppStorage } from "@/app_front/appstorge";
-
 import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
-
-import { PAGE_EDITOR_PATH } from "@/app/appeditor/page";
-import PageHeader from "@/app/home/header";
-import { ManagerAplications } from "../app_front/manapplications/manapps";
-import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
-import DesktopMenu from "./home/pagemenu";
 import { Application } from "@/client/models/Application";
 import { AppItemCard } from "./home/cards/appitemcard";
 import { showUiPopupConfirm } from "@/libcomp/puconfirm";
 import { AppTheme } from "@/app_front/apptheme";
-
-
-/*
-npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
-node fix-dates.js
-*/
-/*
-ManApplicationUtil.getFormEntity()
-const [progLangs, setProgLangs] = useState<string[]>([]);
-const [appTypes, setAppTypes] = useState<string[]>([]);
-const [listAppsNames, setListAppsNames] = useState<string[]>([]);
-const appColls: ManCmmCollections = new ManCmmCollections();
-const manApps: ManagerAplications = new ManagerAplications();     
-setProgLangs(appColls.codelangsNames);
-setAppTypes(appColls.apptypesNames);
-setListApps(manApps.listapps);
-setListAppsNames(manApps.listappsNames);
-if(manApps.appSel){
-    setAppSelected(manApps.appSel);
-}    
-*/
+import { PAGE_EDITOR_PATH } from "@/app/appeditor/page";
+import PageHeader from "@/app/home/header";
+import DesktopMenu from "./home/pagemenu";
+//import { ManagerAplications } from "../app_front/manapplications/manapps";
+//import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 
 /**
- * Main Page JSX: Applications Manager
- * start command:
- *  npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
+ *  start: npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
+ *       node fix-dates.js
+ * 
+ *  Main Page JSX: Applications Manager
  */
 export default function Desktop() {
 
@@ -49,7 +27,6 @@ export default function Desktop() {
     const [listApps, setListApps] = useState<Application[]>([]);
 
     useEffect(() => {
-
         const init = async () => {
             try {
                 const data_listapps = await ApplicationsService.getAll();
@@ -61,10 +38,6 @@ export default function Desktop() {
         };
         init();
     }, []);
-
-    const onSelectModule = () => {
-
-    }
 
     const onSelectApplication = (app_id: number) => {
         AppStorage.saveApplicationId(app_id);
@@ -133,3 +106,20 @@ export default function Desktop() {
     );
 
 }//end
+
+/*
+ManApplicationUtil.getFormEntity()
+const [progLangs, setProgLangs] = useState<string[]>([]);
+const [appTypes, setAppTypes] = useState<string[]>([]);
+const [listAppsNames, setListAppsNames] = useState<string[]>([]);
+const appColls: ManCmmCollections = new ManCmmCollections();
+const manApps: ManagerAplications = new ManagerAplications();     
+setProgLangs(appColls.codelangsNames);
+setAppTypes(appColls.apptypesNames);
+setListApps(manApps.listapps);
+setListAppsNames(manApps.listappsNames);
+if(manApps.appSel){
+    setAppSelected(manApps.appSel);
+}    
+*/
+

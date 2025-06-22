@@ -1,6 +1,7 @@
 //src\app_front\manager\manappsutil.ts
 
 import { AppConstants } from "../appconstants";
+import { AppDef } from "./applicationdef";
 
 /**
  * class ManApplicationUtil.getFormEntity()
@@ -17,19 +18,19 @@ export class ManApplicationUtil {
         const osystem: string = AppConstants.NOT_DEF;
         const appurl: string = AppConstants.NOT_DEF;
         const apppath: string = AppConstants.NOT_DEF;
-        const localdev: boolean = false;
-        const usedocker: boolean = false;
+        const localdev: boolean = AppDef.fdef_localdev;
+        const usedocker: boolean = AppDef.fdef_usedocker;
         const creationdate: Date = new Date();
         const updatedate: Date = new Date();
         const description: string = AppConstants.NOT_DEF;
-        const controlusers: boolean = false;
-        const useui: boolean = false;
-        const useagents: boolean = false;
-        const consumedb: boolean = false;
-        const consumeapi: boolean = false;
-        const consumeai: boolean = false;
-        const exposedb: boolean = false;
-        const exposeapi: boolean = false;       
+        const controlusers: boolean = AppDef.fdef_controlusers;
+        const useui: boolean = AppDef.fdef_useui;
+        const useagents: boolean = AppDef.fdef_useagents;
+        const consumedb: boolean = AppDef.fdef_consumedb;
+        const consumeapi: boolean = AppDef.fdef_consumeapi;
+        const consumeai: boolean = AppDef.fdef_consumeapi;
+        const exposedb: boolean = AppDef.fdef_exposedb;
+        const exposeapi: boolean = AppDef.fdef_exposeapi;       
 
         const app = {name,reference,
             author,apptype,proglanguage,osystem,appurl,apppath,localdev,usedocker,
