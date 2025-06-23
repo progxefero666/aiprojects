@@ -7,18 +7,17 @@ import { forwardRef, useEffect, useState } from "react";
 
 interface InputCheckIfc {
     name: string;
+    label?: string;
     inline?: boolean;
     readonly?: boolean;
-    disabled?: boolean;
-    label?: string;
-    placeholder?: string;
+    disabled?: boolean;    
     defaultvalue?: boolean;
-    maxlen?: number;
-    autofocus?: boolean; 
-    onchange?: (value: string) => void;
+    onchange?: (value:string,name?:string) => void;
+    placeholder?: string;    
+    autofocus?: boolean;     
 }
 export const InputCheck = forwardRef<HTMLInputElement, InputCheckIfc>(({
-                name, label,placeholder,defaultvalue,
+                name, label, placeholder,defaultvalue,
                 inline, readonly, disabled, autofocus, onchange }, ref) => {
 
         const showInline:boolean = inline ?? false;
@@ -41,17 +40,15 @@ export const InputCheck = forwardRef<HTMLInputElement, InputCheckIfc>(({
 
         const renderEditComp = () => {
             let cell_style:string = "";
-            if(isDisabled){cell_style = AppTheme.C_DISABLED_STYLE;}
-            else          {cell_style = AppTheme.C_EDIT_STYLE;}
+            if(isDisabled){cell_style = AppTheme.INPUT_CHECK_DISABLED_STYLE}
+            else          {cell_style = AppTheme.INPUT_CHECK_STYLE}
 
             return (
-                <div className={cell_style}>
-                <input  ref={ref} type="checkbox"
-                        className={AppTheme.INPUT_CHECK_STYLE}                                                
+                <input className={cell_style} ref={ref}
+                        type="checkbox"                                            
                         defaultChecked={defaultvalue}                                
                         onChange={(e) => handleOnChange?.(e.target.checked)}
                         disabled={disabled} />              
-                </div>
             ) 
         }
 

@@ -37,19 +37,19 @@ const style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";
 /**
  * src\app_front\manapplications\appeditorcfg.ts
  */
-export interface AppCardProp {  
+export interface AppCardProp {
     app: Application;
-    save: (app:Application) => void;
+    save: (app: Application) => void;
     iconname?: string;
     iconcolor?: string;
     iconsize?: string;
 }
-export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
+export function AppCard({ app, save, iconname, iconsize, iconcolor }: AppCardProp) {
 
     const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EDITION);
-    const [mode,setMode]           = useState<string>(AppConstants.MODE_READONLY);
-    const [collapse, setCollapse]   = useState<boolean>(false);    
-    const [disabled, setDisabled]   = useState<boolean>(true);
+    const [mode, setMode] = useState<string>(AppConstants.MODE_READONLY);
+    const [collapse, setCollapse] = useState<boolean>(false);
+    const [disabled, setDisabled] = useState<boolean>(true);
 
     //relational collections
     const [progLangs, setProgLangs] = useState<string[]>([]);
@@ -59,7 +59,7 @@ export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
     const nameRef = useRef<HTMLInputElement>(null);
 
     const typeRef = useRef<HTMLSelectElement>(null);
-    const proglanguageRef = useRef<HTMLSelectElement>(null);    
+    const proglanguageRef = useRef<HTMLSelectElement>(null);
     const osystemRef = useRef<HTMLInputElement>(null);
     const authorRef = useRef<HTMLInputElement>(null);
     const referenceRef = useRef<HTMLInputElement>(null);
@@ -86,57 +86,57 @@ export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
             setProgLangs(proglangsNames);
             setAppTypesNames(ApptypesService.getCollNames(apptypes));
         };
-        if(appTypesNames.length==0){init();}        
+        if (appTypesNames.length == 0) { init(); }
     });
 
     const updateObjApplication = () => {
-        app.author      = authorRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.author = authorRef.current?.value! ?? AppConstants.NOT_DEF;
         app.description = descriptionRef.current?.value! ?? AppConstants.NOT_DEF;
-        app.appurl      = urlRef.current?.value! ?? AppConstants.NOT_DEF;
-        app.apppath     = pathRef.current?.value! ?? AppConstants.NOT_DEF;
-        app.apptype     = typeRef.current?.value! ?? AppConstants.NOT_DEF;
-        app.proglanguage= proglanguageRef.current?.value! ?? AppConstants.NOT_DEF;
-        app.osystem     = osystemRef.current?.value! ?? AppConstants.NOT_DEF;
-        app.localdev    = localdevRef.current?.checked?? AppDef.fdef_localdev;
-        app.usedocker   = usedockerRef.current?.checked?? AppDef.fdef_usedocker;
-        app.consumeai   = consumeaiRef.current?.checked?? AppDef.fdef_consumeai;
-        app.consumeapi  = consumeapiRef.current?.checked?? AppDef.fdef_consumeapi;
-        app.consumedb   = consumedbRef.current?.checked?? AppDef.fdef_consumedb;
-        app.exposeapi   = exposeapiRef.current?.checked?? AppDef.fdef_exposeapi;
-        app.exposedb    = exposedbRef.current?.checked?? AppDef.fdef_exposedb;
-        app.useui       = useuiRef.current?.checked?? AppDef.fdef_useui;
-        app.useagents   = useagentsRef.current?.checked?? AppDef.fdef_useagents;
+        app.appurl = urlRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.apppath = pathRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.apptype = typeRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.proglanguage = proglanguageRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.osystem = osystemRef.current?.value! ?? AppConstants.NOT_DEF;
+        app.localdev = localdevRef.current?.checked ?? AppDef.fdef_localdev;
+        app.usedocker = usedockerRef.current?.checked ?? AppDef.fdef_usedocker;
+        app.consumeai = consumeaiRef.current?.checked ?? AppDef.fdef_consumeai;
+        app.consumeapi = consumeapiRef.current?.checked ?? AppDef.fdef_consumeapi;
+        app.consumedb = consumedbRef.current?.checked ?? AppDef.fdef_consumedb;
+        app.exposeapi = exposeapiRef.current?.checked ?? AppDef.fdef_exposeapi;
+        app.exposedb = exposedbRef.current?.checked ?? AppDef.fdef_exposedb;
+        app.useui = useuiRef.current?.checked ?? AppDef.fdef_useui;
+        app.useagents = useagentsRef.current?.checked ?? AppDef.fdef_useagents;
     }
 
     const onClick = (opId: string) => {
 
         if (opId === AppConstants.MODE_EDITION) {
-            const bar_cfg:BarButtonsCfg = barConfig;
-            barConfig.visibled = [false,true];
+            const bar_cfg: BarButtonsCfg = barConfig;
+            barConfig.visibled = [false, true];
             setBarConfig(bar_cfg);
-            setDisabled(false);  
+            setDisabled(false);
             setTimeout(() => {
                 nameRef.current?.focus();
-            }, 100);           
+            }, 100);
         }
         else if (opId === AppConstants.ACT_SAVE) {
-            updateObjApplication();   
-            save(app);                
+            updateObjApplication();
+            save(app);
             setBarConfig(BARCFG_EDITION);
-            setDisabled(true);  
+            setDisabled(true);
         }
     };
 
-    const onCollapse = (operation_id?: string) => { 
+    const onCollapse = (operation_id?: string) => {
         //alert(!collapse);
-        setCollapse(!collapse); 
+        setCollapse(!collapse);
     };
 
     const renderMainContent = () => {
         return (
             <div className={AppTheme.CARD_DATA_STYLE}>
 
-                <div className = {AppTheme.LIST_IOTEXT_STYLE}>
+                <div className={AppTheme.LIST_IOTEXT_STYLE}>
 
                     <InputText name="author" ref={authorRef} label="Auhor"
                         defaultvalue={app.author} maxlen={AppDef.AUTHOR_MAXLEN}
@@ -159,86 +159,75 @@ export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
                         disabled={disabled} />
                 </div>
 
-                <div className = {AppTheme.GRID_IOELEMS_STYLE}>
+                <div className={AppTheme.GRID_IOELEMS_STYLE}>
 
-                    <FieldWrapper label="Type">
-                        <InputSelect name="type" ref={typeRef} collection={appTypesNames}
-                            defaultvalue={appTypesNames[0]}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputSelect name="type" ref={typeRef} inline={true}
+                        label="Type"
+                        collection={appTypesNames}
+                        defaultvalue={appTypesNames[0]}
+                        disabled={disabled} />
+        
+                    <InputSelect name="proglanguage" ref={proglanguageRef} inline={true}
+                         label="code lang"
+                        collection={progLangs}
+                        defaultvalue={app.proglanguage!}
+                        disabled={disabled} />
+    
+                    <InputText name="opsystem" ref={osystemRef} inline={true}
+                                label="system"
+                                defaultvalue={app.osystem}
+                                maxlen={AppDef.OSSYSTEM_MAXLEN}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="prog Lang">
-                        <InputSelect name="proglanguage" ref={proglanguageRef} collection={progLangs}
-                            defaultvalue={app.proglanguage!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="localdev" ref={localdevRef} inline={true}
+                                label="local dev"
+                                defaultvalue={app.localdev!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="System">
-                        <InputText name="opsystem" ref={osystemRef}
-                            defaultvalue={app.osystem}
-                            maxlen={AppDef.OSSYSTEM_MAXLEN}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="usedocker" ref={usedockerRef} inline={true}
+                                label="use docker"
+                                defaultvalue={app.usedocker!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="local Dev" >
-                        <InputCheck name="localdev" ref={localdevRef} 
-                            defaultvalue={app.localdev!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="controlusers" ref={controlusersRef!} inline={true}
+                                label="control users"
+                                defaultvalue={app.controlusers!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="Docker">
-                        <InputCheck name="usedocker" ref={usedockerRef}
-                            defaultvalue={app.usedocker!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="useui" ref={useuiRef} inline={true}
+                                label="use ui"
+                                defaultvalue={app.useui!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="ctr. Users">
-                        <InputCheck name="controlusers" ref={controlusersRef!} 
-                            defaultvalue={app.controlusers!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="useagents" ref={useagentsRef} inline={true}
+                                label="use agents"
+                                defaultvalue={app.useagents!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="use UI">
-                        <InputCheck name="useui" ref={useuiRef} 
-                            defaultvalue={app.useui!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="consumedb" ref={consumedbRef} inline={true}
+                                label="consume db"
+                                defaultvalue={app.consumedb!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="use Agents">
-                        <InputCheck name="useagents" ref={useagentsRef}
-                            defaultvalue={app.useagents!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="consumeapi" ref={consumeapiRef} inline={true}
+                                label="consume api"
+                                defaultvalue={app.consumeapi!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="cons. Db">
-                        <InputCheck name="consumedb" ref={consumedbRef}
-                            defaultvalue={app.consumedb!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="consumeai" ref={consumeaiRef} inline={true}
+                                label="consume ai"
+                                defaultvalue={app.consumeai!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="cons. Api">
-                        <InputCheck name="consumeapi" ref={consumeapiRef} 
-                            defaultvalue={app.consumeapi!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="exposedb" ref={exposedbRef} inline={true}
+                                label="expose db"
+                                defaultvalue={app.exposedb!}
+                                disabled={disabled} />
 
-                    <FieldWrapper label="cons. AI">
-                        <InputCheck name="consumeai" ref={consumeaiRef}
-                            defaultvalue={app.consumeai!}
-                            disabled={disabled} />
-                    </FieldWrapper>
-
-                    <FieldWrapper label="expose Db">
-                        <InputCheck name="exposedb" ref={exposedbRef}
-                            defaultvalue={app.exposedb!}
-                            disabled={disabled} />
-                    </FieldWrapper>
-
-                    <FieldWrapper label="expose Api">
-                        <InputCheck name="exposeapi" ref={exposeapiRef} 
-                            defaultvalue={app.exposeapi!}
-                            disabled={disabled} />
-                    </FieldWrapper>
+                    <InputCheck name="exposeapi" ref={exposeapiRef} inline={true}
+                                label="expose api"
+                                defaultvalue={app.exposeapi!}
+                                disabled={disabled} />
 
                 </div>
             </div>
@@ -262,17 +251,17 @@ export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
                         }
                     </div>
                     <div className={style_title}>
-                        <InputText name="name" ref={nameRef} 
-                                   defaultvalue={app.name} maxlen={AppDef.NAME_MAXLEN}
-                                   disabled={disabled} autofocus={true} 
-                                   classname="flex-1 mr-[10px]" />           
+                        <InputText name="name" ref={nameRef}
+                            defaultvalue={app.name} maxlen={AppDef.NAME_MAXLEN}
+                            disabled={disabled} autofocus={true}
+                            classname="flex-1 mr-[10px]" />
                     </div>
                 </div>
 
                 {/* headermbuttons */}
                 <BarButtons classname={style_barbuttons}
-                            barconfig={barConfig}
-                            onclick={onClick} />
+                    barconfig={barConfig}
+                    onclick={onClick} />
             </div>
         )
     };

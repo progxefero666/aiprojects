@@ -114,6 +114,14 @@ export class AppTheme {
     public static readonly INPUT_CHECK_STYLE: string = 
         "checkbox bg-gray-700 checked:bg-amber-500 text-black text-black border border-gray-300"
 
+
+    public static readonly INPUT_CHECK_DISABLED_STYLE: string = 
+        "checkbox bg-gray-900 checked:bg-amber-500 text-black text-black border border-gray-300"
+
+    public static readonly  C_SELECT_EDIT_STYLE: string = "select w-full bg-gray-700"
+    public static readonly C_SELECT_DISABLED_STYLE: string = "select w-full bg-gray-700"
+    public static readonly C_SELECT_READONLY_STYLE: string = "select w-full bg-gray-700"
+
 }//end class
 
 /*
