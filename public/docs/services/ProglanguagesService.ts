@@ -2,34 +2,34 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DocCategory } from '../models/DocCategory';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
-export class DoccategoriesService {
+import type { ProgLanguage } from '../../../src/client/models/ProgLanguage';
+import type { CancelablePromise } from '../../../src/client/core/CancelablePromise';
+import { OpenAPI } from '../../../src/client/core/OpenAPI';
+import { request as __request } from '../../../src/client/core/request';
+export class ProglanguagesService {
     /**
      * Getall
-     * @returns DocCategory Successful Response
+     * @returns ProgLanguage Successful Response
      * @throws ApiError
      */
-    public static getallApiDoccategoriesGet(): CancelablePromise<Array<DocCategory>> {
+    public static getallApiProglanguagesGet(): CancelablePromise<Array<ProgLanguage>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/doccategories/',
+            url: '/api/proglanguages/',
         });
     }
     /**
      * Create
      * @param requestBody
-     * @returns DocCategory Successful Response
+     * @returns ProgLanguage Successful Response
      * @throws ApiError
      */
-    public static createApiDoccategoriesPost(
-        requestBody: DocCategory,
-    ): CancelablePromise<DocCategory> {
+    public static createApiProglanguagesPost(
+        requestBody: ProgLanguage,
+    ): CancelablePromise<ProgLanguage> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/doccategories/',
+            url: '/api/proglanguages/',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -40,15 +40,15 @@ export class DoccategoriesService {
     /**
      * Get
      * @param id
-     * @returns DocCategory Successful Response
+     * @returns ProgLanguage Successful Response
      * @throws ApiError
      */
-    public static getApiDoccategoriesIdGet(
+    public static getApiProglanguagesIdGet(
         id: number,
-    ): CancelablePromise<DocCategory> {
+    ): CancelablePromise<ProgLanguage> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/doccategories/{id}',
+            url: '/api/proglanguages/{id}',
             path: {
                 'id': id,
             },
@@ -61,16 +61,16 @@ export class DoccategoriesService {
      * Update
      * @param id
      * @param requestBody
-     * @returns DocCategory Successful Response
+     * @returns ProgLanguage Successful Response
      * @throws ApiError
      */
-    public static updateApiDoccategoriesIdPut(
+    public static updateApiProglanguagesIdPut(
         id: number,
-        requestBody: DocCategory,
-    ): CancelablePromise<DocCategory> {
+        requestBody: ProgLanguage,
+    ): CancelablePromise<ProgLanguage> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/doccategories/{id}',
+            url: '/api/proglanguages/{id}',
             path: {
                 'id': id,
             },
@@ -84,15 +84,15 @@ export class DoccategoriesService {
     /**
      * Delete
      * @param id
-     * @returns DocCategory Successful Response
+     * @returns ProgLanguage Successful Response
      * @throws ApiError
      */
-    public static deleteApiDoccategoriesIdDelete(
+    public static deleteApiProglanguagesIdDelete(
         id: number,
-    ): CancelablePromise<DocCategory> {
+    ): CancelablePromise<ProgLanguage> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/doccategories/{id}',
+            url: '/api/proglanguages/{id}',
             path: {
                 'id': id,
             },

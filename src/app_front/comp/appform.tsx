@@ -8,8 +8,8 @@ import { InputText } from '@/libcomp/inputtext';
 import { InputSelect } from '@/libcomp/inputselect';
 import { InputCheckold } from '@/libcomp/inputcheckold';
 import { AppConstants } from '../appconstants';
-import { ProgLangCodeService } from '@/client_aidatabase/ProglanguagesService';
-import { ApptypesService } from '@/client_aidatabase/ApptypesService';
+import { ProgLangCodeService } from '@/client/service/ProglanguagesService';
+import { ApptypesService } from '@/client/service/ApptypesService';
 import { AppDef } from '../manapplications/applicationdef';
 import { Application } from '@/client/models/Application';
 

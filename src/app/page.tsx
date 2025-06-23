@@ -4,7 +4,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppStorage } from "@/app_front/appstorge";
-import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
+import { ApplicationsService } from "@/client/service/ApplicationsService";
 import { Application } from "@/client/models/Application";
 import { AppItemCard } from "./home/cards/appitemcard";
 import { showUiPopupConfirm } from "@/libcomp/puconfirm";

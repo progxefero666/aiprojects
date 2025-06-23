@@ -2,34 +2,34 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DocCategory } from '../models/DocCategory';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
-export class DoccategoriesService {
+import type { TaskType } from '../../../src/client/models/TaskType';
+import type { CancelablePromise } from '../../../src/client/core/CancelablePromise';
+import { OpenAPI } from '../../../src/client/core/OpenAPI';
+import { request as __request } from '../../../src/client/core/request';
+export class TasktypesService {
     /**
      * Getall
-     * @returns DocCategory Successful Response
+     * @returns TaskType Successful Response
      * @throws ApiError
      */
-    public static getallApiDoccategoriesGet(): CancelablePromise<Array<DocCategory>> {
+    public static getallApiTasktypesGet(): CancelablePromise<Array<TaskType>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/doccategories/',
+            url: '/api/tasktypes/',
         });
     }
     /**
      * Create
      * @param requestBody
-     * @returns DocCategory Successful Response
+     * @returns TaskType Successful Response
      * @throws ApiError
      */
-    public static createApiDoccategoriesPost(
-        requestBody: DocCategory,
-    ): CancelablePromise<DocCategory> {
+    public static createApiTasktypesPost(
+        requestBody: TaskType,
+    ): CancelablePromise<TaskType> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/doccategories/',
+            url: '/api/tasktypes/',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -40,15 +40,15 @@ export class DoccategoriesService {
     /**
      * Get
      * @param id
-     * @returns DocCategory Successful Response
+     * @returns TaskType Successful Response
      * @throws ApiError
      */
-    public static getApiDoccategoriesIdGet(
+    public static getApiTasktypesIdGet(
         id: number,
-    ): CancelablePromise<DocCategory> {
+    ): CancelablePromise<TaskType> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/doccategories/{id}',
+            url: '/api/tasktypes/{id}',
             path: {
                 'id': id,
             },
@@ -61,16 +61,16 @@ export class DoccategoriesService {
      * Update
      * @param id
      * @param requestBody
-     * @returns DocCategory Successful Response
+     * @returns TaskType Successful Response
      * @throws ApiError
      */
-    public static updateApiDoccategoriesIdPut(
+    public static updateApiTasktypesIdPut(
         id: number,
-        requestBody: DocCategory,
-    ): CancelablePromise<DocCategory> {
+        requestBody: TaskType,
+    ): CancelablePromise<TaskType> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/doccategories/{id}',
+            url: '/api/tasktypes/{id}',
             path: {
                 'id': id,
             },
@@ -84,15 +84,15 @@ export class DoccategoriesService {
     /**
      * Delete
      * @param id
-     * @returns DocCategory Successful Response
+     * @returns TaskType Successful Response
      * @throws ApiError
      */
-    public static deleteApiDoccategoriesIdDelete(
+    public static deleteApiTasktypesIdDelete(
         id: number,
-    ): CancelablePromise<DocCategory> {
+    ): CancelablePromise<TaskType> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/doccategories/{id}',
+            url: '/api/tasktypes/{id}',
             path: {
                 'id': id,
             },

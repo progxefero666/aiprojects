@@ -6,10 +6,10 @@ import { AppType } from "@/client/models/AppType";
 import { DocCategory } from "@/client/models/DocCategory";
 import { DocType } from "@/client/models/DocType";
 
-import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
-import { ApptypesService } from "@/client_aidatabase/ApptypesService";
-import { DocTypesService } from "@/client_aidatabase/DoctypesService";
-import { DocCategoriesService } from "@/client_aidatabase/DoccategoriesService";
+import { ProgLangCodeService } from "@/client/service/ProglanguagesService";
+import { ApptypesService } from "@/client/service/ApptypesService";
+import { DocTypesService } from "@/client/service/DoctypesService";
+import { DocCategoriesService } from "@/client/service/DoccategoriesService";
 
 
 /**

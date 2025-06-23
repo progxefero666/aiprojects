@@ -2,10 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AppType } from '../models/AppType';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { AppType } from '../../../src/client/models/AppType';
+import type { CancelablePromise } from '../../../src/client/core/CancelablePromise';
+import { OpenAPI } from '../../../src/client/core/OpenAPI';
+import { request as __request } from '../../../src/client/core/request';
 export class ApptypesService {
     /**
      * Getall

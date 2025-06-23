@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AppStorage } from "@/app_front/appstorge";
 import { AppEditorCfg } from "@/app_front/manapplications/appeditor";
 import { Application } from "@/client/models/Application";
-import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
+import { ApplicationsService } from "@/client/service/ApplicationsService";
 import { AppTheme } from "@/app_front/apptheme";
 
 //page layout jsx components

@@ -8,8 +8,8 @@ import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
 import { XButton } from "@/libcomp/button";
 
-import { ProgLangCodeService } from "@/client_aidatabase/ProglanguagesService";
-import { ApptypesService } from "@/client_aidatabase/ApptypesService";
+import { ProgLangCodeService } from "@/client/service/ProglanguagesService";
+import { ApptypesService } from "@/client/service/ApptypesService";
 
 
 import { InputCheck } from "@/libcomp/inputcheck";

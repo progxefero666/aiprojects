@@ -2,34 +2,34 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AppType } from '../models/AppType';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
-export class ApptypesService {
+import type { DocType } from '../../../src/client/models/DocType';
+import type { CancelablePromise } from '../../../src/client/core/CancelablePromise';
+import { OpenAPI } from '../../../src/client/core/OpenAPI';
+import { request as __request } from '../../../src/client/core/request';
+export class DoctypesService {
     /**
      * Getall
-     * @returns AppType Successful Response
+     * @returns DocType Successful Response
      * @throws ApiError
      */
-    public static getallApiApptypesGet(): CancelablePromise<Array<AppType>> {
+    public static getallApiDoctypesGet(): CancelablePromise<Array<DocType>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/apptypes/',
+            url: '/api/doctypes/',
         });
     }
     /**
      * Create
      * @param requestBody
-     * @returns AppType Successful Response
+     * @returns DocType Successful Response
      * @throws ApiError
      */
-    public static createApiApptypesPost(
-        requestBody: AppType,
-    ): CancelablePromise<AppType> {
+    public static createApiDoctypesPost(
+        requestBody: DocType,
+    ): CancelablePromise<DocType> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/apptypes/',
+            url: '/api/doctypes/',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -40,15 +40,15 @@ export class ApptypesService {
     /**
      * Get
      * @param id
-     * @returns AppType Successful Response
+     * @returns DocType Successful Response
      * @throws ApiError
      */
-    public static getApiApptypesIdGet(
+    public static getApiDoctypesIdGet(
         id: number,
-    ): CancelablePromise<AppType> {
+    ): CancelablePromise<DocType> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/apptypes/{id}',
+            url: '/api/doctypes/{id}',
             path: {
                 'id': id,
             },
@@ -61,16 +61,16 @@ export class ApptypesService {
      * Update
      * @param id
      * @param requestBody
-     * @returns AppType Successful Response
+     * @returns DocType Successful Response
      * @throws ApiError
      */
-    public static updateApiApptypesIdPut(
+    public static updateApiDoctypesIdPut(
         id: number,
-        requestBody: AppType,
-    ): CancelablePromise<AppType> {
+        requestBody: DocType,
+    ): CancelablePromise<DocType> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/apptypes/{id}',
+            url: '/api/doctypes/{id}',
             path: {
                 'id': id,
             },
@@ -84,15 +84,15 @@ export class ApptypesService {
     /**
      * Delete
      * @param id
-     * @returns AppType Successful Response
+     * @returns DocType Successful Response
      * @throws ApiError
      */
-    public static deleteApiApptypesIdDelete(
+    public static deleteApiDoctypesIdDelete(
         id: number,
-    ): CancelablePromise<AppType> {
+    ): CancelablePromise<DocType> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/apptypes/{id}',
+            url: '/api/doctypes/{id}',
             path: {
                 'id': id,
             },

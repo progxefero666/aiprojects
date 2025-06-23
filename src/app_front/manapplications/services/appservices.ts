@@ -1,7 +1,7 @@
 //src\app_front\manapplications\services\appservices.ts
 
 import { Application } from "@/client/models/Application";
-import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
+import { ApplicationsService } from "@/client/service/ApplicationsService";
 import { ApiError } from "@/client/core/ApiError"
 import { AppAPI } from "@/app_front/appapi";
 import { OpResult } from "@/lib/arquitect/model/opresult";

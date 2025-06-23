@@ -1,34 +1,35 @@
 /* generated using openapi-typescript-codegen -- do not edit */
-
-import type { Agent } from '../models/Agent';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
-
-export class AgentsService {
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { Server } from '../../../src/client/models/Server';
+import type { CancelablePromise } from '../../../src/client/core/CancelablePromise';
+import { OpenAPI } from '../../../src/client/core/OpenAPI';
+import { request as __request } from '../../../src/client/core/request';
+export class ServersService {
     /**
      * Getall
-     * @returns Agent Successful Response
+     * @returns Server Successful Response
      * @throws ApiError
      */
-    public static getallApiAgentsGet(): CancelablePromise<Array<Agent>> {
+    public static getallApiServersGet(): CancelablePromise<Array<Server>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/agents/',
+            url: '/api/servers/',
         });
     }
     /**
      * Create
      * @param requestBody
-     * @returns Agent Successful Response
+     * @returns Server Successful Response
      * @throws ApiError
      */
-    public static createApiAgentsPost(
-        requestBody: Agent,
-    ): CancelablePromise<Agent> {
+    public static createApiServersPost(
+        requestBody: Server,
+    ): CancelablePromise<Server> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/agents/',
+            url: '/api/servers/',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -39,15 +40,15 @@ export class AgentsService {
     /**
      * Get
      * @param id
-     * @returns Agent Successful Response
+     * @returns Server Successful Response
      * @throws ApiError
      */
-    public static getApiAgentsIdGet(
+    public static getApiServersIdGet(
         id: number,
-    ): CancelablePromise<Agent> {
+    ): CancelablePromise<Server> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/agents/{id}',
+            url: '/api/servers/{id}',
             path: {
                 'id': id,
             },
@@ -60,16 +61,16 @@ export class AgentsService {
      * Update
      * @param id
      * @param requestBody
-     * @returns Agent Successful Response
+     * @returns Server Successful Response
      * @throws ApiError
      */
-    public static updateApiAgentsIdPut(
+    public static updateApiServersIdPut(
         id: number,
-        requestBody: Agent,
-    ): CancelablePromise<Agent> {
+        requestBody: Server,
+    ): CancelablePromise<Server> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/agents/{id}',
+            url: '/api/servers/{id}',
             path: {
                 'id': id,
             },
@@ -83,15 +84,15 @@ export class AgentsService {
     /**
      * Delete
      * @param id
-     * @returns Agent Successful Response
+     * @returns Server Successful Response
      * @throws ApiError
      */
-    public static deleteApiAgentsIdDelete(
+    public static deleteApiServersIdDelete(
         id: number,
-    ): CancelablePromise<Agent> {
+    ): CancelablePromise<Server> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/agents/{id}',
+            url: '/api/servers/{id}',
             path: {
                 'id': id,
             },
@@ -103,15 +104,15 @@ export class AgentsService {
     /**
      * Getbyname
      * @param name
-     * @returns Agent Successful Response
+     * @returns Server Successful Response
      * @throws ApiError
      */
-    public static getbynameApiAgentsNameNameGet(
+    public static getbynameApiServersNameNameGet(
         name: string,
-    ): CancelablePromise<Array<Agent>> {
+    ): CancelablePromise<Array<Server>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/agents/name/{name}',
+            url: '/api/servers/name/{name}',
             path: {
                 'name': name,
             },
@@ -121,19 +122,19 @@ export class AgentsService {
         });
     }
     /**
-     * Getbyagtype
-     * @param agtype
-     * @returns Agent Successful Response
+     * Getbysrvtype
+     * @param srvtype
+     * @returns Server Successful Response
      * @throws ApiError
      */
-    public static getbyagtypeApiAgentsAgtypeAgtypeGet(
-        agtype: string,
-    ): CancelablePromise<Array<Agent>> {
+    public static getbysrvtypeApiServersSrvtypeSrvtypeGet(
+        srvtype: string,
+    ): CancelablePromise<Array<Server>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/agents/agtype/{agtype}',
+            url: '/api/servers/srvtype/{srvtype}',
             path: {
-                'agtype': agtype,
+                'srvtype': srvtype,
             },
             errors: {
                 422: `Validation Error`,

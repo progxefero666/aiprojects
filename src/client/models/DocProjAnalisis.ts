@@ -11,6 +11,6 @@ export type DocProjAnalisis = {
     content?: (string | null);
     durl?: (string | null);
     dpath?: (string | null);
-    updatedate?: string;
+    updatedate?: Date;
 };
 

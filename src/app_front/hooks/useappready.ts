@@ -1,7 +1,7 @@
 //src\app_front\hooks\useappready.ts
 
 import { Application } from "@/client_old/models/Application";
-import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
+import { ApplicationsService } from "@/client/service/ApplicationsService";
 import { useState, useEffect } from "react";
 
 /**

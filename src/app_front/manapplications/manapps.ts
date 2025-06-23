@@ -1,7 +1,7 @@
 //src\app_front\modules\projects\appprojects.ts
 
 import {Application} from "@/client/models/Application"
-import { ApplicationsService } from "@/client_aidatabase/ApplicationsService";
+import { ApplicationsService } from "@/client/service/ApplicationsService";
 
 /**
  * Manager Application id db
