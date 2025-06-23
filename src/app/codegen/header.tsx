@@ -8,7 +8,7 @@ import { AppConstants, AppTexts, AppUiConst } from "@/app_front/appconstants";
 import { AppTheme } from "@/app_front/apptheme";
 import { InputFiles } from "@/libcomp/inputfiles";
 import { useRef } from "react";
-import { CodeGenCfg } from "./motor/codegencfg";
+import { CodeGenCfg } from "./motor/cgcfg";
 
 
 /**

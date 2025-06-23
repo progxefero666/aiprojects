@@ -32,7 +32,7 @@ import { AppConstants } from "./appconstants";
     //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
 */
 
-//AppTheme.TEXT_H3_SIZE
+//AppTheme.C_INCLABEL_COL_STYLE
 export class AppTheme {
 
     public static readonly LAYOUT_COLOR: string = "bg-gray-900";
@@ -93,6 +93,19 @@ export class AppTheme {
 
     public static readonly GRID_IOELEMS_STYLE: string 
         = "w-full h-auto grid grid-cols-[25%_25%_25%_25%] mt-4 space-y-2";
+
+    public static readonly C_CELL_STYLE = "w-full h-auto";
+
+    public static readonly C_EDIT_STYLE:string = "input w-full bg-gray-700 rounded-md";
+    public static readonly C_DISABLED_STYLE:string = "input w-full bg-gray-700 rounded-md";
+    public static readonly C_READONLY_STYLE:string = "input w-full bg-gray-600 rounded-md";
+
+    public static readonly C_INCLABEL_COL_STYLE: string = 
+        "w-full h-auto flex flex-col";
+
+    public static readonly C_INCLABEL_ROW_STYLE: string = 
+        "w-full h-auto flex items-center grid grid-cols-[35%_65%] px-[8px]";
+
 
 }//end class
 

@@ -72,14 +72,14 @@ export default function CodeGenCard({code,execexport}: CodeGenCardProp) {
                     <div>
                         {collapse ?
                             <Button onclick={onCollapse} 
+                                    color="btn-primary"
                                     iconcolor={AppUiConst.ICON_COLLAPSE_COLOR}
-                                    icon={AppUiConst.ICON_COLLAPSE_ON}
-                                     />
+                                    icon={AppUiConst.ICON_COLLAPSE_ON} />
                             :
                             <Button onclick={onCollapse} 
+                                    color="btn-primary"
                                     iconcolor={AppUiConst.ICON_COLLAPSE_COLOR}                           
-                                    icon={AppUiConst.ICON_COLLAPSE_OFF}
-                                     />
+                                    icon={AppUiConst.ICON_COLLAPSE_OFF} />
                         }
                     </div>
                     <div className={style_title}>

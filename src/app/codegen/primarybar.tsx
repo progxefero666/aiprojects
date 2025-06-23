@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Option } from "@/lib/common/model/base/option";
-import { CodeGenCfg } from "./motor/codegencfg";
+import { CodeGenCfg } from "./motor/cgcfg";
 import { AppConstants } from "@/app_front/appconstants";
 import { AppTheme } from "@/app_front/apptheme";
 import TwDaisyMenu from "@/twdaisy/twdaisymenu";
@@ -27,10 +27,10 @@ export default function PagePrimaryBar({chargesection, section}: PagePrimaryBarP
     
     const loadsection = (name: string): void => {
         chargesection(name);
-        if (name === CodeGenCfg.SECTION_MAIN.name) {
+        if (name === CodeGenCfg.CREATE_MODEL.name) {
 
         }
-        else if (name === CodeGenCfg.SECTION_B.name) {
+        else if (name === CodeGenCfg.SECTION_SERVICE.name) {
 
         }
     }

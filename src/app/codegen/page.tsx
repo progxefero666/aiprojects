@@ -10,7 +10,7 @@ import PageHeader from "./header";
 import PageMainContent from "./pagemain";
 import PagePrimaryBar from "./primarybar";
 import PageSecondaryBar from "./secondarybar";
-import { CodeGenCfg } from "./motor/codegencfg";
+import { CodeGenCfg } from "./motor/cgcfg";
 
 /**
  * Page Index JSX Client
@@ -25,7 +25,7 @@ export const CODEGEN_PATH: string = "./codegen";
 
 export default function CodeGenerator() {
 
-    const [section, setSection] = useState<string>(CodeGenCfg.SECTION_MAIN.name);
+    const [section, setSection] = useState<string>(CodeGenCfg.CREATE_MODEL.name);
     const chargeSection = (section: string): void => { setSection(section); }
 
     /*

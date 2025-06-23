@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AppConstants } from "@/app_front/appconstants";
 import { renderAlert } from "@/twdaisy/twdaisycomp";
 import { AppTheme } from "@/app_front/apptheme";
-import { CodeGenCfg } from "./motor/codegencfg";
+import { CodeGenCfg } from "./motor/cgcfg";
 import CodeGenCard from "./cards/codegencard";
 
 
@@ -26,12 +26,12 @@ export default function PageMainContent({ section }: PageMainContentProp) {
     }
 
     const renderMainContent = () => {
-        if (section === CodeGenCfg.SECTION_MAIN.name) {          
+        if (section === CodeGenCfg.CREATE_MODEL.name) {          
             return ( 
                 <CodeGenCard execexport={onexport} code={code} />
             );
         }
-        if (section === CodeGenCfg.SECTION_B.name) {
+        if (section === CodeGenCfg.SECTION_SERVICE.name) {
             return ( 
                 <CodeGenCard execexport={onexport} code={code} />
             );

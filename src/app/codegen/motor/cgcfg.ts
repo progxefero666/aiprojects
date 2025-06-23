@@ -10,15 +10,19 @@ export class CodeGenCfg {
 
     public static readonly TYPESCRIPT_FORMATS:string = ".ts,.tsx"
 
-    public static readonly SECTION_MAIN: Option = new Option
-        ("forms", "forms", "table form insert");
+    public static readonly CREATE_MODEL: Option = new Option
+        ("create_typescript_model_from_sql", "Model by SQL", "create typescript model from sql");
 
-    public static readonly SECTION_B: Option = new Option
-        ("services", "services", "table services");
+    public static readonly SECTION_SERVICE: Option = new Option
+        ("create_model_service", "Model Service", "create model service");
+        
+    public static readonly SECTION_MODEL_CARD: Option = new Option
+        ("create_model_card", "Model Card", "create model card");
+
 
     public static readonly SECTIONS: Option[]=[
-        CodeGenCfg.SECTION_MAIN,
-        CodeGenCfg.SECTION_B
+        CodeGenCfg.CREATE_MODEL,
+        CodeGenCfg.SECTION_SERVICE
     ];
 
     public static readonly ACTIVE_SECTION: Option = CodeGenCfg.SECTIONS[0];

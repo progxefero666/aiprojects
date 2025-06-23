@@ -1,5 +1,6 @@
 //src\lib\xuicomp\form\inputtext.tsx
 
+import { AppTheme } from "@/app_front/apptheme";
 import { forwardRef, useEffect, useState } from "react";
 
 
@@ -13,32 +14,17 @@ interface InputTextProps {
     placeholder?: string;
     defaultvalue?: string;
     maxlen?: number;
-    autofocus?: boolean;  // Añadir esta prop
-    onchange?: (value: string) => void;  // Si la usas
+    autofocus?: boolean; 
+    onchange?: (value: string) => void;
 }
+export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({
+                name, label,placeholder,defaultvalue,
+                inline, readonly, disabled, 
+                maxlen, autofocus, onchange }, ref) => {
 
-/*
-rounded-md
-    const contStyle: string = "w-full h-auto flex items-center grid grid-cols-[35%_65%] px-[8px]";
-    const cellStyle:string = "w-full h-auto";
-
-    return (
-        <div className={contStyle}>
-            <div className={cellStyle}>
-                {label}
-            </div>
-            <div className={cellStyle}>
-                {children}
-            </div>
-        </div>
-    );
-*/
-
-const editable_style:string = "input w-full bg-gray-700 rounded-md";
-const readonly_style:string = "input w-full bg-gray-700 rounded-md";
-
-export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
-    ({name, inline, readonly,disabled, classname, label, placeholder, defaultvalue, maxlen, autofocus, onchange }, ref) => {
+        const showInline:boolean = inline ?? false;
+        const isReadOnly:boolean = readonly ?? false;
+        const isDisabled:boolean = disabled ?? false;
 
         const handleOnChange = (value: string) => {
             if (onchange) {
@@ -46,31 +32,125 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
             }
         }
 
+        const renderReadComp = () => {
+            return (
+                <div className={AppTheme.C_READONLY_STYLE}>
+                    <p>{defaultvalue}</p>
+                </div>          
+            )  
+        }
 
-        const inputClassName = "input w-full";
+        const renderEditComp = () => {
+            let cell_style:string = "";
+            if(isDisabled){cell_style = AppTheme.C_DISABLED_STYLE;}
+            else          {cell_style = AppTheme.C_EDIT_STYLE;}
 
-        const renderContent = () => (
+            return (
+                <div className={cell_style}>
+                    <input  type="text" ref={ref}                                                   
+                            name={name}
+                            placeholder={placeholder}
+                            defaultValue={defaultvalue}
+                            onChange={(e) => handleOnChange(e.target.value)}
+                            maxLength={maxlen}
+                            disabled={disabled}
+                            autoFocus={autofocus}  />                    
+                </div>
+            ) 
+        }
+
+        const renderRowSimpleContent = () => {
+            return (
+                <div className={AppTheme.C_CELL_STYLE}>
+                    {isReadOnly ? renderReadComp() : 
+                                  renderEditComp() }
+                </div>
+            )            
+        }
+        
+        const renderRowLabelContent = () => { 
+            return (
+                <div className={AppTheme.C_INCLABEL_ROW_STYLE}>
+                    <div className={AppTheme.C_CELL_STYLE}>
+                        {label}
+                    </div>
+                    {renderRowSimpleContent()}
+                </div>
+            )        
+        }
+ 
+        const renderColSimpleContent = () => {
+            return (            
+                <div className={AppTheme.C_CELL_STYLE}>
+                    {isReadOnly ? renderReadComp() : 
+                                  renderEditComp() }                        
+                </div>
+            )             
+        }
+
+        const renderColLabelContent = () => {
+            return (
+                <div className={AppTheme.C_INCLABEL_COL_STYLE}>
+                    {label}      
+                    {renderColSimpleContent()}                                       
+                </div>
+            )        
+        }        
+
+        return (
             <>
-                {label && <p className="w-full p-0 mx-0 mt-0 mb-1">{label}</p>}
-                <input
-                    autoFocus={autofocus}
-                    name={name}
-                    className={inputClassName}
-                    ref={ref}
-                    type="text"
-                    placeholder={placeholder}
-                    defaultValue={defaultvalue}
-                    onChange={(e) => handleOnChange(e.target.value)}
-                    maxLength={maxlen}
-                    disabled={disabled}
-                />
+            {showInline?
+                label ? renderRowLabelContent() :
+                        renderRowSimpleContent()
+            :
+                label ? renderColLabelContent() :
+                        renderColSimpleContent()
+            }                      
             </>
-        );
-
-        return classname ? (
-            <div className={classname}>{renderContent()}</div>
-        ) : (
-            renderContent()
-        );
+        )
     }
-);
+
+)//end component
+
+/*
+            <>
+            {showInline}?
+                {label? renderRowLabelContent() :
+                        renderRowSimpleContent()}
+            :
+                {label? renderColLabelContent() :
+                        renderColSimpleContent()}            
+            </>
+{label && <p className="w-full p-0 mx-0 mt-0 mb-1">{label}</p>}
+            <input
+                ref={ref}
+                type="text"                            
+                name={name}
+                className={AppTheme.C_CELL_STYLE}
+                placeholder={placeholder}
+                defaultValue={defaultvalue}
+                onChange={(e) => handleOnChange(e.target.value)}
+                maxLength={maxlen}
+                disabled={disabled}
+                autoFocus={autofocus}  />            
+        }
+*/
+        /*
+        const renderColContent = () => {
+ 
+            if(readonly && readonly ==true){
+                return (
+                    <></>
+                )
+            }
+            else if(disabled && disabled ==true){
+                return (
+                    <></>
+                )                
+            }
+            return (
+                <>
+                </>
+            )
+        }
+        */

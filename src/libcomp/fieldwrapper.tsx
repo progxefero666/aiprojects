@@ -1,5 +1,7 @@
 //src\libcomp\xuicomp\base\fieldwrapper.tsx
 
+import { AppTheme } from "@/app_front/apptheme";
+
 
 //cell_style?: string;
 //className?: string;
@@ -9,15 +11,13 @@ interface FieldWrapperIfc {
 }
 export const FieldWrapper = (({ children,label }: FieldWrapperIfc) => {
 
-    const contStyle: string = "w-full h-auto flex items-center grid grid-cols-[35%_65%] px-[8px]";
-    const cellStyle:string = "w-full h-auto";
 
     return (
-        <div className={contStyle}>
-            <div className={cellStyle}>
+        <div className={AppTheme.C_INCLABEL_ROW_STYLE}>
+            <div className={AppTheme.C_CELL_STYLE}>
                 {label}
             </div>
-            <div className={cellStyle}>
+            <div className={AppTheme.C_CELL_STYLE}>
                 {children}
             </div>
         </div>

@@ -3,24 +3,31 @@
 import { forwardRef } from "react";
 
 
-export interface InputCheckIfc {
-    disabled?:boolean;
-    name: string;
+// classname?: string;
+    // 🟢<h2>💊 Pills (Píldoras)</h2>
+    //✅
+
+
+export interface InputCheckIfc {    
     classname?: string;
+    name?: string;
     label?: string;
-    defaultvalue: boolean;
-    onchange?: (name: string, result: unknown) => void;
+    inline?: boolean;
+    readonly?: boolean;    
+    disabled?:boolean;
+    defaultvalue?: boolean;
+    onchange?: (result:boolean,name?:string) => void;    
+   
 }
 export const InputCheck = forwardRef<HTMLInputElement, InputCheckIfc>(
-    ({name,disabled,classname,label,defaultvalue,onchange},ref) => {
+    ({name,classname,readonly,disabled,inline,defaultvalue,label,onchange},ref) => {
 
         const handleOnChange = (value: boolean) => {
             if (onchange) {
 
             }
         }
-    // 🟢<h2>💊 Pills (Píldoras)</h2>
-    //✅
+
         const renderContent = () => (
             <div className="flex items-center">
                 {label && <label>{label}</label>}
@@ -33,8 +40,8 @@ export const InputCheck = forwardRef<HTMLInputElement, InputCheckIfc>(
             </div>
         );
 
-        return classname ? (
-            <div className={classname}>{renderContent()}</div>
+        return defaultvalue ? (
+            <div className={name}>{renderContent()}</div>
         ) : (
             renderContent()
         );
