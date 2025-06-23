@@ -2,7 +2,7 @@
 
 import { Search } from "@/libcomp/search";
 import { AppThemifyIcons } from "@/style/appthicons";
-import { XButton } from "@/libcomp/button";
+import { ButtonOld } from "@/libcomp/button_old";
 
 
 /**
@@ -34,7 +34,7 @@ export default function PageHeader({ ontest }: PageHeaderProp) {
                     AI Projects
                 </div>
                 <div>
-                    <XButton
+                    <ButtonOld
                         callback={executeOperation}
                         operation={"nav_back"}
                         iconname={AppThemifyIcons.TI_BACK}

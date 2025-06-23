@@ -11,7 +11,7 @@ import { ThemeColors } from "@/style/apptheme";
 
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
-import { XButton } from "@/libcomp/button";
+import { ButtonOld } from "@/libcomp/button_old";
 import { Application } from "@/client/models/Application";
 
 
@@ -76,11 +76,11 @@ export function AppIntroCard({ app, onselection, iconname, iconsize, iconcolor }
                     <div className="flex flex-row text-white text-2xl">
                         <div>
                             {collapse ?
-                                <XButton callback={onCollapse}
+                                <ButtonOld callback={onCollapse}
                                     iconcolor="white"
                                     iconname={AppThemifyIcons.TI_ARROW_DOWN}
                                     iconsize="xs" />
-                                : <XButton callback={onCollapse}
+                                : <ButtonOld callback={onCollapse}
                                     iconcolor="red"
                                     iconsize="xs"
                                     iconname={AppThemifyIcons.TI_ANGLE_UP} />

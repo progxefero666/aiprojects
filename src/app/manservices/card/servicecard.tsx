@@ -6,7 +6,7 @@ import { AppThemifyIcons } from "@/style/appthicons";
 import { FieldWrapper } from "@/libcomp/fieldwrapper";
 import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
-import { XButton } from "@/libcomp/button";
+import { ButtonOld } from "@/libcomp/button_old";
 
 import { ProgLangCodeService } from "@/client/service/ProglanguagesService";
 import { ApptypesService } from "@/client/service/ApptypesService";
@@ -254,11 +254,11 @@ export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
                 <div className={style_header_title}>
                     <div>
                         {collapse ?
-                            <XButton callback={onCollapse}
+                            <ButtonOld callback={onCollapse}
                                 iconcolor="white"
                                 iconname={AppThemifyIcons.TI_ARROW_DOWN}
                                 iconsize="xs" /> :
-                            <XButton callback={onCollapse}
+                            <ButtonOld callback={onCollapse}
                                 iconcolor="red" iconsize="xs"
                                 iconname={AppThemifyIcons.TI_ANGLE_UP} />
                         }

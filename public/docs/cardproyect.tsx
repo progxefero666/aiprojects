@@ -7,7 +7,7 @@ import { MdPreview } from 'md-editor-rt';
 //import 'md-editor-rt/lib/preview.css';
 import 'md-editor-rt/lib/style.css'; 
 import 'md-editor-rt/lib/preview.css';
-import { XButton } from "../../src/libcomp/button";
+import { ButtonOld } from "../../src/libcomp/button_old";
 
 const dummy_content: string = `## Introducción
 
@@ -63,10 +63,10 @@ export function CardProject({name,text,onselection,iconname,iconsize,iconcolor}:
                     <div className="flex flex-row text-white text-2xl">
                         <div>
                             {collapse ?
-                                <XButton callback={onCollapse} iconname={AppThemifyIcons.TI_ARROW_DOWN}
+                                <ButtonOld callback={onCollapse} iconname={AppThemifyIcons.TI_ARROW_DOWN}
                                     iconsize="xs"
                                     iconcolor="white" />
-                                : <XButton callback={onCollapse}
+                                : <ButtonOld callback={onCollapse}
                                     iconsize="xs"
                                     iconname={AppThemifyIcons.TI_ANGLE_UP} iconcolor="white" />
                             }

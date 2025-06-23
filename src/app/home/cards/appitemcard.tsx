@@ -9,7 +9,7 @@ import { Application } from "@/client/models/Application";
 import { ApptypesService } from "@/client/service/ApptypesService";
 import { OutputCheck } from "@/libcomp/outputcheck";
 import { OutputText } from "@/libcomp/ouputtext";
-import { XButton } from "@/libcomp/button";
+import { ButtonOld } from "@/libcomp/button_old";
 import { BARCFG_DELETE_OPEN } from "@/app_front/uimodel/uimodelbars";
 import { AppConstants } from "@/app_front/appconstants";
 import { AppTheme } from "@/app_front/apptheme";
@@ -104,11 +104,11 @@ export function AppItemCard({ app, onselection, ondelete, iconname, iconsize, ic
                 <div className = {AppTheme.CARD_HEADER_STYLE}>
                     <div>
                         {collapse ?
-                            <XButton callback={onCollapse}
+                            <ButtonOld callback={onCollapse}
                                 iconcolor="white"
                                 iconname={AppThemifyIcons.TI_ARROW_DOWN}
                                 iconsize="xs" />
-                            : <XButton callback={onCollapse}
+                            : <ButtonOld callback={onCollapse}
                                 iconcolor="red"
                                 iconsize="xs"
                                 iconname={AppThemifyIcons.TI_ANGLE_UP} />

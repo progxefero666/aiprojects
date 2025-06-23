@@ -15,6 +15,7 @@ import DesktopMenu from "./home/pagemenu";
 //import { ManagerAplications } from "../app_front/manapplications/manapps";
 //import { ManCmmCollections } from "@/app_front/manapplications/manappcolls";
 
+
 /**
  *  start: npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
  *        npx openapi-typescript-codegen --input http://164.90.225.196:8000/openapi.json --output ./src/client --client axios

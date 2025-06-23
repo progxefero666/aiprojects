@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { TwDaisyUtil } from "./twdaisyutil";
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
-import { AppConstants } from "@/app_front/appconstants";
+import { AppConstants, AppUiConst } from "@/app_front/appconstants";
 
 
 /**
@@ -130,7 +130,7 @@ export const renderAlert = (message: string) => {
     return (
         <div className={TwDaisyCompBase.ALERTS_SUCCESS_STYLE}>
             <div className=
-                {TwDaisyCompBase.getIconStyle(AppConstants.ICON_ACT_SAVE, null, null)} />
+                {TwDaisyCompBase.getIconStyle(AppUiConst.ICON_ACT_SAVE, null, null)} />
             <span>{message}</span>
         </div>
     )

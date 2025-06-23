@@ -1,71 +1,63 @@
-//src\lib\xuicomp\base\button.tsx
+//src\libcomp\button.tsx
 
-import { AppThemifyIcons } from "@/style/appthicons";
-import { AppUIButtons } from "@/style/appui";
-
+import { TwDaisyCompBase } from "@/twdaisy/twdaisycomp"
 
 
-export interface XButtonIfc {    
-    callback: (operation?: string) => void; 
-    operation?: string;
-    btnsize?: string;
-    btndisabled?: boolean;
-    btncolor?: string;        
-    btntext?:string;
-    iconname?: string;
-    iconcolor?: string;
-    iconsize?: string;     
+
+
+/**
+ * Component Input List
+ *  author: xefero
+ */
+/*
+            disabled={disabled}
+            onClick={() => onclick(operation)}>
+            {icon ?
+                <div className={TwDaisyCompBase.getIconStyle(
+                    icon,
+                    iconsize ?? TwDaisyCompBase.ICON_SIZE_DEF,
+                    iconcolor ?? TwDaisyCompBase.ICON_COLOR_DEF)} />
+                : null}
+            {text ? text : null}
+
+*/
+export interface ButtonProps {
+    key?: string,
+    visibled?: boolean,
+    disabled?: boolean,
+    operation?: string,
+    onclick: (operation?: string) => void,
+    text?: string,
+    icon?: string,
+    size?: string,
+    color?: string,
+    iconsize?: string | null,
+    iconcolor?: string | null,
 }
-export function XButton({ callback,operation,
-                              btnsize,btntext,btncolor,btndisabled,
-                              iconname,iconsize,iconcolor}: XButtonIfc) {
+export const Button = ({ key, visibled, disabled, operation, onclick,
+                         text, icon, size, color, iconsize, iconcolor }: ButtonProps) => {
 
-    const btn_disabled:boolean  = btndisabled ?? false;
-    const btn_color: string     = btncolor ?? AppUIButtons.DEF_ICON_COLOR;
-    const btn_size: string      = btnsize ?? AppUIButtons.DEF_SIZE;
-    const btn_class:string      = AppUIButtons.getButtonClass(btn_color,btn_size);
-    const btn_oper: string      = operation ?? "undefined";              
-
-    let iconclass:string = "undefined";
-    if(iconname){
-        const icon_size: string = iconsize ?? AppThemifyIcons.DEF_SIZE;        
-        iconclass= AppThemifyIcons.getIconClass(iconname,icon_size,iconcolor);
+    const operationId:string = operation ?? "undefined";
+    const getButtonStyle = () => {
+        return TwDaisyCompBase.getButtonStyle(size ?? TwDaisyCompBase.BUTTON_SIZE_DEF, color!);
     }
-    
-    const handleOnClick = () => {
-        callback(btn_oper);        
-    };
-    
+
+    const getIconStyle = () => {
+        return TwDaisyCompBase.getIconStyle(icon!,
+                                    iconsize ?? TwDaisyCompBase.ICON_SIZE_DEF,
+                                    iconcolor ?? TwDaisyCompBase.ICON_COLOR_DEF);
+    }
+
+    if (!visibled) {return null;}
+
     return (
-        <>
-            {btntext? 
-            <div className="icon-button" 
-                    onClick={handleOnClick}>
-                {btntext? btntext:null}        
-                {iconname ? <div className={iconclass} />:null }            
-            </div>              
-            : 
-                <div className="icon-button" 
-                        onClick={handleOnClick}>
-                    {btntext? btntext:null}        
-                    {iconname ? <div className={iconclass} />:null }            
-                </div>              
-            }
-           
         
-        </>
-   
+        <button key={key} disabled={disabled} 
+                className = {getButtonStyle()}                 
+                onClick={() => onclick(operationId)}>
+            {icon ? <span className={getIconStyle()} />:null}
+            {text ? text : null}
+        </button>
     )
 
-} //end component
-
-/*
-        <button className={btn_class} 
-                onClick={handleOnClick} 
-                disabled={btn_disabled}>
-            {btntext? btntext:null}        
-            {iconname ? <div className={iconclass} />:null }            
-        </button>        
- const btnclass = AppButtons.getButtonClass(btncolor);
- {RenderIcon(libicon, iconclass)} 
-*/
+}//end comp

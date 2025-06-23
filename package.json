@@ -26,6 +26,7 @@
         "react-dom": "^19.0.0",
         "react-json-pretty": "^2.2.0",
         "react-json-view-lite": "^2.4.1",
+        "react-syntax-highlighter": "^15.6.1",
         "swr": "^2.3.3"
     },
     "devDependencies": {

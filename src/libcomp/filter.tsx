@@ -4,7 +4,7 @@ import { AppThemifyIcons } from "@/style/appthicons";
 
 import { useState } from "react";
 import { ThemeColors } from "@/style/apptheme";
-import { XButton } from "@/libcomp/button";
+import { ButtonOld } from "@/libcomp/button_old";
 
 
 /**
@@ -56,7 +56,7 @@ export function Filter({name,disabled,onchange,placeholder,maxlen}:FilterIfc) {
             
             {/* filter button */}
             <div className="w-auto h-auto">
-                <XButton
+                <ButtonOld
                     btndisabled={false}
                     callback={onFilterClick}
                     operation={"filteron"}
