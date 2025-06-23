@@ -7,7 +7,7 @@ import { AppConstants, AppUiConst } from "@/app_front/appconstants";
 
 
 /**
- * class TwDaisyCompBase 
+ * class TwDaisyCompBase.ICON_COLOR_DEF
  * TwDaisyCompBase.OP_NOTDEF
  */
 export class TwDaisyCompBase {

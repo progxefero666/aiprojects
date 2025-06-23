@@ -4,15 +4,17 @@ import { Option } from "@/lib/common/model/base/option";
 
 
 /**
- * class CodeGenCfg.SECTIONS
+ * class CodeGenCfg.TYPESCRIPT_FORMATS
  */
 export class CodeGenCfg {
 
+    public static readonly TYPESCRIPT_FORMATS:string = ".ts,.tsx"
+
     public static readonly SECTION_MAIN: Option = new Option
-        ("default", "default", "default section");
+        ("forms", "forms", "table form insert");
 
     public static readonly SECTION_B: Option = new Option
-        ("utils", "utils", "section utils");
+        ("services", "services", "table services");
 
     public static readonly SECTIONS: Option[]=[
         CodeGenCfg.SECTION_MAIN,
@@ -28,7 +30,7 @@ export class CodeGenCfg {
  */
 export class CodeGenCfgMessages {
 
-    public static readonly MSG_SAVE_APP_ERROR: string = "!! CodeGen message !!";
+    public static readonly MSG_SAVE_APP_ERROR: string = "!! Files charged correct. !!";
 
 
 }//end class

@@ -1,6 +1,6 @@
 //src\app\appeditor\primarybar.tsx
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Option } from "@/lib/common/model/base/option";
 import { CodeGenCfg } from "./motor/codegencfg";
 import { AppConstants } from "@/app_front/appconstants";
@@ -20,6 +20,11 @@ export default function PagePrimaryBar({chargesection, section}: PagePrimaryBarP
     const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
     const [sections, setSections] = useState<Option[]>(CodeGenCfg.SECTIONS);
     
+    
+
+    //CodeGenCfg.TYPESCRIPT_FORMATS
+
+    
     const loadsection = (name: string): void => {
         chargesection(name);
         if (name === CodeGenCfg.SECTION_MAIN.name) {
@@ -32,6 +37,8 @@ export default function PagePrimaryBar({chargesection, section}: PagePrimaryBarP
 
     return (
         <div className="w-full min-h-screen flex flex-col px-2 mb-2">
+
+
             <TwDaisyMenu onselection={loadsection}
                 options={CodeGenCfg.SECTIONS}
                 optactname={CodeGenCfg.ACTIVE_SECTION.name}

@@ -23,7 +23,7 @@ import 'md-editor-rt/lib/preview.css';
 import 'md-editor-rt/lib/style.css';
 import 'md-editor-rt/lib/preview.css';
 import { BarButtonsCfg } from "@/libcomp/model/barbuttonscfg";
-import { AppConstants } from "@/app_front/appconstants";
+import { AppConstants, AppUiConst } from "@/app_front/appconstants";
 import { BARCFG_EXPORT, BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 import { AppTheme } from "@/app_front/apptheme";
 import { OutputText } from "@/libcomp/ouputtext";
@@ -41,20 +41,25 @@ const style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";
  */
 export interface CodeGenCardProp {  
     code: string;
-    onexport?: (code:string) => void;
+    execexport?: (code:string) => void;
 }
-export default function PageHeader({code,onexport}: CodeGenCardProp) {
+export default function CodeGenCard({code,execexport}: CodeGenCardProp) {
+
     //useEffect(() => {const init=()=>{};init();},[]);
     const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EXPORT);
     const [collapse, setCollapse]   = useState<boolean>(false);    
     const onCollapse = () => {setCollapse(!collapse)};
     
-    const onClick = (opId?:string) => {};
+    const onClick = (opId?:string) => {
+        execexport
+    };
 
     const renderMainContent = () => {
         return (
             <div className={AppTheme.CARD_DATA_STYLE}>
-                <p>{code}</p>
+                <code>
+                    <p>{code}</p>
+                </code>                
             </div>
         )
     };
@@ -66,14 +71,15 @@ export default function PageHeader({code,onexport}: CodeGenCardProp) {
                 <div className={style_header_title}>
                     <div>
                         {collapse ?
-                            <Button onclick={onCollapse}
-                                    iconcolor="white"
-                                    icon={AppThemifyIcons.TI_ARROW_DOWN}
-                                iconsize="xs" />
+                            <Button onclick={onCollapse} 
+                                    iconcolor={AppUiConst.ICON_COLLAPSE_COLOR}
+                                    icon={AppUiConst.ICON_COLLAPSE_ON}
+                                     />
                             :
-                            <ButtonOld callback={onCollapse}
-                                iconcolor="red" iconsize="xs"
-                                iconname={AppThemifyIcons.TI_ANGLE_UP} />
+                            <Button onclick={onCollapse} 
+                                    iconcolor={AppUiConst.ICON_COLLAPSE_COLOR}                           
+                                    icon={AppUiConst.ICON_COLLAPSE_OFF}
+                                     />
                         }
                     </div>
                     <div className={style_title}>

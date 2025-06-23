@@ -6,15 +6,19 @@ import { ButtonOld } from "@/libcomp/button_old";
 import { Button } from "@/libcomp/button";
 import { AppConstants, AppTexts, AppUiConst } from "@/app_front/appconstants";
 import { AppTheme } from "@/app_front/apptheme";
+import { InputFiles } from "@/libcomp/inputfiles";
+import { useRef } from "react";
+import { CodeGenCfg } from "./motor/codegencfg";
 
 
 /**
  * Ai Manager Projects Header
  */
 export interface PageHeaderProp {
-     ontest?: () => void;
+     onfileloaded: (file: File) => void;
 }
-export default function PageHeader({ ontest }: PageHeaderProp) {
+export default function PageHeader({ onfileloaded }: PageHeaderProp) {
+    const inputFilesRef = useRef<HTMLInputElement>(null);
 
     const maxLen: number = 50;
     const onSearchSubmit = (value:string): void => {
@@ -23,6 +27,12 @@ export default function PageHeader({ ontest }: PageHeaderProp) {
     const onButtonClick = (operation?: string) => {
         
     };
+    
+    const onFileLoaded = async (name:string,file:unknown) => {
+        if(file){
+            onfileloaded(file as File);
+        }        
+    }
 
     return (
 
@@ -40,13 +50,21 @@ export default function PageHeader({ ontest }: PageHeaderProp) {
                 </div>
             </div>
 
-            {/*column center */}
+            {/*column center classname="hidden" */}
             <div className="w-full flex flex-row pl-[6px]">
-                <div className="w-auto mr-[12px]">
+                
+                <InputFiles name="codefile"
+                            ref={inputFilesRef}                            
+                            formats={CodeGenCfg.TYPESCRIPT_FORMATS}
+                            multiple={false}
+                            onchange={onFileLoaded} />
+
+                <div className="w-auto ml-[12px] mr-[12px]">
                     <Button text={AppTexts.RUN} 
                             icon={AppUiConst.ICON_RUN}
                             onclick={onButtonClick}  />               
                 </div>
+
                 <div className="w-[26%] flex flex-items-center" >
                     <Search placeholder="find" maxlen={maxLen}
                                onsubmit={onSearchSubmit}/>

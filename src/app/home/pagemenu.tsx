@@ -31,7 +31,8 @@ export default function DesktopMenu({ defmodulename }: DesktopMenuIfc) {
             router.push(PAGE_EDITOR_PATH);
         }
         if (name === Desktop.MOD_CHATBOT.name) {
-            router.push("./aichatbot"); 
+            //router.push("./aichatbot"); 
+            router.push("./codegen"); 
         }
         if (name === Desktop.MOD_SERVICES.name) {
             router.push("./manservices"); 

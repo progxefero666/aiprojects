@@ -5,6 +5,8 @@ import { AppConstants } from "@/app_front/appconstants";
 import { renderAlert } from "@/twdaisy/twdaisycomp";
 import { AppTheme } from "@/app_front/apptheme";
 import { CodeGenCfg } from "./motor/codegencfg";
+import CodeGenCard from "./cards/codegencard";
+
 
 
 /**
@@ -15,15 +17,24 @@ export interface PageMainContentProp {
     section:string;
 }
 export default function PageMainContent({ section }: PageMainContentProp) {
+    
     const [alertMessage, setAlertMessage] = useState<string>(AppConstants.NOT_DEF);
+    const [code, setCode] = useState<string>(AppConstants.NOT_DEF);
 
+    const onexport = () => {
+        alert("export");
+    }
 
     const renderMainContent = () => {
         if (section === CodeGenCfg.SECTION_MAIN.name) {          
-            return (<div>default</div>);
+            return ( 
+                <CodeGenCard execexport={onexport} code={code} />
+            );
         }
         if (section === CodeGenCfg.SECTION_B.name) {
-            return (<div>docs</div>);
+            return ( 
+                <CodeGenCard execexport={onexport} code={code} />
+            );
         }
     };
     return (

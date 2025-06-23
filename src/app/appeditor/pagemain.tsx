@@ -10,6 +10,7 @@ import { renderAlert } from "@/twdaisy/twdaisycomp";
 import { AppTheme } from "@/app_front/apptheme";
 import { OpResult } from "@/lib/arquitect/model/opresult";
 import { executeSaveApplication } from "@/app_front/manapplications/services/appservices";
+import CodeGenerator from "../codegen/page";
 
 
 /**
@@ -34,12 +35,13 @@ export default function PageMainContent({ section,app }: PageMainContentProp) {
         setTimeout(() => setAlertMessage(AppConstants.NOT_DEF), 3000);  
     };
 
+    //CodeGenerator
     const renderMainContent = () => {
         if (section === AppEditorCfg.SECTION_MAIN.name) {          
             return (<AppCard app={app!} save={saveApplication} />);
         }
         if (section === AppEditorCfg.SECTION_DOCS.name) {
-            return (<div>docs</div>);
+            return (<CodeGenerator />);
         }
         if (section === AppEditorCfg.SECTION_TASKS.name) {
             return (<div>tasks</div>);

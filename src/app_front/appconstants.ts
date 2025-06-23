@@ -26,11 +26,14 @@ export class AppConstants {
     public static readonly DISPLAY_ROW:string = "display-row";
     public static readonly DISPLAY_COLUMN:string = "display-col";
 
+    public static readonly INPUT_AUDIO_FORMATS:string = ".wav,.mp3,.aac"
+    public static readonly INPUT_IMAGE_FORMATS: string = ".jpg,.png,.jpeg";
+    public static readonly INPUT_VIDEO_FORMATS = ".mp4,.avi";  
 
 }//end class
 
 /**
- * class AppUiConst.COLOR_EXPORT
+ * class AppUiConst.ICON_COLLAPSE_COLOR
  */
 export class AppUiConst {
 
@@ -42,8 +45,9 @@ export class AppUiConst {
     public static readonly COLOR_RUN:string     = "btn-info";
 
     
-    public static readonly ICON_COLLAPSE_up:string = "angle-up"; 
-    public static readonly ICON_COLLAPSE_ON:string = "angle-down"; 
+    public static readonly ICON_COLLAPSE_OFF:string = "ti-angle-up"; 
+    public static readonly ICON_COLLAPSE_ON:string = "ti-angle-down"; 
+    public static readonly ICON_COLLAPSE_COLOR:string = "black"; 
 
     public static readonly ICON_OPEN:string = "ti-eye";
     public static readonly ICON_DELETE:string = "ti-trash";
