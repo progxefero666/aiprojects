@@ -16,9 +16,6 @@ export type { DocType } from './models/DocType';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { ProgLanguage } from './models/ProgLanguage';
 export type { Server } from './models/Server';
-export type { Service } from './models/Service';
-export type { Task } from './models/Task';
-export type { TaskType } from './models/TaskType';
 export type { ValidationError } from './models/ValidationError';
 
 export { AgentsService } from './services/AgentsService';
@@ -30,6 +27,3 @@ export { DocsprojanalisisService } from './services/DocsprojanalisisService';
 export { DoctypesService } from './services/DoctypesService';
 export { ProglanguagesService } from './services/ProglanguagesService';
 export { ServersService } from './services/ServersService';
-export { ServicesService } from './services/ServicesService';
-export { TasksService } from './services/TasksService';
-export { TasktypesService } from './services/TasktypesService';

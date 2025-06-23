@@ -17,6 +17,7 @@ import DesktopMenu from "./home/pagemenu";
 
 /**
  *  start: npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
+ *        npx openapi-typescript-codegen --input http://164.90.225.196:8000/openapi.json --output ./src/client --client axios
  *       node fix-dates.js
  * 
  *  Main Page JSX: Applications Manager

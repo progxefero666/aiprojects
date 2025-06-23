@@ -2,34 +2,34 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Agent } from '../models/Agent';
+import type { DocProjAnalisis } from '../models/DocProjAnalisis';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-export class AgentsService {
+export class DocsprojanalisisService {
     /**
      * Getall
-     * @returns Agent Successful Response
+     * @returns DocProjAnalisis Successful Response
      * @throws ApiError
      */
-    public static getallApiAgentsGet(): CancelablePromise<Array<Agent>> {
+    public static getallApiDocsprojanalisisGet(): CancelablePromise<Array<DocProjAnalisis>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/agents/',
+            url: '/api/docsprojanalisis/',
         });
     }
     /**
      * Create
      * @param requestBody
-     * @returns Agent Successful Response
+     * @returns DocProjAnalisis Successful Response
      * @throws ApiError
      */
-    public static createApiAgentsPost(
-        requestBody: Agent,
-    ): CancelablePromise<Agent> {
+    public static createApiDocsprojanalisisPost(
+        requestBody: DocProjAnalisis,
+    ): CancelablePromise<DocProjAnalisis> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/agents/',
+            url: '/api/docsprojanalisis/',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -40,15 +40,15 @@ export class AgentsService {
     /**
      * Get
      * @param id
-     * @returns Agent Successful Response
+     * @returns DocProjAnalisis Successful Response
      * @throws ApiError
      */
-    public static getApiAgentsIdGet(
+    public static getApiDocsprojanalisisIdGet(
         id: number,
-    ): CancelablePromise<Agent> {
+    ): CancelablePromise<DocProjAnalisis> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/agents/{id}',
+            url: '/api/docsprojanalisis/{id}',
             path: {
                 'id': id,
             },
@@ -61,16 +61,16 @@ export class AgentsService {
      * Update
      * @param id
      * @param requestBody
-     * @returns Agent Successful Response
+     * @returns DocProjAnalisis Successful Response
      * @throws ApiError
      */
-    public static updateApiAgentsIdPut(
+    public static updateApiDocsprojanalisisIdPut(
         id: number,
-        requestBody: Agent,
-    ): CancelablePromise<Agent> {
+        requestBody: DocProjAnalisis,
+    ): CancelablePromise<DocProjAnalisis> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/agents/{id}',
+            url: '/api/docsprojanalisis/{id}',
             path: {
                 'id': id,
             },
@@ -84,15 +84,15 @@ export class AgentsService {
     /**
      * Delete
      * @param id
-     * @returns Agent Successful Response
+     * @returns DocProjAnalisis Successful Response
      * @throws ApiError
      */
-    public static deleteApiAgentsIdDelete(
+    public static deleteApiDocsprojanalisisIdDelete(
         id: number,
-    ): CancelablePromise<Agent> {
+    ): CancelablePromise<DocProjAnalisis> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/agents/{id}',
+            url: '/api/docsprojanalisis/{id}',
             path: {
                 'id': id,
             },
@@ -102,19 +102,19 @@ export class AgentsService {
         });
     }
     /**
-     * Getbyname
-     * @param name
-     * @returns Agent Successful Response
+     * Getbyproject
+     * @param project
+     * @returns DocProjAnalisis Successful Response
      * @throws ApiError
      */
-    public static getbynameApiAgentsNameNameGet(
-        name: string,
-    ): CancelablePromise<Array<Agent>> {
+    public static getbyprojectApiDocsprojanalisisProjectProjectGet(
+        project: string,
+    ): CancelablePromise<Array<DocProjAnalisis>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/agents/name/{name}',
+            url: '/api/docsprojanalisis/project/{project}',
             path: {
-                'name': name,
+                'project': project,
             },
             errors: {
                 422: `Validation Error`,
@@ -122,19 +122,19 @@ export class AgentsService {
         });
     }
     /**
-     * Getbyagtype
-     * @param agtype
-     * @returns Agent Successful Response
+     * Getbyname
+     * @param name
+     * @returns DocProjAnalisis Successful Response
      * @throws ApiError
      */
-    public static getbyagtypeApiAgentsAgtypeAgtypeGet(
-        agtype: string,
-    ): CancelablePromise<Array<Agent>> {
+    public static getbynameApiDocsprojanalisisNameNameGet(
+        name: string,
+    ): CancelablePromise<Array<DocProjAnalisis>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/agents/agtype/{agtype}',
+            url: '/api/docsprojanalisis/name/{name}',
             path: {
-                'agtype': agtype,
+                'name': name,
             },
             errors: {
                 422: `Validation Error`,
