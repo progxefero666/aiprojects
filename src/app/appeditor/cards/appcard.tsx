@@ -181,61 +181,61 @@ export function AppCard({app,save,iconname,iconsize,iconcolor}: AppCardProp) {
                     </FieldWrapper>
 
                     <FieldWrapper label="local Dev" >
-                        <InputCheck name="localdev" ref={localdevRef} classname="ml-[12px]"
+                        <InputCheck name="localdev" ref={localdevRef} 
                             defaultvalue={app.localdev!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="Docker">
-                        <InputCheck name="usedocker" ref={usedockerRef} classname="ml-[12px]"
+                        <InputCheck name="usedocker" ref={usedockerRef}
                             defaultvalue={app.usedocker!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="ctr. Users">
-                        <InputCheck name="controlusers" ref={controlusersRef!} classname="ml-[12px]"
+                        <InputCheck name="controlusers" ref={controlusersRef!} 
                             defaultvalue={app.controlusers!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="use UI">
-                        <InputCheck name="useui" ref={useuiRef} classname="ml-[12px]"
+                        <InputCheck name="useui" ref={useuiRef} 
                             defaultvalue={app.useui!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="use Agents">
-                        <InputCheck name="useagents" ref={useagentsRef} classname="ml-[12px]"
+                        <InputCheck name="useagents" ref={useagentsRef}
                             defaultvalue={app.useagents!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. Db">
-                        <InputCheck name="consumedb" ref={consumedbRef} classname="ml-[12px]"
+                        <InputCheck name="consumedb" ref={consumedbRef}
                             defaultvalue={app.consumedb!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. Api">
-                        <InputCheck name="consumeapi" ref={consumeapiRef} classname="ml-[12px]"
+                        <InputCheck name="consumeapi" ref={consumeapiRef} 
                             defaultvalue={app.consumeapi!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="cons. AI">
-                        <InputCheck name="consumeai" ref={consumeaiRef} classname="ml-[12px]"
+                        <InputCheck name="consumeai" ref={consumeaiRef}
                             defaultvalue={app.consumeai!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="expose Db">
-                        <InputCheck name="exposedb" ref={exposedbRef} classname="ml-[12px]"
+                        <InputCheck name="exposedb" ref={exposedbRef}
                             defaultvalue={app.exposedb!}
                             disabled={disabled} />
                     </FieldWrapper>
 
                     <FieldWrapper label="expose Api">
-                        <InputCheck name="exposeapi" ref={exposeapiRef} classname="ml-[12px]"
+                        <InputCheck name="exposeapi" ref={exposeapiRef} 
                             defaultvalue={app.exposeapi!}
                             disabled={disabled} />
                     </FieldWrapper>

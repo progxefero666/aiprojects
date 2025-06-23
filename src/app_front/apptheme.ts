@@ -30,6 +30,11 @@ import { AppConstants } from "./appconstants";
     //text-white text-lg
     // border border-zinc-500
     //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
+    // classname?: string;
+    // 🟢<h2>💊 Pills (Píldoras)</h2>
+    //✅
+
+
 */
 
 //AppTheme.C_INCLABEL_COL_STYLE
@@ -106,9 +111,19 @@ export class AppTheme {
     public static readonly C_INCLABEL_ROW_STYLE: string = 
         "w-full h-auto flex items-center grid grid-cols-[35%_65%] px-[8px]";
 
+    public static readonly INPUT_CHECK_STYLE: string = 
+        "checkbox bg-gray-700 checked:bg-amber-500 text-black text-black border border-gray-300"
 
 }//end class
 
+/*
+        const handleOnChange = (value: boolean) => {
+            if (onchange) {
+
+            }
+        }
+
+*/
 /**
  * AppThemeUtil
  */
