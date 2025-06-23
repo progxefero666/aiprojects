@@ -3,6 +3,9 @@
 import { Search } from "@/libcomp/search";
 import { AppThemifyIcons } from "@/style/appthicons";
 import { ButtonOld } from "@/libcomp/button_old";
+import { Button } from "@/libcomp/button";
+import { AppConstants, AppTexts, AppUiConst } from "@/app_front/appconstants";
+import { AppTheme } from "@/app_front/apptheme";
 
 
 /**
@@ -17,46 +20,37 @@ export default function PageHeader({ ontest }: PageHeaderProp) {
     const onSearchSubmit = (value:string): void => {
     }
 
-    const executeOperation = (op_id?: string): void => {
-    }
-
-    const onButtonAddClick = () => {
+    const onButtonClick = (operation?: string) => {
         
     };
 
     return (
 
-        <div className="w-full h-auto grid grid-cols-[17%_65%_17%] pt-[12px] pb-[10px]">
+        <div className={AppTheme.LAYOUT_HEADER_STYLE}>
 
             {/*column left */}
             <div className="w-full flex flex-row items-center px-2 top-2">
                 <div className="flex-1 flex items-center text-white text-2xl translate-y-[-4px]">
                     Code Gen
                 </div>
-                <div>
-                    <ButtonOld
-                        callback={executeOperation}
-                        operation={"nav_back"}
-                        iconname={AppThemifyIcons.TI_BACK}
-                        iconcolor="white" />
+                <div>                   
+                    <Button icon={AppUiConst.ICON_RUN}
+                            operation={AppConstants.NAV_BACK}                            
+                            onclick={onButtonClick}  />                           
                 </div>
             </div>
 
             {/*column center */}
             <div className="w-full flex flex-row pl-[6px]">
-
                 <div className="w-auto mr-[12px]">
-                    <button className="btn btn-md btn-success text-md"
-                            onClick={onButtonAddClick}>
-                                execute
-                    </button>                    
+                    <Button text={AppTexts.RUN} 
+                            icon={AppUiConst.ICON_RUN}
+                            onclick={onButtonClick}  />               
                 </div>
-
                 <div className="w-[26%] flex flex-items-center" >
                     <Search placeholder="find" maxlen={maxLen}
                                onsubmit={onSearchSubmit}/>
                 </div>
-
             </div>
 
             {/* column right */}

@@ -1,15 +1,18 @@
 //src\app_front\appconstants.ts
 
 /**
- * class AppConstants.CHAR_SPACE
+ * class AppConstants.ACT_EXPORT
  */
 export class AppConstants {
 
     public static readonly CHAR_SPACE:string = " ";
 
     public static readonly NOT_DEF:string = "undefined";
+    public static readonly NAV_BACK : string = "navigation_back";
+
     public static readonly ACT_OPEN:string = "open";
     public static readonly ACT_SAVE:string = "save";
+    public static readonly ACT_EXPORT:string = "export";
 
     public static readonly MODE_INSERT:string = "insert";
     public static readonly MODE_EDITION:string = "edit";
@@ -27,19 +30,39 @@ export class AppConstants {
 }//end class
 
 /**
- * class AppTwDaisyConstants
+ * class AppUiConst.COLOR_EXPORT
  */
 export class AppUiConst {
+
     public static readonly COLOR_ACT_OPEN:string     = "btn-info";
     public static readonly COLOR_DELETE:string       = "btn-success";
     public static readonly COLOR_MODE_EDITION:string = "btn-success";
     public static readonly COLOR_ACT_SAVE:string     = "btn-warning";
+    public static readonly COLOR_EXPORT:string     = "btn-info";
+    public static readonly COLOR_RUN:string     = "btn-info";
+
+    
+    public static readonly ICON_COLLAPSE_up:string = "angle-up"; 
+    public static readonly ICON_COLLAPSE_ON:string = "angle-down"; 
 
     public static readonly ICON_OPEN:string = "ti-eye";
     public static readonly ICON_DELETE:string = "ti-trash";
     public static readonly ICON_MODE_EDITION:string = "ti-write";
     public static readonly ICON_ACT_SAVE:string = "ti-save";
+    public static readonly ICON_RUN:string = "ti-control-play";
+    public static readonly ICON_EXPORT:string = "ti-export";
+    
+
 }//end class
 
+/**
+ * AppTexts.SAVE
+ */
+export class AppTexts {
+    
+    public static readonly OPEN : string = "Open";
+    public static readonly SAVE : string = "Save";
+    public static readonly RUN : string = "Run";
+    public static readonly EXPORT: string = "Export";   
 
- //btn-primary
+}//end class

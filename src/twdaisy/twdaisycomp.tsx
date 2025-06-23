@@ -8,9 +8,11 @@ import { AppConstants, AppUiConst } from "@/app_front/appconstants";
 
 /**
  * class TwDaisyCompBase 
- * TwDaisyCompBase.ALERTS_SUCCESS_STYLE
+ * TwDaisyCompBase.OP_NOTDEF
  */
 export class TwDaisyCompBase {
+
+    public static OP_NOTDEF :string = "undefined";
 
     public static BUTTON_SIZE_DEF: string = "md";
     public static BUTTON_COLOR_DEF: string = "btn-primary";

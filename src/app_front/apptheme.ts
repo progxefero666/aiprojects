@@ -32,13 +32,19 @@ import { AppConstants } from "./appconstants";
     //public static readonly ROOT_STYLE:string = AppTheme."w-full h-auto bg-gray-900 ";
 */
 
-//AppTheme.GRID_IOCHECKS_STYLE
+//AppTheme.TEXT_H3_SIZE
 export class AppTheme {
 
     public static readonly LAYOUT_COLOR: string = "bg-gray-900";
     public static readonly LAYOUT_STYLE: string = "w-full h-auto ".concat(AppTheme.LAYOUT_COLOR);
 
+    public static readonly LAYOUT_HEADER_STYLE: string 
+        = "w-full h-auto grid grid-cols-[17%_65%_17%] pt-[12px] pb-[10px]";
+
     public static readonly BODY_COLOR: string = "bg-base-100";
+
+    public static readonly BODY_STYLE: string = "w-full h-auto grid grid-cols-[17%_65%_17%]"
+
     public static readonly BODY_MONITOR_STYLE: string = "main_monitor w-full min-h-screen rounded-lg"
 
     public static readonly TEXT_BASE_COLOR: string = "text-white";

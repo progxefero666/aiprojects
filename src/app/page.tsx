@@ -85,7 +85,7 @@ export default function Desktop() {
             <PageHeader onaddapplication={onAddApplication} />
 
             {/* body */}
-            <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
+            <div className = {AppTheme.BODY_STYLE}>
 
                 {/* column left */}
                 <div className="w-full min-h-screen flex flex-col px-2 mb-2">

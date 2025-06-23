@@ -17,7 +17,7 @@ export class AppThemifyIcons {
     public static DEF_COLOR: string = "black";
     //public static DEF_CSS_SIZE: string = "h-[20px] w-[20px]";
 
-
+public static readonly TI_EXPORT: string = "export";
     public static readonly TI_CHECK: string = "check";
     public static readonly TI_CLOSE: string = "close";
     public static readonly TI_ARROWCIRCLE_DOWN: string = "arrow-circle-down";

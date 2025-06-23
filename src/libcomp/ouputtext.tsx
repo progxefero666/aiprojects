@@ -1,4 +1,4 @@
-//src\lib\xuicomp\form\inputtext.tsx
+//src\libcomp\ouputtext.tsx
 
 import { forwardRef, useState } from "react";
 

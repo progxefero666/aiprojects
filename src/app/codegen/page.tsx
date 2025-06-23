@@ -43,7 +43,7 @@ export default function CodeGenerator() {
      return (
         <div id="cont_root" className={AppTheme.LAYOUT_STYLE} >
             <PageHeader />
-            <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
+            <div className = {AppTheme.BODY_STYLE}>
                 <PagePrimaryBar    chargesection={chargeSection} 
                                    section={section}  />
                 <PageMainContent   section={section}  /> 

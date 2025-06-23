@@ -36,25 +36,29 @@ export interface ButtonProps {
 }
 export const Button = ({ key, visibled, disabled, operation, onclick,
                          text, icon, size, color, iconsize, iconcolor }: ButtonProps) => {
+    if (!visibled) {return null;}
 
-    const operationId:string = operation ?? "undefined";
+    const operationId:string = operation ?? TwDaisyCompBase.OP_NOTDEF;
     const getButtonStyle = () => {
-        return TwDaisyCompBase.getButtonStyle(size ?? TwDaisyCompBase.BUTTON_SIZE_DEF, color!);
+        if(text){
+            return TwDaisyCompBase
+                .getButtonStyle(size ?? TwDaisyCompBase.BUTTON_SIZE_DEF, color!);
+        }
+        else {
+            return TwDaisyCompBase
+                .getButtonStyle(size ?? TwDaisyCompBase.BUTTON_SIZE_DEF, color!);
+        }        
     }
-
     const getIconStyle = () => {
         return TwDaisyCompBase.getIconStyle(icon!,
                                     iconsize ?? TwDaisyCompBase.ICON_SIZE_DEF,
                                     iconcolor ?? TwDaisyCompBase.ICON_COLOR_DEF);
     }
-
-    if (!visibled) {return null;}
-
-    return (
-        
-        <button key={key} disabled={disabled} 
+    return (        
+        <button key={key} 
                 className = {getButtonStyle()}                 
-                onClick={() => onclick(operationId)}>
+                onClick={() => onclick(operationId)}
+                disabled={disabled}>                    
             {icon ? <span className={getIconStyle()} />:null}
             {text ? text : null}
         </button>

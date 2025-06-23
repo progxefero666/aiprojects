@@ -49,7 +49,7 @@ export default function ApplicationEditor() {
     return (
         <div id="cont_root" className={AppTheme.LAYOUT_STYLE} >
             <PageHeader />
-            <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
+            <div className = {AppTheme.BODY_STYLE}>
                 <PagePrimaryBar    chargesection={chargeSection} 
                                    section={section}  app={app} />
                 <PageMainContent   section={section}  app={app} /> 

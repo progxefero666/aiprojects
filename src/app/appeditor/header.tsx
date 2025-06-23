@@ -3,6 +3,7 @@
 import { Search } from "@/libcomp/search";
 import { AppThemifyIcons } from "@/style/appthicons";
 import { ButtonOld } from "@/libcomp/button_old";
+import { AppTheme } from "@/app_front/apptheme";
 
 
 /**
@@ -26,7 +27,7 @@ export default function PageHeader({ ontest }: PageHeaderProp) {
 
     return (
 
-        <div className="w-full h-auto grid grid-cols-[17%_65%_17%] pt-[12px] pb-[10px]">
+        <div className = {AppTheme.LAYOUT_HEADER_STYLE}>
 
             {/*column left */}
             <div className="w-full flex flex-row items-center px-2 top-2">
