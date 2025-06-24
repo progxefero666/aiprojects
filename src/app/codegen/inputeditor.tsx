@@ -8,6 +8,8 @@ import { CodeGenCfg } from "./motor/cgcfg";
 import CodeGenCard from "./cards/codegencard";
 import { InputFiles } from "@/libcomp/inputfiles";
 import { Button } from "@/libcomp/button";
+import { ModelTable } from "./motor/sql/sqlmodel";
+import { CodeGenSqlProcess } from "./motor/sql/sqlprocess";
 
 
 
@@ -40,7 +42,10 @@ export default function PageInputEditor({ section,onfileloaded }: PageInputEdito
     }
         
     const runProcess = () => {
-        alert("runProcess");
+        alert("run process");       
+        const tables: ModelTable[] = CodeGenSqlProcess.getEsquemaTables(code)
+        console.log(tables);
+        alert("process end");
     };
 
 
