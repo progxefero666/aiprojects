@@ -2,11 +2,9 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AppThemifyIcons } from "@/style/appthicons";
-import { ProgLangCodeService } from "@/client/service/ProglanguagesService";
 import { FieldWrapper } from "@/libcomp/fieldwrapper";
 import { BarButtons } from "@/libcomp/barbutton";
 import { Application } from "@/client/models/Application";
-import { ApptypesService } from "@/client/service/ApptypesService";
 import { OutputCheck } from "@/libcomp/outputcheck";
 import { OutputText } from "@/libcomp/ouputtext";
 import { ButtonOld } from "@/libcomp/button_old";

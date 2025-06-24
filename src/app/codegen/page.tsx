@@ -7,10 +7,11 @@ import { AppTheme } from "@/app_front/apptheme";
 
 //page layout jsx components
 import PageHeader from "./header";
-import PageMainContent from "./pagemain";
+import PageOutputMonitor from "./outputmonitor";
 import PagePrimaryBar from "./primarybar";
 import PageSecondaryBar from "./secondarybar";
 import { CodeGenCfg } from "./motor/cgcfg";
+import PageInputEditor from "./inputeditor";
 
 /**
  * Page Index JSX Client
@@ -39,12 +40,13 @@ export default function CodeGenerator() {
 
     return (
         <div id="cont_root" className={AppTheme.LAYOUT_STYLE} >
-            <PageHeader onfileloaded = {onfileloaded} />
-            <div className={AppTheme.BODY_STYLE}>
-                <PagePrimaryBar chargesection={chargeSection}
-                    section={section} />
-                <PageMainContent section={section} />
-                <PageSecondaryBar section={section} />
+            <PageHeader />
+
+            <div className={CodeGenCfg.BODY_STYLE}>
+                <PagePrimaryBar     section={section} chargesection={chargeSection} />
+                <PageInputEditor    section={section} onfileloaded = {onfileloaded}/>                
+                <PageOutputMonitor  section={section} />
+                <PageSecondaryBar   section={section} />                
             </div>
         </div>
     );

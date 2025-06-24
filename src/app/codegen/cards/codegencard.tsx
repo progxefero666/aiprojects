@@ -28,13 +28,10 @@ import { BARCFG_EXPORT, BARCFG_EDITION } from "@/app_front/uimodel/uimodelbars";
 import { AppTheme } from "@/app_front/apptheme";
 import { OutputText } from "@/libcomp/ouputtext";
 import { Button } from "@/libcomp/button";
+import { CodeGenCfg } from "../motor/cgcfg";
 
 const style_component: string = "w-full flex flex-col bg-base-100 p-[10px] rounded-lg border border-zinc-500";
-const style_header: string = "w-full h-auto flex flex-row items-center justify-between rounded-lg border border-sky-500";
-const style_header_title: string = "flex flex-row items-center pl-[6px] text-white text-xs flex-1";
 
-const style_title: string = "flex items-center flex-row ml-[12px] text-white text-lg flex-1";
-const style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";
 
 /**
  * src\app_front\manapplications\appeditorcfg.ts
@@ -45,29 +42,32 @@ export interface CodeGenCardProp {
 }
 export default function CodeGenCard({code,execexport}: CodeGenCardProp) {
 
-    //useEffect(() => {const init=()=>{};init();},[]);
-    const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EXPORT);
-    const [collapse, setCollapse]   = useState<boolean>(false);    
-    const onCollapse = () => {setCollapse(!collapse)};
+    //const [barConfig, setBarConfig] = useState<BarButtonsCfg>(BARCFG_EXPORT);
+    //const [collapse, setCollapse]   = useState<boolean>(false);    
+    //const onCollapse = () => {setCollapse(!collapse)};
     
     const onClick = (opId?:string) => {
         execexport
     };
 
-    const renderMainContent = () => {
-        return (
+    return (
+        <div className={style_component}>
             <div className={AppTheme.CARD_DATA_STYLE}>
                 <code>
                     <p>{code}</p>
                 </code>                
             </div>
-        )
-    };
+        </div>
+    )
 
+} //end component
+
+
+/*
     const renderHeader = () => {
         return (
             <div className={style_header}>
-                {/* header title */}
+     
                 <div className={style_header_title}>
                     <div>
                         {collapse ?
@@ -87,19 +87,12 @@ export default function CodeGenCard({code,execexport}: CodeGenCardProp) {
                     </div>
                 </div>
 
-                {/* headermbuttons */}
-                <BarButtons classname={style_barbuttons}
+     
+                <BarButtons classname={CodeGenCfg.style_barbuttons}
                             barconfig={barConfig}
                             onclick={onClick} />
             </div>
         )
     };
-
-    return (
-        <div className={style_component}>
-            {renderHeader()}
-            {!collapse ? renderMainContent() : null}
-        </div>
-    )
-
-} //end component
+   {renderHeader()}
+*/

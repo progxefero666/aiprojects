@@ -56,16 +56,17 @@ export function AppCard({ app, save, iconname, iconsize, iconcolor }: AppCardPro
     const [appTypesNames, setAppTypesNames] = useState<string[]>([]);
 
     //aplication edition
-    const nameRef = useRef<HTMLInputElement>(null);
-
     const typeRef = useRef<HTMLSelectElement>(null);
     const proglanguageRef = useRef<HTMLSelectElement>(null);
+    
+    const nameRef = useRef<HTMLInputElement>(null);    
     const osystemRef = useRef<HTMLInputElement>(null);
     const authorRef = useRef<HTMLInputElement>(null);
     const referenceRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLInputElement>(null);
     const urlRef = useRef<HTMLInputElement>(null);
     const pathRef = useRef<HTMLInputElement>(null);
+
     const localdevRef = useRef<HTMLInputElement>(null);
     const usedockerRef = useRef<HTMLInputElement>(null);
     const controlusersRef = useRef<HTMLInputElement>(null);
@@ -132,9 +133,12 @@ export function AppCard({ app, save, iconname, iconsize, iconcolor }: AppCardPro
         setCollapse(!collapse);
     };
 
+    //col-span-2
+    
     const renderMainContent = () => {
         return (
             <div className={AppTheme.CARD_DATA_STYLE}>
+
 
                 <div className={AppTheme.LIST_IOTEXT_STYLE}>
 
@@ -157,6 +161,7 @@ export function AppCard({ app, save, iconname, iconsize, iconcolor }: AppCardPro
                     <InputText name="path" ref={pathRef} label="path"
                         defaultvalue={app.apppath} maxlen={AppDef.PATH_MAXLEN}
                         disabled={disabled} />
+                        
                 </div>
 
                 <div className={AppTheme.GRID_IOELEMS_STYLE}>

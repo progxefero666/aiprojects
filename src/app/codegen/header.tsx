@@ -15,9 +15,10 @@ import { CodeGenCfg } from "./motor/cgcfg";
  * Ai Manager Projects Header
  */
 export interface PageHeaderProp {
-     onfileloaded: (file: File) => void;
+    value?:string;
+     //onfileloaded?: (file: File) => void;
 }
-export default function PageHeader({ onfileloaded }: PageHeaderProp) {
+export default function PageHeader({ value }: PageHeaderProp) {
     const inputFilesRef = useRef<HTMLInputElement>(null);
 
     const maxLen: number = 50;
@@ -28,11 +29,7 @@ export default function PageHeader({ onfileloaded }: PageHeaderProp) {
         
     };
     
-    const onFileLoaded = async (name:string,file:unknown) => {
-        if(file){
-            onfileloaded(file as File);
-        }        
-    }
+
 
     return (
 
@@ -52,12 +49,6 @@ export default function PageHeader({ onfileloaded }: PageHeaderProp) {
 
             {/*column center classname="hidden" */}
             <div className="w-full flex flex-row pl-[6px]">
-                
-                <InputFiles name="codefile"
-                            ref={inputFilesRef}                            
-                            formats={CodeGenCfg.TYPESCRIPT_FORMATS}
-                            multiple={false}
-                            onchange={onFileLoaded} />
 
                 <div className="w-auto ml-[12px] mr-[12px]">
                     <Button text={AppTexts.RUN} 
