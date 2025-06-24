@@ -1,12 +1,13 @@
 //src\app\appeditor\primarybar.tsx
 
 import { useRef, useState } from "react";
-import { AppConstants } from "@/app_front/appconstants";
+import { AppConstants, AppUiConst } from "@/app_front/appconstants";
 import { renderAlert } from "@/twdaisy/twdaisycomp";
 import { AppTheme } from "@/app_front/apptheme";
 import { CodeGenCfg } from "./motor/cgcfg";
 import CodeGenCard from "./cards/codegencard";
 import { InputFiles } from "@/libcomp/inputfiles";
+import { Button } from "@/libcomp/button";
 
 
 
@@ -38,6 +39,11 @@ export default function PageInputEditor({ section,onfileloaded }: PageInputEdito
         }
     }
         
+    const runProcess = () => {
+        alert("runProcess");
+    };
+
+
     const onexport = () => {
         alert("export");
     }
@@ -45,9 +51,13 @@ export default function PageInputEditor({ section,onfileloaded }: PageInputEdito
     return (
         <div className={CodeGenCfg.EDITOR_STYLE}>
             <div className={CodeGenCfg.EDITOR_HEADER_STYLE}>
+                    <Button text="run"
+                            icon={AppUiConst.ICON_RUN}
+                            onclick={runProcess} />    
+
                 <InputFiles name="codefile"
                             ref={inputFilesRef}                            
-                            formats={CodeGenCfg.TYPESCRIPT_FORMATS}
+                            formats={CodeGenCfg.SQL_FORMATS}
                             multiple={false}
                             onchange={onFileLoaded} />
             </div>

@@ -1,7 +1,7 @@
 //src\app_front\appconstants.ts
 
 /**
- * class AppConstants.ACT_EXPORT
+ * class AppConstants.ICON_RUN
  */
 export class AppConstants {
 

@@ -32,7 +32,9 @@ export class CodeGenCfg {
     public static readonly BODY_STYLE: string = "w-full h-auto grid grid-cols-[14%_41%_41%_4%]";
 
     public static readonly EDITOR_STYLE: string = "w-full h-auto flex flex-col px-4 space-y-3";
-    public static readonly EDITOR_HEADER_STYLE: string = "w-full h-auto  p-2  rounded-lg border border-sky-500";
+    public static readonly EDITOR_HEADER_STYLE: string 
+        = "w-full h-auto flex flex-row p-2  rounded-lg border border-sky-500";
+        
     public static readonly EDITOR_AREA_STYLE: string = "w-full h-auto flex flex-col bg-green-450";
     
     public static  style_barbuttons: string = "h-auto mr-[6px] my-[6px] flex justify-end";

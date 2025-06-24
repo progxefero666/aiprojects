@@ -1,10 +1,11 @@
-//src\app_front\manapplications\appeditorcfg.ts
+//src\app\codegen\motor\sql\sqlprocess.ts
 
-import { Option } from "@/lib/common/model/base/option";
 
+import { ModelTable } from "./sqlmodel";
+import {fieldtypes} from "./sqltypes.json";
 
 /**
- * class CodeGenCfg.TYPESCRIPT_FORMATS
+ * class CodeGenSqlProcess.getEsquemaTables(text):ModelTable[] 
  */
 export class CodeGenSqlProcess {
 
@@ -14,29 +15,26 @@ export class CodeGenSqlProcess {
     public static readonly WORD_FOREIGN_KEY:string = "FOREIGN KEY";
     public static readonly WORD_REFERENCES:string = "REFERENCES";
 
+    public static getEsquemaTables(scriptSql:string):ModelTable[] {
+        let tables:ModelTable[] = [];
+
+        return tables;
+    }
+
+
+}//end class
+
+/*
     public static processSqlFile(text:string):string {
         let text_res:string = "";
         return text_res;
     }   
-
     public static processSqlDataInit(text:string):string {
         let text_res:string = "";
         return text_res;
     }   
-
     public static processSqlBlockCreate(text:string):string {
         let text_res:string = "";
         return text_res;
     }   
-
-}//end class
-
-/**
- * AppEditorMessages.MSG_SAVE_APP_ERROR
- */
-export class CodeGenCfgMessages {
-
-    public static readonly MSG_SAVE_APP_ERROR: string = "!! Files charged correct. !!";
-
-
-}//end class
+*/

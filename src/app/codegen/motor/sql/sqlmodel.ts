@@ -1,7 +1,23 @@
-//src\app\codegen\motor\model\field.ts
+//src\app\codegen\motor\model\relation.ts
 
 import { AppConstants } from "@/app_front/appconstants";
-import { Relation } from "./relation";
+
+
+/**
+ * class Field
+ */
+export class Relation {
+    
+    public table:string = AppConstants.NOT_DEF;    
+    public field:string = AppConstants.NOT_DEF;
+ 
+    constructor(table:string,field:string){
+        this.table = table;
+        this.field = field;
+    }
+
+}//end 
+
 
 /**
  * class Field
@@ -35,3 +51,22 @@ export class ModelField {
     }
 
 }//end 
+
+export class ModelTable {
+    
+    public name:string;    
+    public fields:ModelField[];
+
+    constructor(name:string,fields?:ModelField[]){
+        this.name = name;
+        this.fields = fields ?? [];
+    }
+    public addField(field:ModelField){
+        this.fields.push(field);
+    }
+    
+    public addFields(fields: ModelField[]) {
+     this.fields.push(...fields);
+    }
+
+}//end class
