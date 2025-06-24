@@ -24,11 +24,18 @@ export default function PageInputEditor({ section,onfileloaded }: PageInputEdito
     const inputFilesRef = useRef<HTMLInputElement>(null);
     const [code, setCode] = useState<string>(AppConstants.NOT_DEF);
 
-    
-    const onFileLoaded = async (name:string,file:unknown) => {
+
+    const onFileLoaded = async (name:string,file:File) => {
         if(file){
             const code_file:File = file as File;
-        }        
+            const reader = new FileReader();
+                reader.onload = (e) => {
+                const text = reader.result!.toString().trim();
+                console.log(text);
+                setCode(text);
+            }
+            reader.readAsText(code_file);           
+        }
     }
         
     const onexport = () => {
@@ -38,15 +45,16 @@ export default function PageInputEditor({ section,onfileloaded }: PageInputEdito
     return (
         <div className={CodeGenCfg.EDITOR_STYLE}>
             <div className={CodeGenCfg.EDITOR_HEADER_STYLE}>
-                        <InputFiles name="codefile"
-                                    ref={inputFilesRef}                            
-                                    formats={CodeGenCfg.TYPESCRIPT_FORMATS}
-                                    multiple={false}
-                                    onchange={onFileLoaded} />
+                <InputFiles name="codefile"
+                            ref={inputFilesRef}                            
+                            formats={CodeGenCfg.TYPESCRIPT_FORMATS}
+                            multiple={false}
+                            onchange={onFileLoaded} />
             </div>
             
             <div className={CodeGenCfg.EDITOR_AREA_STYLE}>
-                <textarea className="textarea textarea-primary w-full min-h-screen "
+                <textarea  key={code} 
+                           className="textarea textarea-primary w-full min-h-screen "
                            placeholder="(not def)" defaultValue={code} />
             </div>
 

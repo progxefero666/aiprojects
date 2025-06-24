@@ -1,4 +1,4 @@
-//src\lib\xuicomp\form\inputmmfile.tsx
+//src\libcomp\inputfiles.tsx
 
 import { forwardRef, ChangeEvent } from "react";
 
@@ -7,7 +7,7 @@ export interface InputFilesProps {
     name: string;
     classname?: string;
     label?: string;
-    onchange?: (name: string, result: unknown) => void;
+    onchange?: (name: string, result: File) => void;
     formats: string;
     multiple: boolean;
 }
@@ -21,7 +21,7 @@ export const InputFiles = forwardRef<HTMLInputElement, InputFilesProps>(
         if (onchange) {
             const files: FileList = event.target.files;
             if (files && onchange) {
-                onchange(name, files);
+                onchange(name, files[0]);
             }
         }
     };

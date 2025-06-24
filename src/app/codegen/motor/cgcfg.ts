@@ -10,6 +10,8 @@ export class CodeGenCfg {
 
     public static readonly TYPESCRIPT_FORMATS:string = ".ts,.tsx"
 
+    public static readonly SQL_FORMATS:string = ".sql,.txt"
+
     public static readonly CREATE_MODEL: Option = new Option
         ("create_typescript_model_from_sql", "Model by SQL", "create typescript model from sql");
 
